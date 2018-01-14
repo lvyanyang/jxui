@@ -1,0 +1,85 @@
+[
+  {
+    "id": "100026",
+    "pid": "0",
+    "text": "系统管理"
+  },
+  {
+    "id": "100055",
+    "pid": "100026",
+    "text": "延迟打开",
+    "iconCls": "fa fa-snowflake-o",
+    "mode": "iframe",
+    "url": "mock/page.php"
+  },
+  {
+    "id": "100004",
+    "pid": "100026",
+    "text": "tree",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/tree.html"
+  },
+  {
+    "id": "100059",
+    "pid": "100026",
+    "text": "combo",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/combo.html"
+  },
+  {
+    "id": "100014",
+    "pid": "100026",
+    "text": "模块",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/grid.html"
+  },
+  {
+    "id": "100016",
+    "pid": "100026",
+    "text": "tabs",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/tabs.html"
+  },
+  {
+    "id": "100060",
+    "pid": "100026",
+    "text": "formarea",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/formarea.html"
+  },
+  {
+    "id": "100205",
+    "pid": "100026",
+    "text": "report",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/report.html"
+  },
+  {
+    "id": "100279",
+    "pid": "100026",
+    "text": "page",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/page.html"
+  },
+  {
+    "id": "100219",
+    "pid": "100026",
+    "text": "wizard",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/wizard.html"
+  },
+  {
+    "id": "100296",
+    "pid": "100026",
+    "text": "jxgrid",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/jxgrid.html"
+  },
+  {
+    "id": "100325",
+    "pid": "100026",
+    "text": "note_edit",
+    "iconCls": "fa fa-snowflake-o",
+    "url": "page/note_edit.html"
+  }
+]

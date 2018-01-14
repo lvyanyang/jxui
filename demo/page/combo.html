@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="//47.94.175.234/cdn/jx/1.0.1/jx.css" rel="stylesheet">
+    <script src="//47.94.175.234/cdn/jx/1.0.1/jx.js"></script>
+    <style>
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            text-decoration: none;
+            color: #fff;
+            background-color: #0081c2;
+            /*border-radius: 4px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="jxform-wrap" style="width: 80%;">
+    <div class="jxform-container" data-toggle="context" data-target="#context-menu">
+        <form class='jxform' method="post" action="../api/form.php">
+            <div class='jxform-header'>
+                <div class='jx-heading'>
+                    <strong>创建文章</strong>
+                </div>
+            </div>
+            <table class='table jxtable-form' style="width: 95%;">
+                <tr>
+                    <th>combo</th>
+                    <td>
+                        <input id="select_combo" name='select_combo'
+                               class='form-control jxcombo'
+                               autocomplete='off'
+                               data-validate="{required: true}">
+                    </td>
+                    <th>combo.tree</th>
+                    <td>
+                        <input id="select_combotree" name='select_combotree'
+                               class='form-control jxcombotree'
+                               autocomplete='off'
+                               data-value="user_100118"
+                               data-validate="{required: true}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>combo.grid</th>
+                    <td colspan="3">
+                        <input id="select_combogrid" name='select_combogrid'
+                               class='form-control jxcombogrid'
+                               autocomplete='off'
+                               data-validate="{required: true}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class='w-110px'>jxlookup</th>
+                    <td>
+                        <input id="select_dept" name="select_dept" class="form-control jxlookup" readonly
+                               maxlength="15" placeholder="点放大镜按钮查找"
+                               data-validate="{required: [true,'请输入发布名称']}"
+                               data-text-field="select_name_d">
+                    </td>
+                    <th>jxlookuptree</th>
+                    <td>
+                        <input id="idnum" name='idnum' class='form-control jxlookuptree'
+                               autofocus autocomplete='off'
+                               data-value="user_100162"
+                               data-validate="{required: true}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>jxlookupgrid</th>
+                    <td>
+                        <input id="select_grid" name='select_grid' class='form-control jxlookupgrid'
+                               autofocus autocomplete='off'
+                               data-value="27607392-c60c-4ee6-9557-ef59f9410bbb"
+                               data-validate="{required: true}"/>
+
+                    </td>
+
+                    <th>发布日期</th>
+                    <td>
+                        <div class="jxdate input-group date">
+                            <input class="form-control" id="ReservationDateTimeEndDate"
+                                   name="ReservationDateTimeEndDate"
+                                   data-validate="{required: [true,'请选择日期']}"
+                                   type="text" placeholder="请选择日期">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>jxlookupgrid</th>
+                    <td colspan="3">
+                        <!--data-options="{multiple: true,treeOptions:{url: 'mock/tree1.json'}}"-->
+                        <textarea name="user_abs" class="form-control jxlookupgrid" rows="3"
+                                  style="resize: none"
+                                  placeholder="请选择组织机构"
+                                  data-options="{inputTrigger:false,dialogOptions:{url: 'page/lookup_grid_window.html'}}"
+                                  data-validate="{required: [true,'请选择日期']}"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>掩码</th>
+                    <td colspan="3">
+                        <input id="inputmask_s" name="inputmask_s" class='form-control jxinputmask'
+                               autocomplete='off'
+                               data-mask="yyyy-mm-dd"
+                               data-inputmask-placeholder="_"
+                               data-validate="{required: true}"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>文件上传</th>
+                    <td colspan="3">
+                        <div class="fileinputx fileinputx-new input-group" data-provides="fileinputx">
+                            <div class="form-control" data-trigger="fileinputx">
+                                <i class="fa fa-file-o fileinputx-exists"></i>
+                                <span class="fileinputx-filename"></span>
+                            </div>
+                            <span class="input-group-addon btn btn-default btn-file">
+                                <span class="fileinputx-new">选择</span>
+                                <span class="fileinputx-exists">更改</span>
+                                <input type="file" name="user_file" data-validate="{required: true}">
+                            </span>
+                            <a href="#" class="input-group-addon btn btn-default fileinputx-exists"
+                               data-dismiss="fileinputx">移除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>附件</th>
+                    <td colspan="3"><span class="color-red">因为安全原因，Demo暂时不支持上传附件功能！</span></td>
+                </tr>
+            </table>
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 保存
+                </button>
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-sign-in"></i> 返回
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--右键菜单 data-toggle="context" data-target="#context-menu" -->
+<div id="context-menu">
+    <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+    </ul>
+</div>
+
+<div id="jxcombo_content" class="jx-hide">
+    sdfsfsdfsdfsdf
+</div>
+
+<script>
+    // new Clipboard('.btn');
+
+    //jxlookup
+    $('#select_dept').jxoptions({
+        dialogOptions: {
+            url: 'page/lookup_tree_window.html',
+            width: 300,
+            height: '70%',
+            callback: function (dwin, $layer, index) {
+                var node = dwin.$('.jxtree').tree('getSelected');
+                if (!node) {
+                    toastr.error('请选择部门');
+                    return false;
+                }
+                var kv = {text: node.text, value: node.id};
+                if (jx.debug) {
+                    console.log('选中的值:%o', kv);
+                }
+                $('#select_dept').data('jxlookup').setValue(kv);
+                return true;
+            }
+        }
+    });
+
+    //jxlookuptree
+    $('#idnum').jxoptions({
+        showSelect: false,
+        showClear: true,
+        multiple: false,
+        maxSelectCount: 2,
+        requireSelect: true,
+        autoAccept: true,
+        separator: '|',
+        dialogOptions: {
+            width: 300,
+            height: '70%'
+        },
+        treeOptions: {
+            url: '../api/tree1.json'
+        }
+    });
+
+    //jxlookupgrid
+    $('#select_grid').jxoptions({
+        requireSelect: true,
+        autoAccept: false,
+        maxSelectCount: 3,
+        dialogOptions: {
+            title: '请选择模块',
+            url: 'page/lookup_grid_window.html',
+            width: '80%',
+            height: '80%'
+        }
+    }).on('accept', function (e, kv) {
+        if (kv.text.split(',').length > 2) {
+            alert('太多了');
+            return false;
+        }
+    });
+
+    //jxcombo
+    $('#select_combo').jxoptions({
+        content: $('#jxcombo_content'),
+    });
+
+    //jxcombotree
+    $('#select_combotree').jxoptions({
+        multiple: true,
+        // editable:false,
+        treeOptions: {
+            url: '../../api/tree1.json'
+        }
+    });
+
+    //select_combogrid
+    $('#select_combogrid').jxoptions({
+        // multiple: true,
+        // editable:false,
+        gridOptions: {
+            url: '../../api/grid.json',
+            mainId: "F_CustomerId",
+            mainText: "F_FullName",
+            headData: [
+                {label: '客户编号', name: 'F_EnCode', width: 130, align: 'center', sort: true},
+                {label: '客户名称', name: 'F_FullName', width: 200, align: 'left', sort: true},
+                {label: '客户类别', name: 'F_CustTypeId', width: 100, align: 'center'},
+                {label: '客户程度', name: 'F_CustDegreeId', width: 100, align: 'center'},
+                {label: '联系人', name: 'F_Contact', width: 100, align: 'center'},
+                {label: '跟进人员', name: 'F_TraceUserName', width: 100, align: 'center'}
+            ]
+        }
+    });
+
+</script>
+</body>
+</html>

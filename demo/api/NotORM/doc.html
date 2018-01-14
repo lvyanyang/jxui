@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NotORM API</title>
+    <style>
+        body {
+            font: 1.1em Verdana, Arial, sans-serif;
+            color: black;
+            background: white;
+        }
+
+        .jush-php, .jush-php_new, .jush-php_fun {
+            color: #000033;
+            background-color: #FFF0F0;
+        }
+
+        code, pre {
+            font-family: Consolas, monospace;
+        }
+
+        table {
+            border-top: 1px solid #999;
+            border-left: 1px solid #999;
+            font-size: 90%;
+        }
+
+        td, th {
+            border-right: 1px solid #999;
+            border-bottom: 1px solid #999;
+            padding: .2em .3em;
+        }
+    </style>
+</head>
+<body>
+<div id="examples" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+    <h2 class="hidden">Examples</h2>
+    <div class="right"><img src="http://www.notorm.com/static/software.png" width="261" height="220"
+                            alt="Database schema"><br>
+        <small>
+            <small>(Image created by <a href="https://www.adminer.org/"><strong>Adminer</strong></a>.)</small>
+        </small>
+    </div>
+    <p>NotORM provides a very intuitive API. Examples are showing the API on a simple database that is included in the
+        download.</p>
+
+    <h3>Connecting</h3>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><a
+            href="http://www.php.net/function.include" target="_blank">include</a> <span class="jush-php_quo"><span
+            class="jush-op">"</span>NotORM.php<span class="jush-op">"</span></span>;<br><span
+            class="jush-php_var">$pdo</span> = <span class="jush-php_new"><a
+            href="http://www.php.net/language.oop5.basic#language.oop5.basic.new" target="_blank">new</a><span
+            class="jush-op"> </span><a href="http://www.php.net/class.pdo" target="_blank">PDO</a></span>(<span
+            class="jush-php_quo"><span class="jush-op">"</span>mysql:dbname=software<span
+            class="jush-op">"</span></span>);<br><span class="jush-php_var">$db</span> = <span class="jush-php_new"><a
+            href="http://www.php.net/language.oop5.basic#language.oop5.basic.new" target="_blank">new</a><span
+            class="jush-op"> </span>NotORM</span>(<span
+            class="jush-php_var">$pdo</span>);<br></span></span></span></code></pre>
+    <p>NotORM uses <a href="http://www.php.net/manual/en/book.pdo.php"><strong>PDO</strong></a> driver to access the
+        database.</p>
+
+    <h3>Reading data</h3>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><a
+            href="http://www.php.net/control-structures.foreach" target="_blank">foreach</a> (<span
+            class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;application</span>() <a
+            href="http://www.php.net/control-structures.foreach" target="_blank">as</a> <span class="jush-php_var">$application</span>) { <span
+            class="jush-php_one"><span class="jush-op">//</span> get all applications<span
+            class="jush-op"><br></span></span> &nbsp; &nbsp;<span class="jush-php_echo"><a
+            href="http://www.php.net/function.echo" target="_blank">echo</a> <span class="jush-php_quo"><span
+            class="jush-op">"</span><span class="jush-php_var">$application</span>[title]<span class="jush-esc"><span
+            class="jush-op">\</span><span class="jush-op">n</span></span><span class="jush-op">"</span></span><span
+            class="jush-op">;</span></span> <span class="jush-php_one"><span class="jush-op">//</span> print application title<span
+            class="jush-op"><br></span></span>}<br></span></span></span></code></pre>
+    <p>Use a method call to get rows from the table. Use square brackets to access a column value.</p>
+
+    <h3>Limiting result set</h3>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$applications</span> = <span class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;application</span>()<br>&nbsp; &nbsp; <span
+            class="jush-php_fun">-&gt;select</span>(<span class="jush-php_quo"><span
+            class="jush-op">"</span>id, title<span class="jush-op">"</span></span>)<br>&nbsp; &nbsp; <span
+            class="jush-php_fun">-&gt;where</span>(<span class="jush-php_quo"><span
+            class="jush-op">"</span>web LIKE ?<span class="jush-op">"</span></span>, <span class="jush-php_quo"><span
+            class="jush-op">"</span>http://%<span class="jush-op">"</span></span>)<br>&nbsp; &nbsp; <span
+            class="jush-php_fun">-&gt;order</span>(<span class="jush-php_quo"><span class="jush-op">"</span>title<span
+            class="jush-op">"</span></span>)<br>&nbsp; &nbsp; <span class="jush-php_fun">-&gt;limit</span>(<span
+            class="jush-num"><span class="jush-op">10</span></span>)<br>;<br><a
+            href="http://www.php.net/control-structures.foreach" target="_blank">foreach</a> (<span
+            class="jush-php_var">$applications</span> <a href="http://www.php.net/control-structures.foreach"
+                                                         target="_blank">as</a> <span class="jush-php_var">$id</span> =&gt; <span
+            class="jush-php_var">$application</span>) {<br>&nbsp; &nbsp; <span class="jush-php_echo"><a
+            href="http://www.php.net/function.echo" target="_blank">echo</a> <span class="jush-php_quo"><span
+            class="jush-op">"</span><span class="jush-php_var">$application</span>[title]<span class="jush-esc"><span
+            class="jush-op">\</span><span class="jush-op">n</span></span><span class="jush-op">"</span></span><span
+            class="jush-op">;</span></span><br>}<br></span></span></span></code></pre>
+    <p>The example gets first ten applications with HTTP URL ordered by a title.</p>
+
+    <h3>Getting a single row</h3>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$application</span> = <span class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;application</span>[<span
+            class="jush-num"><span class="jush-op">1</span></span>]; <span class="jush-php_one"><span
+            class="jush-op">//</span> get by primary key<span class="jush-op"><br></span></span><span
+            class="jush-php_var">$application</span> = <span class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;application</span>(<span
+            class="jush-php_quo"><span class="jush-op">"</span>title = ?<span class="jush-op">"</span></span>, <span
+            class="jush-php_quo"><span class="jush-op">"</span>Adminer<span class="jush-op">"</span></span>)<span
+            class="jush-php_fun">-&gt;fetch</span>();<br></span></span></span></code></pre>
+
+    <h3>Relationships</h3>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_echo"><a href="http://www.php.net/function.echo" target="_blank">echo</a> <span
+            class="jush-php_var">$application</span><span class="jush-php_fun">-&gt;author</span>[<span
+            class="jush-php_quo"><span class="jush-op">"</span>name<span class="jush-op">"</span></span>] . <span
+            class="jush-php_quo"><span class="jush-op">"</span><span class="jush-esc"><span
+            class="jush-op">\</span><span class="jush-op">n</span></span><span class="jush-op">"</span></span><span
+            class="jush-op">;</span></span> <span class="jush-php_one"><span class="jush-op">//</span> get name of the application author<span
+            class="jush-op"><br></span></span><a href="http://www.php.net/control-structures.foreach" target="_blank">foreach</a> (<span
+            class="jush-php_var">$application</span><span class="jush-php_fun">-&gt;application_tag</span>() <a
+            href="http://www.php.net/control-structures.foreach" target="_blank">as</a> <span class="jush-php_var">$application_tag</span>) { <span
+            class="jush-php_one"><span class="jush-op">//</span> get all tags of $application<span class="jush-op"><br></span></span> &nbsp; &nbsp;<span
+            class="jush-php_echo"><a href="http://www.php.net/function.echo" target="_blank">echo</a> <span
+            class="jush-php_var">$application_tag</span><span class="jush-php_fun">-&gt;tag</span>[<span
+            class="jush-php_quo"><span class="jush-op">"</span>name<span class="jush-op">"</span></span>] . <span
+            class="jush-php_quo"><span class="jush-op">"</span><span class="jush-esc"><span
+            class="jush-op">\</span><span class="jush-op">n</span></span><span class="jush-op">"</span></span><span
+            class="jush-op">;</span></span> <span class="jush-php_one"><span class="jush-op">//</span> print the tag name<span
+            class="jush-op"><br></span></span>}<br></span></span></span></code></pre>
+    <p>Simple work with relationships is a killer feature of NotORM. Method call <code>-&gt;()</code> on a row object
+        gets all rows from referencing table, member access <code>-&gt;</code> stands for table referenced by the
+        current row, and array access <code>[]</code> gets always a value in the row. Checkout the <a
+                href="#performance">performance</a> of this code.</p>
+
+    <h3>Joins</h3>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_one"><span class="jush-op">//</span> get all applications ordered by author's name<span
+            class="jush-op"><br></span></span><a href="http://www.php.net/control-structures.foreach" target="_blank">foreach</a> (<span
+            class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;application</span>()<span
+            class="jush-php_fun">-&gt;order</span>(<span class="jush-php_quo"><span
+            class="jush-op">"</span>author.name<span class="jush-op">"</span></span>) <a
+            href="http://www.php.net/control-structures.foreach" target="_blank">as</a> <span class="jush-php_var">$application</span>) {<br>&nbsp; &nbsp; <span
+            class="jush-php_echo"><a href="http://www.php.net/function.echo" target="_blank">echo</a> <span
+            class="jush-php_var">$application</span><span class="jush-php_fun">-&gt;author</span>[<span
+            class="jush-php_quo"><span class="jush-op">"</span>name<span class="jush-op">"</span></span>] . <span
+            class="jush-php_quo"><span class="jush-op">"</span>: <span
+            class="jush-php_var">$application</span>[title]<span class="jush-esc"><span class="jush-op">\</span><span
+            class="jush-op">n</span></span><span class="jush-op">"</span></span><span
+            class="jush-op">;</span></span><br>}<br></span></span></span></code></pre>
+    <p>If you need to filter or order rows by column in referenced table then simply use the dot notation.</p>
+
+    <h3>Grouping</h3>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_echo"><a href="http://www.php.net/function.echo" target="_blank">echo</a> <span
+            class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;application</span><span
+            class="jush-php_echo"><span class="jush-op">(</span><span class="jush-op">)</span></span><span
+            class="jush-php_fun">-&gt;max</span><span class="jush-php_echo"><span class="jush-op">(</span><span
+            class="jush-php_quo"><span class="jush-op">"</span>id<span class="jush-op">"</span></span><span
+            class="jush-op">)</span></span><span class="jush-op">;</span></span> <span class="jush-php_one"><span
+            class="jush-op">//</span> get maximum ID<span class="jush-op"><br></span></span><a
+            href="http://www.php.net/control-structures.foreach" target="_blank">foreach</a> (<span
+            class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;application</span>() <a
+            href="http://www.php.net/control-structures.foreach" target="_blank">as</a> <span class="jush-php_var">$application</span>) {<br>&nbsp; &nbsp; <span
+            class="jush-php_one"><span class="jush-op">//</span> get count of each application's tags<span
+            class="jush-op"><br></span></span> &nbsp; &nbsp;<span class="jush-php_echo"><a
+            href="http://www.php.net/function.echo" target="_blank">echo</a> <span
+            class="jush-php_var">$application</span><span class="jush-php_fun">-&gt;application_tag</span><span
+            class="jush-php_echo"><span class="jush-op">(</span><span class="jush-op">)</span></span><span
+            class="jush-php_fun">-&gt;count</span><span class="jush-php_echo"><span class="jush-op">(</span><span
+            class="jush-php_quo"><span class="jush-op">"</span>*<span class="jush-op">"</span></span><span
+            class="jush-op">)</span></span> . <span class="jush-php_quo"><span class="jush-op">"</span><span
+            class="jush-esc"><span class="jush-op">\</span><span class="jush-op">n</span></span><span
+            class="jush-op">"</span></span><span
+            class="jush-op">;</span></span><br>}<br></span></span></span></code></pre>
+    <p>All grouping functions are supported.</p>
+
+    <!--
+    <h3>Applications of authors with name starting by J</h3>
+    <pre><code class='jush-php'>$db-&gt;application("author_id", $db-&gt;author("name LIKE ?", "J%"));
+    // SELECT * FROM application WHERE author_id IN (SELECT id FROM author WHERE name LIKE 'J%')
+
+    // alternative
+    $db-&gt;application("author.name LIKE ?", "J%");
+    // SELECT application.* FROM application INNER JOIN author ON application.author_id = author.id WHERE author.name LIKE 'J%'
+    </code></pre>
+
+    <h3>Applications without tags</h3>
+    <pre><code class='jush-php'>$db-&gt;application("id NOT", $db-&gt;application_tag()-&gt;select("application_id"));
+    // SELECT * FROM application WHERE id NOT IN (SELECT application_id FROM application_tag)
+    </code></pre>
+    -->
+</div>
+<div id="api" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+    <h2 class="hidden">API</h2>
+    <h3>Database</h3>
+    <table cellspacing="0">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$db</span> = <span class="jush-php_new"><a
+                    href="http://www.php.net/language.oop5.basic#language.oop5.basic.new" target="_blank">new</a><span
+                    class="jush-op"> </span>NotORM</span>(<span class="jush-php_var">$pdo</span>[, <span
+                    class="jush-php_var">$structure</span>[, <span
+                    class="jush-php_var">$cache</span>]])</span></span></span></code></td>
+            <td>Get database representation
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$db</span><span
+                    class="jush-php_fun">-&gt;debug</span> = true</span></span></span></code></td>
+            <td>Call <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><a
+                    href="http://www.php.net/function.error_log" target="_blank">error_log</a>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span><span class="jush-php_var">$file</span>:<span
+                    class="jush-php_var">$line</span>:<span class="jush-php_var">$query</span>; -- <span
+                    class="jush-php_var">$parameters</span><span
+                    class="jush-op">"</span></span>)</span></span></span></code> before executing a query
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;debug</span> = <span
+                    class="jush-php_var">$callback</span></span></span></span></code></td>
+            <td>Call <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$callback</span>(<span class="jush-php_var">$query</span>, <span
+                    class="jush-php_var">$parameters</span>)</span></span></span></code> before executing a query, if
+                <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                        class="jush-php_var">$callback</span></span></span></span></code> would return <code
+                        class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">false</span></span></span></code>
+                then do not execute the query
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;debugTimer</span> = <span
+                    class="jush-php_var">$callback</span></span></span></span></code></td>
+            <td>Call <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$callback</span>()</span></span></span></code> after executing a query
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;rowClass</span> = <span
+                    class="jush-php_apo"><span class="jush-op">'</span>ClassName<span
+                    class="jush-op">'</span></span></span></span></span></code></td>
+            <td>Derive row objects from this class (defaults to <code class="jush-php"><span class="jush-php"><span
+                    class="jush"><span class="jush-php2"><span class="jush-php_apo"><span class="jush-op">'</span>NotORM_Row<span
+                    class="jush-op">'</span></span></span></span></span></code>)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;transaction</span> = <span
+                    class="jush-php_var">$command</span></span></span></span></code></td>
+            <td>Assign <code class="jush-php_sql"><span class="jush-php_sql"><span class="jush"><span
+                    class="jush-php_apo"><span class="jush-op">'</span><span class="jush-sql_code"><a
+                    href="http://dev.mysql.com/doc/mysql/en/commit.html" target="_blank">BEGIN</a></span><span
+                    class="jush-op">'</span></span></span></span></code>, <code class="jush-php_sql"><span
+                    class="jush-php_sql"><span class="jush"><span class="jush-php_apo"><span
+                    class="jush-op">'</span><span class="jush-sql_code"><a
+                    href="http://dev.mysql.com/doc/mysql/en/commit.html" target="_blank">COMMIT</a></span><span
+                    class="jush-op">'</span></span></span></span></code> or <code class="jush-php_sql"><span
+                    class="jush-php_sql"><span class="jush"><span class="jush-php_apo"><span
+                    class="jush-op">'</span><span class="jush-sql_code"><a
+                    href="http://dev.mysql.com/doc/mysql/en/commit.html" target="_blank">ROLLBACK</a></span><span
+                    class="jush-op">'</span></span></span></span></code> to start or stop transaction
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3 class="clear"><a name="result"></a>Result</h3>
+    <table cellspacing="0">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span> = <span class="jush-php_var">$db</span><span
+                    class="jush-php_fun">-&gt;</span><span class="jush-php_var">$tableName</span>([<span
+                    class="jush-php_var">$where</span>[, <span class="jush-php_var">$parameters</span>[, ...]]])</span></span></span></code>
+            </td>
+            <td>Get representation of table <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$tableName</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_var">$where</span>[, <span
+                    class="jush-php_var">$parameters</span>[, ...]])</span></span></span></code></td>
+            <td>Set <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    target="_blank">WHERE</a></span></span></span></code> (explained later)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;and</span>(<span
+                    class="jush-php_var">$where</span>[, <span
+                    class="jush-php_var">$parameters</span>[, ...]])</span></span></span></code></td>
+            <td>Add <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    href="http://dev.mysql.com/doc/mysql/en/logical-operators.html#operator_and" target="_blank">AND</a></span></span></span></code>
+                condition
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;or</span>(<span
+                    class="jush-php_var">$where</span>[, <span
+                    class="jush-php_var">$parameters</span>[, ...]])</span></span></span></code></td>
+            <td>Add <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    href="http://dev.mysql.com/doc/mysql/en/logical-operators.html#operator_or"
+                    target="_blank">OR</a></span></span></span></code> condition
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;order</span>(<span
+                    class="jush-php_var">$columns</span>[, ...])</span></span></span></code></td>
+            <td>Set <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    target="_blank">ORDER</a> <a target="_blank">BY</a></span></span></span></code>, can be expression (<code
+                    class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_quo"><span class="jush-op">"</span>column DESC, id DESC<span
+                    class="jush-op">"</span></span></span></span></span></code>)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;order</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span><span
+                    class="jush-op">"</span></span>)</span></span></span></code></td>
+            <td>Reset previously set order
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;select</span>(<span
+                    class="jush-php_var">$columns</span>[, ...])</span></span></span></code></td>
+            <td>Set retrieved columns, can be expression (<code class="jush-php"><span class="jush-php"><span
+                    class="jush"><span class="jush-php2"><span class="jush-php_quo"><span class="jush-op">"</span>col, MD5(col) AS hash<span
+                    class="jush-op">"</span></span></span></span></span></code>)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;select</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span><span
+                    class="jush-op">"</span></span>)</span></span></span></code></td>
+            <td>Reset previously set select columns
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;limit</span>(<span
+                    class="jush-php_var">$limit</span>[, <span
+                    class="jush-php_var">$offset</span>])</span></span></span></code></td>
+            <td>Set <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    target="_blank">LIMIT</a></span></span></span></code> and <code class="jush-sql"><span
+                    class="jush-sql"><span class="jush"><span class="jush-sql_code"><a target="_blank">OFFSET</a></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;group</span>(<span
+                    class="jush-php_var">$columns</span>[, <span
+                    class="jush-php_var">$having</span>])</span></span></span></code></td>
+            <td>Set <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    target="_blank">GROUP</a> <a target="_blank">BY</a></span></span></span></code> and <code
+                    class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    target="_blank">HAVING</a></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;union</span>(<span
+                    class="jush-php_var">$table2</span>[, <span class="jush-php_var">$all</span>])</span></span></span></code>
+            </td>
+            <td>Create <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    href="http://dev.mysql.com/doc/mysql/en/union.html"
+                    target="_blank">UNION</a></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;lock</span>(<span
+                    class="jush-php_var">$exclusive</span>)</span></span></span></code></td>
+            <td>Append <code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+                    target="_blank">FOR</a> <a href="http://dev.mysql.com/doc/mysql/en/update.html" target="_blank">UPDATE</a></span></span></span></code>
+                (default) or <code class="jush-sql"><span class="jush-sql"><span class="jush"><span
+                        class="jush-sql_code"><a target="_blank">LOCK</a> <a
+                        href="http://dev.mysql.com/doc/mysql/en/comparison-operators.html#function_in" target="_blank">IN</a> SHARE MODE</span></span></span></code>
+                (non-exclusive)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$array</span> = <span class="jush-php_var">$table</span><span
+                    class="jush-php_fun">-&gt;fetchPairs</span>(<span class="jush-php_var">$key</span>, <span
+                    class="jush-php_var">$value</span>)</span></span></span></code></td>
+            <td>Fetch all values to associative array
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$array</span> = <span class="jush-php_var">$table</span><span
+                    class="jush-php_fun">-&gt;fetchPairs</span>(<span
+                    class="jush-php_var">$key</span>)</span></span></span></code></td>
+            <td>Fetch all rows to associative array
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><a
+                    href="http://www.php.net/function.count" target="_blank">count</a>(<span
+                    class="jush-php_var">$table</span>)</span></span></span></code></td>
+            <td>Get number of rows in result set
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">(string) <span
+                    class="jush-php_var">$table</span></span></span></span></code></td>
+            <td>Get SQL query
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span>(<span class="jush-php_var">$where</span>[, <span
+                    class="jush-php_var">$parameters</span>[, ...]])</span></span></span></code></td>
+            <td>Shortcut for <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$table</span><span
+                    class="jush-php_fun">-&gt;where</span>()</span></span></span></code> since PHP 5.3
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <img src="http://www.notorm.com/static/classes.png" width="300" height="240" alt="Class diagram" class="right">
+    <p>Repetitive calls of <code>where</code>, <code>order</code> and <code>select</code> are possible – it will append
+        values to the previous calls (<code>where</code> by <code class="jush-sql"><span class="jush-sql"><span
+                class="jush"><span class="jush-sql_code"><a
+                href="http://dev.mysql.com/doc/mysql/en/logical-operators.html#operator_and"
+                target="_blank">AND</a></span></span></span></code>). These methods plus <code>group</code> and <code>limit</code>
+        provide a fluent interface so <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                class="jush-php2"><span class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>()<span
+                class="jush-php_fun">-&gt;order</span>()<span
+                class="jush-php_fun">-&gt;limit</span>()</span></span></span></code> is possible (in any order). All
+        methods are lazy – the query is not executed until necessary.</p>
+    <p><a name="where"></a>The <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$where</span></span></span></span></code> parameter can contain <code>?</code> or
+        <code>:name</code> which is <a href="http://www.php.net/manual/en/pdostatement.execute.php">bound by PDO</a> to
+        <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                class="jush-php_var">$parameters</span></span></span></span></code> (so no manual escaping is required).
+        The <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                class="jush-php_var">$parameters</span>[, ...]</span></span></span></code> can be one array, one
+        associative array or zero or more scalars. If the question mark and colon are missing but <code
+                class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                class="jush-php_var">$parameters</span></span></span></span></code> are still passed then the behavior
+        is this:</p>
+    <table cellspacing="0" class="clear">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>field<span class="jush-op">"</span></span>, <span
+                    class="jush-php_quo"><span class="jush-op">"</span>x<span
+                    class="jush-op">"</span></span>)</span></span></span></code></td>
+            <td>Translated to <code class="jush-sql"><span class="jush-sql"><span class="jush"><span
+                    class="jush-sql_code">field = <span class="jush-sql_apo"><span class="jush-op">'</span>x<span
+                    class="jush-op">'</span></span></span></span></span></code> (with automatic escaping)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>field<span class="jush-op">"</span></span>, null)</span></span></span></code>
+            </td>
+            <td>Translated to <code class="jush-sql"><span class="jush-sql"><span class="jush"><span
+                    class="jush-sql_code">field <a
+                    href="http://dev.mysql.com/doc/mysql/en/comparison-operators.html#operator_is"
+                    target="_blank">IS</a> <a target="_blank">NULL</a></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>field<span class="jush-op">"</span></span>, <a
+                    href="http://www.php.net/function.array" target="_blank">array</a>(<span class="jush-php_quo"><span
+                    class="jush-op">"</span>x<span class="jush-op">"</span></span>, <span class="jush-php_quo"><span
+                    class="jush-op">"</span>y<span class="jush-op">"</span></span>))</span></span></span></code></td>
+            <td>Translated to <code class="jush-sql"><span class="jush-sql"><span class="jush"><span
+                    class="jush-sql_code">field <a
+                    href="http://dev.mysql.com/doc/mysql/en/comparison-operators.html#function_in"
+                    target="_blank">IN</a> (<span class="jush-sql_apo"><span class="jush-op">'</span>x<span
+                    class="jush-op">'</span></span>, <span class="jush-sql_apo"><span class="jush-op">'</span>y<span
+                    class="jush-op">'</span></span>)</span></span></span></code> (with automatic escaping)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>NOT field<span
+                    class="jush-op">"</span></span>, <a href="http://www.php.net/function.array"
+                                                        target="_blank">array</a>(<span class="jush-php_quo"><span
+                    class="jush-op">"</span>x<span class="jush-op">"</span></span>, <span class="jush-php_quo"><span
+                    class="jush-op">"</span>y<span class="jush-op">"</span></span>))</span></span></span></code></td>
+            <td>Translated to <code class="jush-sql"><span class="jush-sql"><span class="jush"><span
+                    class="jush-sql_code"><a
+                    href="http://dev.mysql.com/doc/mysql/en/logical-operators.html#operator_not" target="_blank">NOT</a> field <a
+                    href="http://dev.mysql.com/doc/mysql/en/comparison-operators.html#function_in"
+                    target="_blank">IN</a> (<span class="jush-sql_apo"><span class="jush-op">'</span>x<span
+                    class="jush-op">'</span></span>, <span class="jush-sql_apo"><span class="jush-op">'</span>y<span
+                    class="jush-op">'</span></span>)</span></span></span></code> (with automatic escaping)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>field<span class="jush-op">"</span></span>, <span
+                    class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;</span><span class="jush-php_var">$tableName</span>())</span></span></span></code>
+            </td>
+            <td>Translated to <code class="jush-php_sql"><span class="jush-php_sql"><span class="jush"><span
+                    class="jush-php_quo"><span class="jush-op">"</span><span class="jush-sql_code">field <a
+                    href="http://dev.mysql.com/doc/mysql/en/comparison-operators.html#function_in"
+                    target="_blank">IN</a> (<a href="http://dev.mysql.com/doc/mysql/en/select.html" target="_blank">SELECT</a> </span><span
+                    class="jush-php_var">$primary</span><span class="jush-sql_code"> <a target="_blank">FROM</a> </span><span
+                    class="jush-php_var">$tableName</span><span class="jush-sql_code">)</span><span
+                    class="jush-op">"</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>field<span class="jush-op">"</span></span>, <span
+                    class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;</span><span class="jush-php_var">$tableName</span>()<span
+                    class="jush-php_fun">-&gt;select</span>(<span
+                    class="jush-php_var">$column</span>))</span></span></span></code></td>
+            <td>Translated to <code class="jush-php_sql"><span class="jush-php_sql"><span class="jush"><span
+                    class="jush-php_quo"><span class="jush-op">"</span><span class="jush-sql_code">field <a
+                    href="http://dev.mysql.com/doc/mysql/en/comparison-operators.html#function_in"
+                    target="_blank">IN</a> (<a href="http://dev.mysql.com/doc/mysql/en/select.html" target="_blank">SELECT</a> </span><span
+                    class="jush-php_var">$column</span><span class="jush-sql_code"> <a
+                    target="_blank">FROM</a> </span><span class="jush-php_var">$tableName</span><span
+                    class="jush-sql_code">)</span><span class="jush-op">"</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>field &gt; ? AND field &lt; ?<span
+                    class="jush-op">"</span></span>, <span class="jush-php_quo"><span class="jush-op">"</span>x<span
+                    class="jush-op">"</span></span>, <span class="jush-php_quo"><span class="jush-op">"</span>y<span
+                    class="jush-op">"</span></span>)</span></span></span></code></td>
+            <td>Bound by PDO
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>(field1, field2)<span
+                    class="jush-op">"</span></span>, <a href="http://www.php.net/function.array"
+                                                        target="_blank">array</a>(<a
+                    href="http://www.php.net/function.array" target="_blank">array</a>(<span class="jush-num"><span
+                    class="jush-op">1</span></span>, <span class="jush-num"><span class="jush-op">2</span></span>), <a
+                    href="http://www.php.net/function.array" target="_blank">array</a>(<span class="jush-num"><span
+                    class="jush-op">3</span></span>, <span class="jush-num"><span
+                    class="jush-op">4</span></span>)))</span></span></span></code></td>
+            <td>Translated to <code class="jush-sql"><span class="jush-sql"><span class="jush"><span
+                    class="jush-sql_code">(field1, field2) <a
+                    href="http://dev.mysql.com/doc/mysql/en/comparison-operators.html#function_in"
+                    target="_blank">IN</a> ((<span class="jush-num"><span class="jush-op">1</span></span>, <span
+                    class="jush-num"><span class="jush-op">2</span></span>), (<span class="jush-num"><span
+                    class="jush-op">3</span></span>, <span class="jush-num"><span
+                    class="jush-op">4</span></span>))</span></span></span></code> (with automatic escaping)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;where</span>(<a
+                    href="http://www.php.net/function.array" target="_blank">array</a>(<span class="jush-php_quo"><span
+                    class="jush-op">"</span>field<span class="jush-op">"</span></span> =&gt; <span class="jush-php_quo"><span
+                    class="jush-op">"</span>x<span class="jush-op">"</span></span>, <span class="jush-php_quo"><span
+                    class="jush-op">"</span>field2<span class="jush-op">"</span></span> =&gt; <span
+                    class="jush-php_quo"><span class="jush-op">"</span>y<span
+                    class="jush-op">"</span></span>))</span></span></span></code></td>
+            <td>Translated to <code class="jush-sql"><span class="jush-sql"><span class="jush"><span
+                    class="jush-sql_code">field = <span class="jush-sql_apo"><span class="jush-op">'</span>x<span
+                    class="jush-op">'</span></span> <a
+                    href="http://dev.mysql.com/doc/mysql/en/logical-operators.html#operator_and" target="_blank">AND</a> field2 = <span
+                    class="jush-sql_apo"><span class="jush-op">'</span>y<span
+                    class="jush-op">'</span></span></span></span></span></code> (with automatic escaping)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>If the dot notation is used for a column anywhere in the query (<code class="jush-php"><span
+            class="jush-php"><span class="jush"><span class="jush-php2"><span class="jush-php_quo"><span
+            class="jush-op">"</span><span class="jush-php_var">$table</span>.<span
+            class="jush-php_var">$column</span><span class="jush-op">"</span></span></span></span></span></code>) then
+        NotORM automatically creates left join to the referenced table. Even references across several tables are
+        possible (<code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                class="jush-php_quo"><span class="jush-op">"</span><span class="jush-php_var">$table1</span>.<span
+                class="jush-php_var">$table2</span>.<span class="jush-php_var">$column</span><span
+                class="jush-op">"</span></span></span></span></span></code>). Referencing tables can be accessed by
+        colon: <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                class="jush-php_var">$applications</span><span class="jush-php_fun">-&gt;select</span>(<span
+                class="jush-php_quo"><span class="jush-op">"</span>COUNT(application_tag:tag_id)<span
+                class="jush-op">"</span></span>)</span></span></span></code>.</p>
+    <p>The result also supports aggregation:</p>
+    <table cellspacing="0" class="clear">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;count</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>*<span
+                    class="jush-op">"</span></span>)</span></span></span></code></td>
+            <td>Get number of rows
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;count</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>DISTINCT <span
+                    class="jush-php_var">$column</span><span
+                    class="jush-op">"</span></span>)</span></span></span></code></td>
+            <td>Get number of distinct values
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;sum</span>(<span
+                    class="jush-php_var">$column</span>)</span></span></span></code></td>
+            <td>Get minimum value
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;min</span>(<span
+                    class="jush-php_var">$column</span>)</span></span></span></code></td>
+            <td>Get minimum value
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;max</span>(<span
+                    class="jush-php_var">$column</span>)</span></span></span></code></td>
+            <td>Get maximum value
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table</span><span class="jush-php_fun">-&gt;aggregation</span>(<span
+                    class="jush-php_quo"><span class="jush-op">"</span>GROUP_CONCAT(<span
+                    class="jush-php_var">$column</span>)<span
+                    class="jush-op">"</span></span>)</span></span></span></code></td>
+            <td>Run any aggregation function
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3><a name="row"></a>Row</h3>
+    <table cellspacing="0">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><a
+                    href="http://www.php.net/control-structures.foreach" target="_blank">foreach</a> (<span
+                    class="jush-php_var">$table</span> <a href="http://www.php.net/control-structures.foreach"
+                                                          target="_blank">as</a> <span class="jush-php_var">$id</span> =&gt; <span
+                    class="jush-php_var">$row</span>)</span></span></span></code></td>
+            <td>Iterate all rows in result
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$row</span> = <span class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;</span>{<span
+                    class="jush-php_var">$tableName</span>}[<span class="jush-php_var">$id</span>]</span></span></span></code>
+            </td>
+            <td>Get single row with ID <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$id</span></span></span></span></code> from table <code
+                    class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$tableName</span></span></span></span></code> (<code class="jush-php"><span
+                    class="jush-php"><span class="jush"><span class="jush-php2">null</span></span></span></code> if the
+                row does not exist)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$row</span> = <span class="jush-php_var">$table</span>[<span
+                    class="jush-php_var">$id</span>]</span></span></span></code></td>
+            <td>Get row with primary key <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$id</span></span></span></span></code> from the result
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$row</span> = <span class="jush-php_var">$table</span>[<a
+                    href="http://www.php.net/function.array" target="_blank">array</a>(<span class="jush-php_var">$column</span> =&gt; <span
+                    class="jush-php_var">$value</span>)]</span></span></span></code></td>
+            <td>Get first row with <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$column</span></span></span></span></code> equals to
+                <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                        class="jush-php_var">$value</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$row</span> = <span class="jush-php_var">$table</span><span
+                    class="jush-php_fun">-&gt;fetch</span>()</span></span></span></code></td>
+            <td>Get next row from the result
+                <!--Git: <tr><td><code class="jush-php">$row = $table->fetch($column)</code><td>Get single column from next row -->
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$data</span> = <span class="jush-php_var">$row</span>[<span
+                    class="jush-php_var">$column</span>]</span></span></span></code></td>
+            <td>Get data from column <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$column</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$row2</span> = <span class="jush-php_var">$row</span><span
+                    class="jush-php_fun">-&gt;</span><span
+                    class="jush-php_var">$tableName</span></span></span></span></code></td>
+            <td>Get row from referenced table
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table2</span> = <span class="jush-php_var">$row</span><span
+                    class="jush-php_fun">-&gt;</span><span class="jush-php_var">$tableName</span>([<span
+                    class="jush-php_var">$where</span>[, <span class="jush-php_var">$parameters</span>[, ...]]])</span></span></span></code>
+            </td>
+            <td>Get result from referencing table
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$table2</span> = <span class="jush-php_var">$row</span><span
+                    class="jush-php_fun">-&gt;</span><span class="jush-php_var">$tableName</span>()<span
+                    class="jush-php_fun">-&gt;via</span>(<span class="jush-php_var">$column</span>)</span></span></span></code>
+            </td>
+            <td>Use non-default column (e.g. <code>created_by</code>)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><a
+                    href="http://www.php.net/control-structures.foreach" target="_blank">foreach</a> (<span
+                    class="jush-php_var">$row</span> <a href="http://www.php.net/control-structures.foreach"
+                                                        target="_blank">as</a> <span class="jush-php_var">$column</span> =&gt; <span
+                    class="jush-php_var">$data</span>)</span></span></span></code></td>
+            <td>Iterate all values in row
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><a
+                    href="http://www.php.net/function.count" target="_blank">count</a>(<span
+                    class="jush-php_var">$row</span>)</span></span></span></code></td>
+            <td>Get number of columns in row
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">(string) <span
+                    class="jush-php_var">$row</span></span></span></span></code></td>
+            <td>Get primary key value
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$row</span>[<span class="jush-php_quo"><span class="jush-op">"</span>author_id<span
+            class="jush-op">"</span></span>]</span></span></span></code> gets the numerical value of column, <code
+            class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$row</span><span class="jush-php_fun">-&gt;author</span></span></span></span></code>
+        gets row representing the author from the table of authors.</p>
+    <p><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$row</span><span class="jush-php_fun">-&gt;</span><span
+            class="jush-php_var">$tableName</span>()</span></span></span></code> builds <code class="jush-php_sql"><span
+            class="jush-php_sql"><span class="jush"><span class="jush-php_quo"><span class="jush-op">"</span><span
+            class="jush-sql_code"><a href="http://dev.mysql.com/doc/mysql/en/select.html"
+                                     target="_blank">SELECT</a> * <a target="_blank">FROM</a> </span><span
+            class="jush-php_var">$tableName</span><span class="jush-sql_code"> <a target="_blank">WHERE</a> </span><span
+            class="jush-php_quo_var"><span class="jush-op">{$</span>myTable<span class="jush-op">}</span></span><span
+            class="jush-sql_code">_id = </span><span class="jush-php_var">$row</span><span
+            class="jush-sql_code">[</span><span class="jush-php_var">$primary</span><span class="jush-sql_code">]</span><span
+            class="jush-op">"</span></span></span></span></code>. The returned object can be customized as usual table
+        results (with <code>order</code>, <code>limit</code>, ...) and then executed. All results are lazy and execute
+        only a single query for each set of rows (the result is stored to memory so following <a href="#persistence">modifications</a>
+        will not affect it).</p>
+
+    <h3><a name="structure"></a>Structure</h3>
+    <p>The object passed in second argument of <code>NotORM</code> constructor must implement the
+        <code>NotORM_Structure</code> interface:</p>
+    <table cellspacing="0">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2">getPrimary(<span class="jush-php_var">$table</span>)</span></span></span></code>
+            </td>
+            <td>Get primary key of a table in <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$db</span><span class="jush-php_fun">-&gt;</span><span
+                    class="jush-php_var">$table</span>()</span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">getReferencingColumn(<span
+                    class="jush-php_var">$name</span>, <span
+                    class="jush-php_var">$table</span>)</span></span></span></code></td>
+            <td>Get column holding foreign key in <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$table</span>[<span
+                    class="jush-php_var">$id</span>]<span class="jush-php_fun">-&gt;</span><span class="jush-php_var">$name</span>()</span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">getReferencingTable(<span
+                    class="jush-php_var">$name</span>, <span
+                    class="jush-php_var">$table</span>)</span></span></span></code></td>
+            <td>Get target table in <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$table</span>[<span
+                    class="jush-php_var">$id</span>]<span class="jush-php_fun">-&gt;</span><span class="jush-php_var">$name</span>()</span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">getReferencedColumn(<span
+                    class="jush-php_var">$name</span>, <span
+                    class="jush-php_var">$table</span>)</span></span></span></code></td>
+            <td>Get column holding foreign key in <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$table</span>[<span
+                    class="jush-php_var">$id</span>]<span class="jush-php_fun">-&gt;</span><span class="jush-php_var">$name</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">getReferencedTable(<span
+                    class="jush-php_var">$name</span>, <span
+                    class="jush-php_var">$table</span>)</span></span></span></code></td>
+            <td>Get table holding foreign key in <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$table</span>[<span
+                    class="jush-php_var">$id</span>]<span class="jush-php_fun">-&gt;</span><span class="jush-php_var">$name</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2">getSequence(<span class="jush-php_var">$table</span>)</span></span></span></code>
+            </td>
+            <td>Get sequence name (after insert)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>NotORM defines a structure suitable for databases with some convention (this is the default structure):</p>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$structure</span> = <span class="jush-php_new"><a
+            href="http://www.php.net/language.oop5.basic#language.oop5.basic.new" target="_blank">new</a><span
+            class="jush-op"> </span>NotORM_Structure_Convention</span>(<br>&nbsp; &nbsp; <span class="jush-php_var">$primary</span> = <span
+            class="jush-php_apo"><span class="jush-op">'</span>id<span class="jush-op">'</span></span>,<br>&nbsp; &nbsp; <span
+            class="jush-php_var">$foreign</span> = <span class="jush-php_apo"><span class="jush-op">'</span>%s_id<span
+            class="jush-op">'</span></span>,<br>&nbsp; &nbsp; <span class="jush-php_var">$table</span> = <span
+            class="jush-php_apo"><span class="jush-op">'</span>%s<span class="jush-op">'</span></span>,<br>&nbsp; &nbsp; <span
+            class="jush-php_var">$prefix</span> = <span class="jush-php_apo"><span class="jush-op">'</span><span
+            class="jush-op">'</span></span><br>);<br></span></span></span></code></pre>
+    <p>There is also an auto-discovery class for MySQL. It reads meta-information from the database, which slows things
+        down (but it can be cached).</p>
+    <pre><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+            class="jush-php_var">$structure</span> = <span class="jush-php_new"><a
+            href="http://www.php.net/language.oop5.basic#language.oop5.basic.new" target="_blank">new</a><span
+            class="jush-op"> </span>NotORM_Structure_Discovery</span>(<span class="jush-php_var">$pdo</span>, <span
+            class="jush-php_var">$cache</span> = null, <span class="jush-php_var">$foreign</span> = <span
+            class="jush-php_apo"><span class="jush-op">'</span>%s<span
+            class="jush-op">'</span></span>);<br></span></span></span></code></pre>
+    <p>See <a href="#identifiers">more about structure</a>.</p>
+
+    <h3><a name="cache"></a>Cache</h3>
+    <p>The object passed in third argument of <code>NotORM</code> constructor must implement the
+        <code>NotORM_Cache</code> interface (default <code class="jush-php"><span class="jush-php"><span
+                class="jush"><span class="jush-php2">null</span></span></span></code> stands for no cache).</p>
+    <table cellspacing="0">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">load(<span
+                    class="jush-php_var">$key</span>)</span></span></span></code></td>
+            <td>Get data stored in the cache (return null if there is no data)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">save(<span
+                    class="jush-php_var">$key</span>, <span
+                    class="jush-php_var">$data</span>)</span></span></span></code></td>
+            <td>Save data to cache
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>NotORM defines following caches:</p>
+    <table cellspacing="0">
+        <tbody>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_new"><a href="http://www.php.net/language.oop5.basic#language.oop5.basic.new"
+                                            target="_blank">new</a><span
+                    class="jush-op"> </span>NotORM_Cache_Session</span></span></span></span></code></td>
+            <td>Uses <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var"><a href="http://www.php.net/reserved.variables.session" target="_blank">$_SESSION</a></span>[<span
+                    class="jush-php_quo"><span class="jush-op">"</span>NotORM<span
+                    class="jush-op">"</span></span>]</span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_new"><a href="http://www.php.net/language.oop5.basic#language.oop5.basic.new"
+                                            target="_blank">new</a><span
+                    class="jush-op"> </span>NotORM_Cache_File</span>(<span class="jush-php_var">$filename</span>)</span></span></span></code>
+            </td>
+            <td>Serializes to <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                    class="jush-php2"><span class="jush-php_var">$filename</span></span></span></span></code>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_new"><a href="http://www.php.net/language.oop5.basic#language.oop5.basic.new"
+                                            target="_blank">new</a><span
+                    class="jush-op"> </span>NotORM_Cache_Include</span>(<span
+                    class="jush-php_var">$filename</span>)</span></span></span></code></td>
+            <td>Includes <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_var">$filename</span></span></span></span></code> (very fast with PHP accelerators)
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_new"><a href="http://www.php.net/language.oop5.basic#language.oop5.basic.new"
+                                            target="_blank">new</a><span
+                    class="jush-op"> </span>NotORM_Cache_Database</span>(PDO <span
+                    class="jush-php_var">$connection</span>)</span></span></span></code></td>
+            <td>Uses <code>notorm</code> table in the database
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_new"><a href="http://www.php.net/language.oop5.basic#language.oop5.basic.new"
+                                            target="_blank">new</a><span
+                    class="jush-op"> </span>NotORM_Cache_Memcache</span>(Memcache <span
+                    class="jush-php_var">$memcache</span>)</span></span></span></code></td>
+            <td>Uses <code>NotORM.</code> prefix in <a
+                    href="http://www.php.net/manual/en/book.memcache.php">Memcache</a>
+            </td>
+        </tr>
+        <tr>
+            <td><code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                    class="jush-php_new"><a href="http://www.php.net/language.oop5.basic#language.oop5.basic.new"
+                                            target="_blank">new</a><span class="jush-op"> </span>NotORM_Cache_APC</span></span></span></span></code>
+            </td>
+            <td>Uses <code>NotORM.</code> prefix in <a href="http://www.php.net/manual/en/book.apc.php">APC</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>The table used by <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2">NotORM_Cache_Database</span></span></span></code>
+        must already exist (script should not have privileges to create it anyway):</p>
+    <pre><code class="jush-sql"><span class="jush-sql"><span class="jush"><span class="jush-sql_code"><a
+            href="http://dev.mysql.com/doc/mysql/en/create-table.html" target="_blank">CREATE TABLE</a> notorm (<br>&nbsp; &nbsp; id <a
+            href="http://dev.mysql.com/doc/mysql/en/string-type-overview.html" target="_blank">varchar</a>(<span
+            class="jush-num"><span class="jush-op">255</span></span>) <a
+            href="http://dev.mysql.com/doc/mysql/en/logical-operators.html#operator_not" target="_blank">NOT</a> <a
+            target="_blank">NULL</a>,<br>&nbsp; &nbsp; data <a
+            href="http://dev.mysql.com/doc/mysql/en/string-type-overview.html" target="_blank">text</a> <a
+            href="http://dev.mysql.com/doc/mysql/en/logical-operators.html#operator_not" target="_blank">NOT</a> <a
+            target="_blank">NULL</a>,<br>&nbsp; &nbsp; <a target="_blank">PRIMARY</a> <a
+            target="_blank">KEY</a> (id)<br>)<br></span></span></span></code></pre>
+
+    <h3><a name="error"></a>Error reporting</h3>
+    <p>NotORM does not escalate errors. Non-existing table produces SQL error that is reported by PDO conforming to
+        <code class="jush-php"><span class="jush-php"><span class="jush"><span class="jush-php2"><span
+                class="jush-php_met"><a href="http://www.php.net/class.pdo" target="_blank">PDO</a><span
+                class="jush-op">::</span><a href="http://www.php.net/pdo.attr_errmode" target="_blank">ATTR_ERRMODE</a></span></span></span></span></code>.
+        Non-existing columns produces the same <code class="jush-php"><span class="jush-php"><span class="jush"><span
+                class="jush-php2">E_NOTICE</span></span></span></code> as an attempt to access non-existing key in
+        array.</p>
+</div>
+</body>
+</html>

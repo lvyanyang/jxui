@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>单据编辑</title>
+    <meta charset="utf-8">
+    <link href="//47.94.175.234/cdn/jx/1.0.1/jx.css" rel="stylesheet">
+    <script src="//47.94.175.234/cdn/jx/1.0.1/jx.js"></script>
+</head>
+<body class="easyui-layout jx-easyui-layout" style="display: none;">
+<div data-options="region:'west',width:200,split:true,border:false,
+    title:'组织结构',hideCollapsedContent:false">
+    <div class="m-5">
+        <input class="form-control tttree_filter" placeholder="请输入查询关键字">
+    </div>
+    <div class="jxtree" data-url="../../api/tree1.json"></div>
+</div>
+<div data-options="region:'center',border:false,title:'中心区域'">
+
+    <div class="jx-layout">
+        <div class="jxlayout-wrap">
+            <div class="jxlayout-tool">
+                <form class="jxlayout-form form-inline jxgrid-sform">
+                    <div class="form-group">
+                        <label>查询关键字：</label>
+                        <input name="kword" class="form-control w-200px"
+                               data-validate="{required: [true,'请输入查询关键字']}"
+                               placeholder="请输入关键字查询">
+                    </div>
+                    <button class="btn btn-primary ml-5px" type="submit">
+                        <i class="fa fa-search"></i> 查询
+                    </button>
+
+                    <div class="pull-right">
+
+                        <div class="btn-group">
+                            <a id="u_add" class="jxdialog btn btn-default"
+                               data-options="{title:'业务新增',url:'page/grid.html',width:'90%',height:'70%'}">
+                                <i class="fa fa-plus"></i> 新增
+                            </a>
+                            <a class="btn btn-default" href="edit.html"><i class="fa fa-pencil-square-o"></i> 录入</a>
+                            <a id="jx_delete" class="btn btn-default"><i class="fa fa-trash-o"></i> 删除</a>
+
+                        </div>
+                        <a class="btn btn-default">
+                            <i class="icon-share-alt"></i>&nbsp;导出
+                        </a>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="jxgrid jxlayout-body"
+                 data-url="../../api/grid.json"
+                 data-options="{isMultiselect:true, mainId:'F_CustomerId', form:$('.jxgrid-sform'),
+                    headData:[
+                        {label:'客户编号',name:'F_EnCode',width:130,sort:true},
+                        {label:'客户名称',name:'F_FullName',width:200,},
+                        {label:'客户级别',name:'F_CustLevelId',width:100, align:'center'},
+                        {label:'客户类别', name:'F_CustTypeId', width:100, align:'center'},
+                        {label:'客户程度', name:'F_CustDegreeId', width:100, align:'center'},
+                        {label:'联系人',name:'F_Contact',width:100, align:'center'},
+                        {label:'跟进人员', name:'F_TraceUserName', width:100, align:'center'},
+                        {label:'备注', name:'F_Description', width:100, align:'center'}
+                    ]}"></div>
+        </div>
+    </div>
+
+</div>
+<script>
+    jx.ready(function () {
+        $(document.body).fadeIn(100).monitorLayout('west', 'tree-demo');
+
+        $('.tttree_filter').keypress(function (e) {
+            if (e.keyCode == 13) {
+                $('.jxtree').tree('doFilter', $(this).val().trim());
+            }
+        });
+    });
+</script>
+</body>
+</html>

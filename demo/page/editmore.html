@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="//47.94.175.234/cdn/jx/1.0.1/jx.css" rel="stylesheet">
+    <script src="//47.94.175.234/cdn/jx/1.0.1/jx.js"></script>
+</head>
+<body>
+<div class="jxform-wrap">
+    <div class='jxform-container'>
+        <form class="jxform">
+            <div class='jxform-header'>
+                <div class='jxform-title'>
+                    <strong>提Bug</strong>
+                </div>
+                <div class="jxform-actions">
+                    <button type="button" class="btn btn-default" data-toggle="customModal"><i class="fa fa-cogs"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <table class='table jxtable-form'>
+                    <tr>
+                        <th class='w-110px'>所属项目</th>
+                        <td class='w-p45-f'>
+                            <input name="product" class="form-control" maxlength="20"
+                                   data-validate="{required: true}">
+                        </td>
+                        <td>
+                            <div class='input-group' id='moduleIdBox'>
+                                <span class="input-group-addon">所属模块</span>
+                                <select name='module' id='module'
+                                        class='form-control chosen'>
+                                    <option value='0' selected='selected' data-keys='/ /'>/</option>
+                                    <option value='34' data-keys='/houqin /hq'>/后勤</option>
+                                    <option value='35' data-keys='/huiyi /hy'>/会议</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>所属迭代</th>
+                        <td><span id='projectIdBox'>
+                        <select name='project' id='project' class='form-control chosen'>
+                            <option value='' data-keys=' '></option>
+                            <option value='6' data-keys='yongcheguanli ycgl'>用车管理</option>
+                            <option value='5' data-keys='tushuguanguanlixitong tsgglxt'>图书馆管理系统</option>
+                        </select>
+                        </span></td>
+                        <td>
+                            <div class="required required-wrapper"></div>
+                            <div class='input-group'>
+                                <span class='input-group-addon'>影响版本</span>
+                                <span id='buildBox'>
+                                <select name='openedBuild[]' id='openedBuild' class='chosen form-control'>
+                                <option value='trunk' data-keys='zhugan zg'>主干</option>
+                                <option value='4' data-keys='00001 0'>00001</option>
+                                </select>
+                            </span>
+                                <span class='input-group-btn'>
+                                <button type='button' class='btn btn-default' data-toggle='tooltip'>所有</button>
+                            </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <nobr>当前指派</nobr>
+                        </th>
+                        <td>
+                            <div class='input-group'>
+            <span id='assignedToBox'><select name='assignedTo' id='assignedTo' class='form-control chosen'>
+<option value='' selected='selected' data-keys=' '></option>
+<option value='demo' data-keys='d:demo dd'>D:Demo</option>
+<option value='dev1' data-keys='d:kaifajia dkfj'>D:开发甲</option>
+<option value='projectManager' data-keys='p:xiangmujingli pxmjl'>P:项目经理</option>
+<option value='tester1' data-keys='t:ceshijia tcsj'>T:测试甲</option>
+</select>
+</span>
+                                <span class='input-group-btn'> <button type='button' class='btn btn-default'
+                                                                       data-toggle='tooltip'>所有用户</button></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class='input-group'>
+                                <span class='input-group-addon'>截止日期</span>
+                                <span><input type='text' name='deadline' id='deadline' value=''
+                                             class='form-control form-date'/>
+</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Bug类型</th>
+                        <td>
+                            <div class='input-group' id='bugTypeInputGroup'>
+                                <select name='type' id='type' class='form-control'>
+                                    <option value='' data-keys=' '></option>
+                                    <option value='codeerror' selected='selected' data-keys='daimacuowu dmcw'>代码错误
+                                    </option>
+                                    <option value='interface' data-keys='jiemianyouhua jmyh'>界面优化</option>
+                                    <option value='designdefect' data-keys='shejiquexian sjqx'>设计缺陷</option>
+                                    <option value='config' data-keys='peizhixiangguan pzxg'>配置相关</option>
+                                    <option value='install' data-keys='anzhuangbushu azbs'>安装部署</option>
+                                    <option value='security' data-keys='anquanxiangguan aqxg'>安全相关</option>
+                                    <option value='performance' data-keys='xingnengwenti xnwt'>性能问题</option>
+                                    <option value='standard' data-keys='biaozhunguifan bzgf'>标准规范</option>
+                                    <option value='automation' data-keys='ceshijiaoben csjb'>测试脚本</option>
+                                    <option value='codeimprovement' data-keys='daimagaijin dmgj'>代码改进</option>
+                                    <option value='others' data-keys='qita qt'>其他</option>
+                                </select>
+                                <span class='input-group-addon fix-border'>操作系统</span>
+                                <select name='os' id='os' class='form-control'>
+                                    <option value='' selected='selected' data-keys=' '></option>
+                                    <option value='all' data-keys='quanbu qb'>全部</option>
+                                    <option value='windows' data-keys='windows w'>Windows</option>
+                                    <option value='win8' data-keys='windows 8 w8'>Windows 8</option>
+                                    <option value='win7' data-keys='windows 7 w7'>Windows 7</option>
+                                    <option value='vista' data-keys='windows vista wv'>Windows Vista</option>
+                                    <option value='winxp' data-keys='windows xp wx'>Windows XP</option>
+                                    <option value='win2012' data-keys='windows 2012 w2'>Windows 2012</option>
+                                    <option value='win2008' data-keys='windows 2008 w2'>Windows 2008</option>
+                                    <option value='win2003' data-keys='windows 2003 w2'>Windows 2003</option>
+                                    <option value='win2000' data-keys='windows 2000 w2'>Windows 2000</option>
+                                    <option value='android' data-keys='android a'>Android</option>
+                                    <option value='ios' data-keys='ios i'>IOS</option>
+                                    <option value='wp8' data-keys='wp8 w'>WP8</option>
+                                    <option value='wp7' data-keys='wp7 w'>WP7</option>
+                                    <option value='symbian' data-keys='symbian s'>Symbian</option>
+                                    <option value='linux' data-keys='linux l'>Linux</option>
+                                    <option value='freebsd' data-keys='freebsd f'>FreeBSD</option>
+                                    <option value='osx' data-keys='os x ox'>OS X</option>
+                                    <option value='unix' data-keys='unix u'>Unix</option>
+                                    <option value='others' data-keys='qita qt'>其他</option>
+                                </select>
+                                <span class='input-group-addon fix-border'>浏览器</span>
+                                <select name='browser' id='browser' class='form-control'>
+                                    <option value='' selected='selected' data-keys=' '></option>
+                                    <option value='all' data-keys='quanbu qb'>全部</option>
+                                    <option value='ie' data-keys='iexilie ixl'>IE系列</option>
+                                    <option value='ie11' data-keys='ie11 i'>IE11</option>
+                                    <option value='ie10' data-keys='ie10 i'>IE10</option>
+                                    <option value='ie9' data-keys='ie9 i'>IE9</option>
+                                    <option value='ie8' data-keys='ie8 i'>IE8</option>
+                                    <option value='ie7' data-keys='ie7 i'>IE7</option>
+                                    <option value='ie6' data-keys='ie6 i'>IE6</option>
+                                    <option value='chrome' data-keys='chrome c'>chrome</option>
+                                    <option value='firefox' data-keys='firefoxxilie fxl'>firefox系列</option>
+                                    <option value='firefox4' data-keys='firefox4 f'>firefox4</option>
+                                    <option value='firefox3' data-keys='firefox3 f'>firefox3</option>
+                                    <option value='firefox2' data-keys='firefox2 f'>firefox2</option>
+                                    <option value='opera' data-keys='operaxilie oxl'>opera系列</option>
+                                    <option value='oprea11' data-keys='opera11 o'>opera11</option>
+                                    <option value='oprea10' data-keys='opera10 o'>opera10</option>
+                                    <option value='opera9' data-keys='opera9 o'>opera9</option>
+                                    <option value='safari' data-keys='safari s'>safari</option>
+                                    <option value='maxthon' data-keys='aoyou ay'>傲游</option>
+                                    <option value='uc' data-keys='uc u'>UC</option>
+                                    <option value='other' data-keys='qita qt'>其他</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <input class="jxswitch" name="IsEnabled"
+                                   data-on-text="启用" data-off-text="禁用" data-size="small"
+                                   type="checkbox" value="true" checked>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>日期</th>
+                        <td>
+                            <div class="jxdate input-group date">
+                                <input class="form-control" name="ReservationDateTimeEndDate"
+                                       data-validate="{required: [true,'请选择日期']}" readonly
+                                       type="text" placeholder="请选择日期">
+                                <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>日期时间1</th>
+                        <td>
+                            <div class='jxdatetime input-group date'>
+                                <input class="form-control" id="startDatetime1" name="startDatetime1"
+                                       data-validate="{required: [true,'请选择日期时间']}"
+                                       placeholder="请选择日期时间">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>日期时间2</th>
+                        <td>
+                            <input name="startDatetime2" class="form-control jxdatetime"
+                                   data-validate="{required: [true,'请选择日期时间']}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>颜色</th>
+                        <td>
+                            <input name="jcolor" class="jxcolor form-control"
+                                   data-opacity="true"
+                                   data-swatches="#ef9a9a|#90caf9|#a5d6a7|#fff59d|#ffcc80|#bcaaa4|#eeeeee|#f44336|#2196f3|#4caf50|#ffeb3b|#ff9800|#795548|#9e9e9e"
+                                   data-validate="{required: true}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>时间</th>
+                        <td>
+                            <div class="input-group jxclock">
+                                <input type="text" class="form-control" name="times"
+                                       data-validate="{required: [true,'请输入时间']}">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>select2x</th>
+                        <td>
+                            <div class="required required-wrapper"></div>
+                            <select class="form-control jxselect2"
+                                    name="select2_jxxxxx" multiple
+                                    data-validate="required: [true,'请输入select2']"
+                                    data-placeholder="请输入select2">
+                                <option></option>
+                                <option value="610100" data-spell="xas">西安市</option>
+                                <option value="610200" data-spell="tcs">铜川市</option>
+                                <option value="610300" data-spell="bjs">宝鸡市</option>
+                                <option value="610400" data-spell="xys">咸阳市</option>
+                                <option value="610500" data-spell="wns">渭南市</option>
+                                <option value="610600" data-spell="yas">延安市</option>
+                                <option value="610700" data-spell="hzs">汉中市</option>
+                                <option value="610800" data-spell="yls">榆林市</option>
+                                <option value="610900" data-spell="aks">安康市</option>
+                                <option value="611000" data-spell="sls">商洛市</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>jxchosen</th>
+                        <td>
+                            <div class="required required-wrapper"></div>
+                            <select name="select_jxchosen" class="jxchosen form-control"
+                                    data-validate="{required: [true,'请选择分类']}"
+                                    data-placeholder="选择一个宠物...">
+                                <option value=""></option>
+                                <option value="cat" data-keys="xiaomao xm 猫科动物">小猫</option>
+                                <option value="fish" data-keys="jinyu jy">金鱼</option>
+                                <option value="dragon" data-keys="long">龙</option>
+                                <option value="mammoth" data-keys="mengma mm">猛犸</option>
+                                <option value="gollum" data-keys="gulu gl 神话">咕噜</option>
+                                <option value="1" data-keys="长颈鹿 cjl">长颈鹿</option>
+                                <option value="2" data-keys="熊猫 xm">熊猫</option>
+                                <option value="3" data-keys="蝴蝶 hd">蝴蝶</option>
+                                <option value="4" data-keys="蜻蜓 qt">蜻蜓</option>
+                                <option value="5" data-keys="蝎子 xz">蝎子</option>
+                                <option value="6" data-keys="珊瑚 sh">珊瑚</option>
+                                <option value="7" data-keys="海牛 hn">海牛</option>
+                                <option value="8" data-keys="水獭 sl">水獭</option>
+                                <option value="9" data-keys="灵猫 lm">灵猫</option>
+                                <option value="10" data-keys="海豚 ht">海豚</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Bug标题</th>
+                        <td colspan='2'>
+                            <div class="input-group-required">
+                                <div class="required">
+                                    <input name="title" class="form-control" placeholder="请输入标题">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>重现步骤</th>
+                        <td colspan='2'>
+                            <textarea name='steps' id='steps' rows='10' class='form-control'>&lt;p&gt;[步骤]&lt;/p&gt;&lt;/br&gt;&lt;p&gt;[结果]&lt;/p&gt;&lt;/br&gt;&lt;p&gt;[期望]&lt;/p&gt;</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>相关需求</th>
+                        <td>
+          <span id='storyIdBox'><select name='story' id='story' class='form-control chosen'>
+<option value='' data-keys=' '></option>
+<option value='15' data-keys='15:shenpi(youxianji:0,yujigongshi:0) 1spyxj0yjgs0'>15:审批(优先级:0,预计工时:0)</option>
+<option value='14' data-keys='14:shenqing(youxianji:0,yujigongshi:0) 1sqyxj0yjgs0'>14:申请(优先级:0,预计工时:0)</option>
+<option value='13' data-keys='13:yongcan(youxianji:0,yujigongshi:0) 1ycyxj0yjgs0'>13:用餐(优先级:0,预计工时:0)</option>
+<option value='12' data-keys='12:yongchexuqiu(youxianji:0,yujigongshi:0) 1ycxqyxj0yjgs0'>12:用车需求(优先级:0,预计工时:0)</option>
+</select>
+</span>
+                        </td>
+                        <td>
+                            <div class='input-group'>
+                                <span class='input-group-addon'>相关任务</span>
+                                <span id='taskIdBox'> <select name='task' id='task' class='form-control chosen'>
+<option value='0' selected='selected' data-keys=' '></option>
+</select>
+<input type='hidden' name='oldTaskID' id='oldTaskID' value='0'/>
+</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>抄送给</th>
+                        <td>
+                            <div class='input-group' id='contactListGroup'>
+                                <input class='form-control'>
+                            </div>
+                        </td>
+                        <td>
+                            <div class='input-group'>
+                                <span class='input-group-addon' id='keywordsAddonLabel'>关键词</span>
+                                <input type='text' name='keywords' id='keywords' value='' class='form-control'/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>附件</th>
+                        <td colspan='2'><span style='color:red'>因为安全原因，Demo暂时不支持上传附件功能！</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 保存
+                </button>
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-sign-in"></i> 返回
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
