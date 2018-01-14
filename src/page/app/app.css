@@ -140,6 +140,14 @@
     border-left-width: 0;
 }
 
+.layout-expand-west .panelx-body
+{
+    border-left-width: 0;
+    background: transparent;
+    filter: none;
+    overflow: hidden;
+}
+
 #layout-west::-webkit-scrollbar {
     width: 10px
 }

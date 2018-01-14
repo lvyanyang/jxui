@@ -10,7 +10,7 @@
 ## 代码托管
 框架源代码托管在`github`上，欢迎大家Fork。
 
-http://192.168.1.239/lvyanyang/jxui.git
+https://github.com/lvyanyang/jxui.git
 
 ## 在线演示
 

@@ -102,7 +102,7 @@ var App = function () {
             });
         });
 
-        $('.icon-bubbles').jxflash();
+        // $('.icon-bubbles').jxflash();
 
         $('#user_feedback').click(function () {
             jx.require('sweetalert', function () {

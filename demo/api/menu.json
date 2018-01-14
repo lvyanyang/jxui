@@ -10,7 +10,7 @@
     "text": "延迟打开",
     "iconCls": "fa fa-snowflake-o",
     "mode": "iframe",
-    "url": "mock/page.php"
+    "url": "api/page.php"
   },
   {
     "id": "100004",

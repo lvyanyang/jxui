@@ -702,6 +702,9 @@ a:focus {
     border-left-width: 0;
     border-top-width: 0;
     border-bottom-width: 0;
+    background: transparent;
+    filter: none;
+    overflow: hidden;
 }
 
 .jx-easyui-layout .panel-title,
@@ -2264,7 +2267,7 @@ Custom tabs
     margin-top: 0;
     border: 0;
     border-top: 1px solid #eef1f5;
-    padding: 30px 0; }
+    padding: 10px 0; }
 .page-container-bg-solid .jxtabs-line > .tab-content {
     border-top: 1px solid #dae2ea; }
 

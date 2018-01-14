@@ -3,20 +3,19 @@
 <head>
     <title>单据编辑</title>
     <meta charset="utf-8">
-    <link href="//47.94.175.234/cdn/jx/1.0.1/jx.css" rel="stylesheet">
-    <script src="//47.94.175.234/cdn/jx/1.0.1/jx.js"></script>
+    <link href="../../dist/jx.css" rel="stylesheet">
 </head>
 <body class="easyui-layout jx-easyui-layout" style="display: none;">
 <div data-options="region:'west',width:200,split:true,border:false,
-    title:'组织结构',hideCollapsedContent:false">
+    title:'组织结构',hideCollapsedContent:true">
     <div class="m-5">
-        <input class="form-control tttree_filter" placeholder="请输入查询关键字">
+        <input class="form-control input-sm tttree_filter" placeholder="请输入查询关键字">
     </div>
-    <div class="jxtree" data-url="../../api/tree1.json"></div>
+    <div class="jxtree" data-options="{ url:'../api/tree1.json', filterBox:$('.tttree_filter') }"></div>
 </div>
 <div data-options="region:'center',border:false,title:'中心区域'">
 
-    <div class="jx-layout">
+    <div class="jxlayout">
         <div class="jxlayout-wrap">
             <div class="jxlayout-tool">
                 <form class="jxlayout-form form-inline jxgrid-sform">
@@ -49,32 +48,25 @@
                 </form>
             </div>
 
-            <div class="jxgrid jxlayout-body"
-                 data-url="../../api/grid.json"
+            <div class="jxlayout-body jxgrid"
+                 data-url="../api/grid.json"
                  data-options="{isMultiselect:true, mainId:'F_CustomerId', form:$('.jxgrid-sform'),
                     headData:[
                         {label:'客户编号',name:'F_EnCode',width:130,sort:true},
                         {label:'客户名称',name:'F_FullName',width:200,},
-                        {label:'客户级别',name:'F_CustLevelId',width:100, align:'center'},
                         {label:'客户类别', name:'F_CustTypeId', width:100, align:'center'},
                         {label:'客户程度', name:'F_CustDegreeId', width:100, align:'center'},
                         {label:'联系人',name:'F_Contact',width:100, align:'center'},
-                        {label:'跟进人员', name:'F_TraceUserName', width:100, align:'center'},
-                        {label:'备注', name:'F_Description', width:100, align:'center'}
+                        {label:'跟进人员', name:'F_TraceUserName', width:100, align:'center'}
                     ]}"></div>
         </div>
     </div>
 
 </div>
+<script src="../../dist/jx.js"></script>
 <script>
     jx.ready(function () {
         $(document.body).fadeIn(100).monitorLayout('west', 'tree-demo');
-
-        $('.tttree_filter').keypress(function (e) {
-            if (e.keyCode == 13) {
-                $('.jxtree').tree('doFilter', $(this).val().trim());
-            }
-        });
     });
 </script>
 </body>
