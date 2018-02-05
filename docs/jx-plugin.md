@@ -44,6 +44,11 @@
 }
 ```
 
+- `onBeforeInit` 插件实例化之前，用于声明模块依赖
+
+- `onInit` 插件实例化
+
+- `onAfterInit` 插件实例化之后
 ## 示例
 
 ```js
@@ -92,20 +97,19 @@
             autoclose: true,
             todayHighlight: true,
             changeValidate: true
-        }
-    });
-    
-    //注册依赖
-    jx.onBeforeInit(function (e) {
-        //根据具体情况，声明模块依赖
-        /*if (document.querySelector('.jxui')) {
-            jx.depend('jxui');
-        }*/
-    });
-
-    //插件实例化
-    jx.onInit(function (e) {
-        $(e.target).find('.jxui').jxui();
+        },
+        onBeforeInit:function (e) {
+             //根据具体情况，声明模块依赖
+             /*if (document.querySelector('.jxui')) {
+                 jx.depend('jxui');
+             }*/
+         },
+         onInit:function (e) { //插件实例化
+            $(e.target).find('.jxui').jxui();
+         },
+         onAfterInit:function(e) { //初始化之后
+           
+         }
     });
 
 }(jQuery));

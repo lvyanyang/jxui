@@ -1,0 +1,124 @@
+[
+  {
+    "id": "1",
+    "pid": "0",
+    "text": "系统演示"
+  },
+  {
+    "id": "11ss",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "表格示例",
+    "url": "jx-grid.html"
+  },
+  {
+    "id": "11s",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "综合表格示例",
+    "url": "page/grid.html"
+  },
+  {
+    "id": "11",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "JF表格示例",
+    "url": "jf-grid.html"
+  },{
+  "id": "111",
+  "pid": "1",
+  "iconCls": "fa fa-snowflake-o",
+  "text": "JF全屏表格",
+  "url": "jf-gridfull.html"
+},{
+  "id": "2222",
+  "pid": "1",
+  "iconCls": "fa fa-snowflake-o",
+  "text": "combo",
+  "url": "page/combo.html"
+},
+  {
+    "id": "12",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "复选框示例",
+    "url": "jx-check.html"
+  },
+  {
+    "id": "13",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "颜色控件示例",
+    "url": "jx-color.html"
+  },
+  {
+    "id": "14",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "日期控件示例",
+    "url": "jx-date.html"
+  },
+  {
+    "id": "15",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "对话框示例",
+    "url": "jx-dialog.html"
+  },
+  {
+    "id": "16",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "编辑器示例",
+    "url": "jx-editor.html"
+  },
+  {
+    "id": "17",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "表单示例",
+    "url": "jx-form.html"
+  },
+  {
+    "id": "18",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "section示例",
+    "url": "jx-section.html"
+  },
+  {
+    "id": "19",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "下拉选择框示例",
+    "url": "jx-select.html"
+  },
+  {
+    "id": "20",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "标签页控件示例",
+    "url": "jx-tabs.html"
+  },
+  {
+    "id": "21",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "时间控件示例",
+    "url": "jx-time.html"
+  },
+  {
+    "id": "22",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "Tree控件示例",
+    "url": "jx-tree.html"
+  },
+  {
+    "id": "23",
+    "pid": "1",
+    "iconCls": "fa fa-snowflake-o",
+    "text": "TreeGrid示例",
+    "url": "jx-treegrid.html"
+  }
+]

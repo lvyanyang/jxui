@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../../dist/jx.css" rel="stylesheet">
+    <script src="../../dist/jx.js"></script>
+</head>
+<body>
+<div class="jxform-wrap">
+    <div class='jxform-dialog-container'>
+        <form class="jxform">
+            <div class="jxtabs-line">
+                <ul class="nav nav-tabs ">
+                    <li class="active">
+                        <a href="#tab_15_1" data-toggle="tab"> 基本信息 </a>
+                    </li>
+                    <li>
+                        <a href="#tab_15_2" data-toggle="tab"> 扩展资料 </a>
+                    </li>
+                    <li>
+                        <a href="#tab_15_3" data-toggle="tab"> 其他信息 </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_15_1">
+                        <table class='table jxtable-form' style="width: 95%;">
+                            <tr>
+                                <th class="w-120px">combo</th>
+                                <td>
+                                    <input id="select_combo" name='select_combo'
+                                           class='form-control jxcombo'
+                                           autocomplete='off'
+                                           data-validate="{required: true}">
+                                </td>
+                                <th>combo.tree</th>
+                                <td>
+                                    <input id="select_combotree" name='select_combotree'
+                                           class='form-control jxcombotree'
+                                           autocomplete='off'
+                                           data-validate="{required: true}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>combo.grid</th>
+                                <td colspan="3">
+                                    <input id="select_combogrid" name='select_combogrid'
+                                           class='form-control jxcombogrid'
+                                           autocomplete='off'
+                                           data-validate="{required: true}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class='w-110px'>发布名称</th>
+                                <td>
+                                    <input id="select_dept" name="select_dept" class="form-control jxlookup" readonly
+                                           maxlength="15" placeholder="点放大镜按钮查找"
+                                           data-validate="{required: [true,'请输入发布名称']}"
+                                           data-text-field="select_name_d">
+                                </td>
+                                <th>身份证</th>
+                                <td>
+                                    <input id="idnum" name='idnum' class='form-control jxlookuptree'
+                                           autofocus autocomplete='off'
+                                           data-validate="{required: true}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>m-switch</th>
+                                <td>
+                                     <span class="m-switch">
+                                        <label>
+                                            <input type="checkbox" checked="checked" name="ms1">
+                                            <span></span>
+                                        </label>
+                                    </span>
+                                </td>
+                                <th>m-switch--icon</th>
+                                <td>
+                                    <span class="m-switch m-switch--icon">
+                                        <label>
+                                            <input type="checkbox" checked="checked" name="ms2">
+                                            <span></span>
+                                        </label>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>m-switch--icon-check</th>
+                                <td>
+                                     <span class="m-switch m-switch--icon-check">
+                                        <label>
+                                            <input type="checkbox" checked="checked" name="ms3">
+                                            <span></span>
+                                        </label>
+                                    </span>
+                                </td>
+                                <th>m-switch--outline m-switch--info</th>
+                                <td>
+                                    <span class="m-switch m-switch--outline m-switch--info">
+                                       <label>
+                                            <input type="checkbox" checked="checked" name="ms8">
+                                            <span></span>
+                                        </label>
+                                   </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab_15_2">
+                        <table class='table jxtable-form' style="width: 95%;">
+                            <tr>
+                                <th class="w-120px">版本</th>
+                                <td>
+                                    <input id="select_grid" name='select_grid' class='form-control jxlookupgrid'
+                                           autofocus autocomplete='off'
+                                           data-validate="{required: true}"/>
+
+                                </td>
+
+                                <th>发布日期</th>
+                                <td>
+                                    <div class="jxdate input-group date">
+                                        <input class="form-control" id="ReservationDateTimeEndDate"
+                                               name="ReservationDateTimeEndDate"
+                                               data-validate="{required: [true,'请选择日期']}"
+                                               type="text" placeholder="请选择日期">
+                                        <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>多文本</th>
+                                <td colspan="3">
+                                    <!--data-options="{multiple: true,treeOptions:{url: 'mock/tree1.json'}}"-->
+                                    <textarea name="user_abs" class="form-control jxlookupgrid" rows="3"
+                                              style="resize: none"
+                                              placeholder="请选择组织机构"
+                                              data-options="{inputTrigger:false,dialogOptions:{url: 'page/lookup_grid_window.html'}}"
+                                              data-validate="{required: [true,'请选择日期']}"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>掩码</th>
+                                <td colspan="3">
+                                    <input id="inputmask_s" name="inputmask_s" class='form-control jxinputmask'
+                                           autocomplete='off'
+                                           data-mask="yyyy-mm-dd"
+                                           data-inputmask-placeholder="_"
+                                           data-validate="{required: true}"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td colspan="3">
+                                    m-switch--outline m-switch--primary
+                                    <span class="m-switch m-switch--outline m-switch--primary">
+                                        <label>
+                                            <input type="checkbox" checked="checked" name="ms4">
+                                            <span></span>
+                                        </label>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>文件上传</th>
+                                <td colspan="3">
+                                    <div class="fileinputx fileinputx-new input-group" data-provides="fileinputx">
+                                        <div class="form-control" data-trigger="fileinputx">
+                                            <i class="fa fa-file-o fileinputx-exists"></i>
+                                            <span class="fileinputx-filename"></span>
+                                        </div>
+                                        <span class="input-group-addon btn btn-default btn-file">
+                                <span class="fileinputx-new">选择</span>
+                                <span class="fileinputx-exists">更改</span>
+                                <input type="file" name="user_file" data-validate="{required: true}">
+                            </span>
+                                        <a href="#" class="input-group-addon btn btn-default fileinputx-exists"
+                                           data-dismiss="fileinputx">移除</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>附件</th>
+                                <td colspan="3"><span class="color-red">因为安全原因，Demo暂时不支持上传附件功能！</span></td>
+                            </tr>
+                            <tr>
+                                <th>状态</th>
+                                <td>
+                                    <div class="input-group">
+                                        <label class="checkbox-inline" style="padding-left: 0">
+                                            <input class="jxicheck"
+                                                   name="IsEnabled"
+                                                   data-validate="{required: true}"
+                                                   value="true" type="checkbox"
+                                            />
+                                            <span>启用</span>
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input class="jxicheck"
+                                                   name="IsEnabled" value="true"
+                                                   type="checkbox"/>
+                                            <span>审核</span>
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input class="jxicheck"
+                                                   name="IsEnabled" value="true"
+                                                   type="checkbox"/>
+                                            <span>管理员</span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <th>时长</th>
+                                <td>
+                                    <input name="txt_number" class='form-control jxspin'
+                                           type="number"
+                                           data-bts-max="1000000"
+                                           data-bts-postfix="秒"
+                                           data-bts-decimals="0"
+                                           autocomplete='off'
+                                           data-validate="{required: true}"
+                                    />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab_15_3">
+                        <table class='table jxtable-form' style="width: 95%;">
+                            <tr>
+                                <th class="w-120px">m-switch--outline m-switch--accent</th>
+                                <td>
+                                    <span class="m-switch m-switch--outline m-switch--accent">
+                                        <label>
+                                            <input type="checkbox" checked="checked" name="ms5">
+                                            <span></span>
+                                        </label>
+                                   </span>
+                                </td>
+                                <th>m-switch--outline m-switch--warning</th>
+                                <td>
+                                    <span class="m-switch m-switch--outline m-switch--warning">
+                                       <label>
+                                            <input type="checkbox" checked="checked" name="ms7">
+                                            <span></span>
+                                        </label>
+                                   </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    m-switch--outline m-switch--success
+                                </th>
+                                <td>
+                                   <span class="m-switch m-switch--outline m-switch--success">
+                                       <label>
+                                            <input type="checkbox" checked="checked" name="ms6">
+                                            <span></span>
+                                        </label>
+                                   </span>
+                                </td>
+                                <th>m-switch--outline m-switch--danger</th>
+                                <td>
+                                   <span class="m-switch m-switch--outline m-switch--danger m-switch--icon-check">
+                                       <label>
+                                            <input type="checkbox" checked="checked" name="ms9">
+                                            <span></span>
+                                        </label>
+                                   </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

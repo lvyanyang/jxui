@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的api文档</title>
+</head>
+<body>
+<div class="table_box">
+    <table class="table table-striped table-bordered">
+        <tbody>
+        <tr>
+            <th align="left">名称</th>
+            <th align="left">参数</th>
+            <th align="left">描述</th>
+        </tr>
+        <tr>
+            <td>options</td>
+            <td>none</td>
+            <td>返回树的选项（options）。</td>
+        </tr>
+        <tr>
+            <td>loadData</td>
+            <td>data</td>
+            <td>加载树的数据。</td>
+        </tr>
+        <tr>
+            <td>getNode</td>
+            <td>target</td>
+            <td>获取指定的节点对象。</td>
+        </tr>
+        <tr>
+            <td>getData</td>
+            <td>target</td>
+            <td>获取指定的节点数据，包括它的子节点。</td>
+        </tr>
+        <tr>
+            <td>reload</td>
+            <td>target</td>
+            <td>重新加载树的数据。</td>
+        </tr>
+        <tr>
+            <td>getRoot</td>
+            <td>none</td>
+            <td>获取根节点，返回节点对象。</td>
+        </tr>
+        <tr>
+            <td>getRoots</td>
+            <td>none</td>
+            <td>获取根节点，返回节点数组。</td>
+        </tr>
+        <tr>
+            <td>getParent</td>
+            <td>target</td>
+            <td>获取父节点，target 参数表示节点的 DOM 对象。</td>
+        </tr>
+        <tr>
+            <td>getChildren</td>
+            <td>target</td>
+            <td>获取子节点， target 参数表示节点的 DOM 对象。</td>
+        </tr>
+        <tr>
+            <td>getChecked</td>
+            <td>state</td>
+            <td>获取选中的节点。状态可用值有：'checked'、'unchecked'、'indeterminate'。如果状态未分配，则返回 'checked' 节点。<br> 代码实例：
+                <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="kwd">var</span><span
+                        class="pln"> nodes </span><span class="pun">=</span><span class="pln"> $</span><span
+                        class="pun">(</span><span class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'getChecked'</span><span class="pun">);</span><span
+                        class="pln">	</span><span class="com">// get checked nodes</span></li><li class="L1"><span
+                        class="kwd">var</span><span class="pln"> nodes </span><span class="pun">=</span><span
+                        class="pln"> $</span><span class="pun">(</span><span class="str">'#tt'</span><span class="pun">).</span><span
+                        class="pln">tree</span><span class="pun">(</span><span class="str">'getChecked'</span><span
+                        class="pun">,</span><span class="pln"> </span><span class="str">'unchecked'</span><span
+                        class="pun">);</span><span class="pln">	</span><span
+                        class="com">// get unchecked nodes</span></li><li class="L2"><span class="kwd">var</span><span
+                        class="pln"> nodes </span><span class="pun">=</span><span class="pln"> $</span><span
+                        class="pun">(</span><span class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'getChecked'</span><span class="pun">,</span><span
+                        class="pln"> </span><span class="str">'indeterminate'</span><span class="pun">);</span><span
+                        class="pln">	</span><span class="com">// get indeterminate nodes</span></li><li
+                        class="L3"><span class="kwd">var</span><span class="pln"> nodes </span><span
+                        class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span
+                        class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'getChecked'</span><span class="pun">,</span><span
+                        class="pln"> </span><span class="pun">[</span><span class="str">'checked'</span><span
+                        class="pun">,</span><span class="str">'indeterminate'</span><span class="pun">]);</span><span
+                        class="pln">	</span><span class="com">// get checked and indeterminate nodes</span></li></ol></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>getSelected</td>
+            <td>none</td>
+            <td>获取选中的节点并返回它，如果没有选中节点，则返回 null。</td>
+        </tr>
+        <tr>
+            <td>isLeaf</td>
+            <td>target</td>
+            <td>把指定的节点定义成叶节点，target 参数表示节点的 DOM 对象。</td>
+        </tr>
+        <tr>
+            <td>find</td>
+            <td>id</td>
+            <td>找到指定的节点并返回该节点对象。代码实例：
+                <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="com">// find a node and then select it</span></li><li
+                        class="L1"><span class="kwd">var</span><span class="pln"> node </span><span class="pun">=</span><span
+                        class="pln"> $</span><span class="pun">(</span><span class="str">'#tt'</span><span class="pun">).</span><span
+                        class="pln">tree</span><span class="pun">(</span><span class="str">'find'</span><span
+                        class="pun">,</span><span class="pln"> </span><span class="lit">12</span><span
+                        class="pun">);</span></li><li class="L2"><span class="pln">$</span><span
+                        class="pun">(</span><span class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'select'</span><span class="pun">,</span><span
+                        class="pln"> node</span><span class="pun">.</span><span class="pln">target</span><span
+                        class="pun">);</span></li></ol></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>select</td>
+            <td>target</td>
+            <td>选中一个节点，target 参数表示节点的 DOM 对象。</td>
+        </tr>
+        <tr>
+            <td>check</td>
+            <td>target</td>
+            <td>把指定节点设置为勾选。</td>
+        </tr>
+        <tr>
+            <td>uncheck</td>
+            <td>target</td>
+            <td>把指定节点设置为未勾选。</td>
+        </tr>
+        <tr>
+            <td>collapse</td>
+            <td>target</td>
+            <td>折叠一个节点，target 参数表示节点的 DOM 对象。</td>
+        </tr>
+        <tr>
+            <td>expand</td>
+            <td>target</td>
+            <td>展开一个节点，target 参数表示节点的 DOM 对象。当节点关闭且没有子节点时，节点的 id 值（名为 'id' 参数）将被发送至服务器以请求子节点数据。</td>
+        </tr>
+        <tr>
+            <td>collapseAll</td>
+            <td>target</td>
+            <td>折叠所有的节点。</td>
+        </tr>
+        <tr>
+            <td>expandAll</td>
+            <td>target</td>
+            <td>展开所有的节点。</td>
+        </tr>
+        <tr>
+            <td>expandTo</td>
+            <td>target</td>
+            <td>从根部展开一个指定的节点。</td>
+        </tr>
+        <tr>
+            <td>scrollTo</td>
+            <td>target</td>
+            <td>滚动到指定节点。该方法自版本 1.3.4 起可用。</td>
+        </tr>
+        <tr>
+            <td>append</td>
+            <td>param</td>
+            <td>追加一些子节点到一个父节点，param 参数有两个属性：<br> parent：DOM 对象，要追加到的父节点，如果没有分配，则追加为根节点。<br> data：数组，节点的数据。<br> <br>
+                代码实例：
+                <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="com">// append some nodes to the selected node</span></li><li
+                        class="L1"><span class="kwd">var</span><span class="pln"> selected </span><span
+                        class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span
+                        class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'getSelected'</span><span class="pun">);</span></li><li
+                        class="L2"><span class="pln">$</span><span class="pun">(</span><span
+                        class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'append'</span><span class="pun">,</span><span
+                        class="pln"> </span><span class="pun">{</span></li><li class="L3"><span
+                        class="pln">	parent</span><span class="pun">:</span><span class="pln"> selected</span><span
+                        class="pun">.</span><span class="pln">target</span><span class="pun">,</span></li><li
+                        class="L4"><span class="pln">	data</span><span class="pun">:</span><span class="pln"> </span><span
+                        class="pun">[{</span></li><li class="L5"><span class="pln">		id</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="lit">23</span><span
+                        class="pun">,</span></li><li class="L6"><span class="pln">		text</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="str">'node23'</span></li><li
+                        class="L7"><span class="pln">	</span><span class="pun">},{</span></li><li class="L8"><span
+                        class="pln">		text</span><span class="pun">:</span><span class="pln"> </span><span
+                        class="str">'node24'</span><span class="pun">,</span></li><li class="L9"><span class="pln">		state</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="str">'closed'</span><span
+                        class="pun">,</span></li><li class="L0"><span class="pln">		children</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="pun">[{</span></li><li
+                        class="L1"><span class="pln">			text</span><span class="pun">:</span><span
+                        class="pln"> </span><span class="str">'node241'</span></li><li class="L2"><span
+                        class="pln">		</span><span class="pun">},{</span></li><li class="L3"><span class="pln">			text</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="str">'node242'</span></li><li
+                        class="L4"><span class="pln">		</span><span class="pun">}]</span></li><li class="L5"><span
+                        class="pln">	</span><span class="pun">}]</span></li><li class="L6"><span
+                        class="pun">});</span></li></ol></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>toggle</td>
+            <td>target</td>
+            <td>切换节点的展开/折叠状态，target 参数表示节点的 DOM 对象。</td>
+        </tr>
+        <tr>
+            <td>insert</td>
+            <td>param</td>
+            <td>在指定节点的前边或后边插入一个节点，param 参数包括下列属性：<br> before：DOM 对象，前边插入的节点。<br> after：DOM 对象，后边插入的节点。<br> data：对象，节点数据。<br>
+                <br> 下面的代码演示了如何在选中节点之前插入一个新的节点：
+                <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="kwd">var</span><span
+                        class="pln"> node </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span
+                        class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'getSelected'</span><span class="pun">);</span></li><li
+                        class="L1"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span
+                        class="pln">node</span><span class="pun">){</span></li><li class="L2"><span
+                        class="pln">	$</span><span class="pun">(</span><span class="str">'#tt'</span><span
+                        class="pun">).</span><span class="pln">tree</span><span class="pun">(</span><span class="str">'insert'</span><span
+                        class="pun">,</span><span class="pln"> </span><span class="pun">{</span></li><li
+                        class="L3"><span class="pln">		before</span><span class="pun">:</span><span class="pln"> node</span><span
+                        class="pun">.</span><span class="pln">target</span><span class="pun">,</span></li><li
+                        class="L4"><span class="pln">		data</span><span class="pun">:</span><span
+                        class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">			id</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="lit">21</span><span
+                        class="pun">,</span></li><li class="L6"><span class="pln">			text</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="str">'node text'</span></li><li
+                        class="L7"><span class="pln">		</span><span class="pun">}</span></li><li class="L8"><span
+                        class="pln">	</span><span class="pun">});</span></li><li class="L9"><span
+                        class="pun">}</span></li></ol></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>remove</td>
+            <td>target</td>
+            <td>移除一个节点和它的子节点，target 参数表示节点的 DOM 对象。</td>
+        </tr>
+        <tr>
+            <td>pop</td>
+            <td>target</td>
+            <td>弹出一个节点和它的子节点，该方法和 remove 一样，但是返回了移除的节点数据。</td>
+        </tr>
+        <tr>
+            <td>update</td>
+            <td>param</td>
+            <td>更新指定的节点，'param' 参数有下列属性：<br> target（DOM 对象，要被更新的节点）、id、text、iconCls、checked，等等。<br> <br> 代码实例：
+                <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="com">// update the selected node text</span></li><li
+                        class="L1"><span class="kwd">var</span><span class="pln"> node </span><span class="pun">=</span><span
+                        class="pln"> $</span><span class="pun">(</span><span class="str">'#tt'</span><span class="pun">).</span><span
+                        class="pln">tree</span><span class="pun">(</span><span class="str">'getSelected'</span><span
+                        class="pun">);</span></li><li class="L2"><span class="kwd">if</span><span
+                        class="pln"> </span><span class="pun">(</span><span class="pln">node</span><span
+                        class="pun">){</span></li><li class="L3"><span class="pln">	$</span><span
+                        class="pun">(</span><span class="str">'#tt'</span><span class="pun">).</span><span class="pln">tree</span><span
+                        class="pun">(</span><span class="str">'update'</span><span class="pun">,</span><span
+                        class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">		target</span><span
+                        class="pun">:</span><span class="pln"> node</span><span class="pun">.</span><span class="pln">target</span><span
+                        class="pun">,</span></li><li class="L5"><span class="pln">		text</span><span
+                        class="pun">:</span><span class="pln"> </span><span class="str">'new text'</span></li><li
+                        class="L6"><span class="pln">	</span><span class="pun">});</span></li><li class="L7"><span
+                        class="pun">}</span></li></ol></pre>
+            </td>
+        </tr>
+        <tr>
+            <td>enableDnd</td>
+            <td>none</td>
+            <td>启用拖放功能。</td>
+        </tr>
+        <tr>
+            <td>disableDnd</td>
+            <td>none</td>
+            <td>禁用拖放功能。</td>
+        </tr>
+        <tr>
+            <td>beginEdit</td>
+            <td>target</td>
+            <td>开始编辑节点。</td>
+        </tr>
+        <tr>
+            <td>endEdit</td>
+            <td>target</td>
+            <td>结束编辑节点。</td>
+        </tr>
+        <tr>
+            <td>cancelEdit</td>
+            <td>target</td>
+            <td>取消编辑节点。</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

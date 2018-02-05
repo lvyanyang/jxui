@@ -2,7 +2,7 @@
 
 颜色控件扩展自控件[`jquery-minicolors`](https://github.com/claviska/jquery-minicolors)。
 
-!> [时间控件配置选项/API/演示](../demo/docs/jx-color.html)
+!> [时间控件配置选项/API/演示](demo/jx-color.html)
 
 ![](./img/jx-color/7740cf5a.png)
 

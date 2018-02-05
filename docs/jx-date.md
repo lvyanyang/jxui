@@ -4,7 +4,7 @@
 
 日期控件扩展自控件`bootstrap-datepicker`，关于控件更详细的信息可以访问[官网](https://github.com/uxsolutions/bootstrap-datepicker)进行了解。
 
-!> [日期控件演示](../demo/docs/jx-date.html)
+!> [示例](demo/jx-date.html)
 
 ## 使用方法
 

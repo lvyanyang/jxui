@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据表格示例</title>
+    <link href="../../jx.css" rel="stylesheet">
+    <script src="../../jx.js"></script>
+</head>
+<body>
+<div class="jxform-wrap">
+    <div class="jxform-container">
+        <div class='jxform-header'>
+            <div class='jxform-title'>
+                <strong>EasyUI树形表格示例</strong>
+            </div>
+        </div>
+        <div class="treegrid-container" style="height: 400px;">
+            <table id="grid1"></table>
+        </div>
+        <div class="jxform-footer tabs-line-footer">
+        </div>
+    </div>
+</div>
+<script>
+    jx.ready('treegrid',function () {
+        $('#grid1').datagrid({
+            columns: [[
+                {field:'ck',checkbox:true},
+                { field: 'id', title: 'id', width: 100 },
+                { field: 'name1', title: 'Name1', width: 100 },
+                { field: 'name2', title: 'Name2', width: 100 },
+                { field: 'name3', title: 'Name3', width: 100 },
+                { field: 'name4', title: 'Name4', width: 100 },
+                { field: 'name5', title: 'Name5', width: 100 },
+                { field: 'name6', title: 'Name6', width: 100 },
+                { field: 'name7', title: 'Name7', width: 100 },
+                { field: 'name8', title: 'Name8', width: 100 },
+                { field: 'name9', title: 'Name9', width: 100 }
+            ]],
+            url: null,
+            pagination: true,
+            pageSize: 20,
+            pageNumber: 1,
+            rownumbers: false,
+            fitColumns: false,
+            border:false,
+            fit:true,
+            onLoadSuccess: function () {
+                console.log(jx.formatTime(new Date(Date.now())));
+                // $(this).datagrid("getPanel").closest('.treegrid-container').unmask();
+                // $(this).treegrid('enableDnd', null);
+            }
+        });
+    });
+
+    var obj = { 'total': 3000, 'rows': [
+        { id: '1', name1: '1' },
+        { id: '2', name2: '2'},
+        { id: '2', name3: '3'},
+        { id: '2', name4: '4'},
+        { id: '2', name5: '5'},
+        { id: '2', name6: '6'},
+        { id: '2', name7: '7'},
+        { id: '2', name8: '8'},
+        { id: '2', name9: '9'}
+    ]};
+    for (var i = 0; i < 10000; i++) {
+        var row = ({ id: 'id' + i, name1: '1', name2: '2',
+            name3: '3', name4: '4', name5: '5', name6: '6',
+            name7: '7', name8: '8', name9: '9'});
+        obj.rows.push(row);
+    }
+    // jx.onAfterInit(function () {
+    //
+    //
+    // });
+
+</script>
+</body>
+</html>

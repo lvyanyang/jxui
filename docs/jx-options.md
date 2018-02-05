@@ -79,7 +79,7 @@ $('form').on('beforesubmit', function () {
 
 | 名称 | 组件名称 |
 | :----------------------------------------------------------------------: | :----------------------------: |
-| 数据表格                                                                   | [`jxgrid`](jx-grid.md)  |
+| 数据表格                                                                   | [`jfgrid`](jf-grid.md)  |
 | 表单                                                                      | [`jxform`](jx-form.md)   |
 | [对话框](https://github.com/sentsin/layer/)                                | [`jxdialog`](jx-dialog.md) |
 | 树控件                                                                     | [`jxtree`](jx-tree.md)   |

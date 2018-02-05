@@ -4,7 +4,7 @@ Markdown编辑器扩展自控件[`editor.md`](https://github.com/pandao/editor.m
 
 [官方演示地址](https://pandao.github.io/editor.md/examples/index.html)
 
-!> [富文本编辑器演示](../demo/docs/jx-editor.html)
+!> [示例](demo/jx-editor.html)
 
 ## 使用方法
 

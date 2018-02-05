@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../../../jx.css" rel="stylesheet">
+    <script src="../../../jx.js"></script>
+    <style>
+        /*右键菜单*/
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            text-decoration: none;
+            color: #fff;
+            background-color: #0081c2;
+        }
+    </style>
+</head>
+<body>
+<div class="jxform-wrap" style="width: 80%;">
+    <div class="jxform-container" data-toggle="context" data-target="#context-menu">
+        <form class='jxform' method="post">
+            <div class='jxform-header'>
+                <div class='jx-heading'>
+                    <strong>创建文章</strong>
+                </div>
+            </div>
+            <table class='table jxtable-form' style="width: 95%;">
+                <tr>
+                    <th>combo</th>
+                    <td>
+                        <input id="select_combo" name='select_combo'
+                               class='form-control jxcombo'
+                               autocomplete='off'
+                               data-validate="{required: true}">
+                    </td>
+                    <th>combo.tree</th>
+                    <td>
+                        <input id="select_combotree" name='select_combotree'
+                               class='form-control jxcombotree'
+                               autocomplete='off'
+                               data-value="user_100118"
+                               data-validate="{required: true}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>combo.grid</th>
+                    <td colspan="3">
+                        <input id="select_combogrid" name='select_combogrid'
+                               class='form-control jxcombogrid'
+                               autocomplete='off'
+                               data-value="d4a77ece711a41238a0f131afd418f0d,d8a46fea5cda4fd880ca69f81f640597"
+                               data-validate="{required: true}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class='w-110px'>jxlookup</th>
+                    <td>
+                        <input id="select_dept" name="select_dept" class="form-control jxlookup" readonly
+                               maxlength="15" placeholder="点放大镜按钮查找"
+                               data-validate="{required: [true,'请输入发布名称']}"
+                               data-text-field="select_name_d">
+                    </td>
+                    <th>jxlookuptree</th>
+                    <td>
+                        <input id="idnum" name='idnum' class='form-control jxlookuptree'
+                               autofocus autocomplete='off'
+                               data-value="user_100162"
+                               data-validate="{required: true}"/>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 保存
+                </button>
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-sign-in"></i> 返回
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--右键菜单 data-toggle="context" data-target="#context-menu" -->
+<div id="context-menu">
+    <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+    </ul>
+</div>
+
+<div id="jxcombo_content" class="jx-hide">
+    sdfsfsdfsdfsdf
+</div>
+
+<script>
+    // new Clipboard('.btn');
+
+    //jxlookup
+    $('#select_dept').jxoptions({
+        dialogOptions: {
+            url: 'page/lookup_tree_window.html',
+            width: 300,
+            height: '70%',
+            callback: function (dwin, $layer, index) {
+                var node = dwin.$('.jxtree').tree('getSelected');
+                if (!node) {
+                    toastr.error('请选择部门');
+                    return false;
+                }
+                var kv = {text: node.text, value: node.id};
+                if (jx.debug) {
+                    console.log('选中的值:%o', kv);
+                }
+                $('#select_dept').jxlookup('setValue', kv);
+                return true;
+            }
+        }
+    });
+
+    //jxlookuptree
+    $('#idnum').jxoptions({
+        showSelect: false,
+        showClear: true,
+        multiple: false,
+        maxSelectCount: 2,
+        requireSelect: true,
+        autoAccept: true,
+        separator: '|',
+        dialogOptions: {
+            width: 300,
+            height: '70%'
+        },
+        treeOptions: {
+            url: '../demo/api/tree1.json'
+        }
+    });
+
+
+    //jxcombo
+    $('#select_combo').jxoptions({
+        content: $('#jxcombo_content'),
+    });
+
+    //jxcombotree
+    $('#select_combotree').jxoptions({
+        // multiple: true,
+        // editable:false,
+        // panelHeight:'400px',
+        treeOptions: {
+            url: '../api/tree1.json'
+        }
+    });
+
+    $('#select_combogrid').jxoptions({
+        // multiple: true,
+        editable: true,
+        // panelHeight:'600px',
+        gridOptions: {
+            url: 'http://113.140.71.252:7026/jxapi/default/GetStudentsx',
+            idField: 'Id',
+            nameField: 'Name',
+            columns: [[
+                {title: '学员姓名', field: 'Name', width: 180, align: 'center', resizable: true, sortable: true},
+                {title: '身份证号', field: 'IDCardNo', width: 220, align: 'left', sortable: true},
+                {title: '手机号码', field: 'MobilePhone', width: 120, align: 'center'},
+                {title: '企业', field: 'CompanyName', width: 350},
+                {title: '从业类别', field: 'WorkCategoryName', width: 180, align: 'center'}
+            ]]
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -2,9 +2,9 @@
 
 表单控件集成了[`jquery-validation`](https://github.com/jquery-validation/jquery-validation)和[`jquery-form`](https://github.com/jquery-form/form)两个第三方插件。
 
-## 使用方法
+!> [示例](demo/jx-form.html)
 
-!> [表单示例](../demo/docs/jx-form.html)
+## 使用方法
 
 1. `form`标签使用`jxform`类标注.
 

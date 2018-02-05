@@ -14,6 +14,6 @@ https://github.com/lvyanyang/jxui.git
 
 ## 在线演示
 
-[登录页面演示](../demo/login.html)
+[登录页面演示](http://124.115.168.58:1000/books/jxdocs/1.0.0/demo/login.html)
 
-[系统主页面演示](../demo/index.html)
+[系统主页面演示](http://124.115.168.58:1000/books/jxdocs/1.0.0/demo/index.html)

@@ -6,7 +6,7 @@
 
 [官方文档地址](http://kindeditor.net/doc.php)
 
-!> [富文本编辑器演示](../demo/docs/jx-editor.html)
+!> [示例](demo/jx-editor.html)
 
 ## 使用方法
 

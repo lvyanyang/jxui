@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../../../jx.css" rel="stylesheet">
+    <script src="../../../jx.js"></script>
+</head>
+<body>
+<div id="jx_page_loading"></div>
+<div class="easyui-panel" style="border-radius: 4px;" data-options="fit:true,border:false,footer:'#ft'">
+    <form class="jxform">
+        <table class='table jxtable-form'>
+            <tr>
+                <th class='w-100px'>发布名称</th>
+                <td>
+                    <input type='text' name='name' id='name' value='' class='form-control'
+                           data-validate="{required:true}"
+                           autocomplete='off'/>
+                </td>
+            </tr>
+            <tr>
+                <th>版本</th>
+                <td>
+                    <span id='buildBox'>
+                        <select name='build' id='build' class='form-control jxselect'>
+                            <option value='' selected='selected' data-keys=' '>请选择</option>
+                            <option>张三</option>
+                            <option>李四</option>
+                        </select>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>发布日期</th>
+                <td><input type='text' name='date' value='2017-12-09' class='form-control jxdate'/>
+                </td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    <textarea name='desc' id='desc' rows='10' style="resize: none" class='form-control'></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>附件</th>
+                <td><span class="color-red">因为安全原因，Demo暂时不支持上传附件功能！</span></td>
+            </tr>
+        </table>
+    </form>
+
+
+
+        <form class="jxform form-horizontal" method="post" data-layout="bootstrap" data-protip="false"
+              data-msgtip="false">
+
+            <div class="jxbootstrap-form">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">姓名</label>
+                    <div class="col-xs-10">
+                        <input name="name" class="form-control" autofocus autocomplete="off" maxlength="5"
+                               data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">身份证</label>
+                    <div class="col-xs-10">
+                        <input name="idnum" class="form-control" maxlength="18" autofocus autocomplete="off"
+                               data-validate="{required: true,idNumber:true}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">类别</label>
+                    <div class="col-xs-10">
+                        <select name="build" class="form-control jxchosen"
+                                data-placeholder="选择一个类别...">
+                            <option value=""></option>
+                            <option value="1">张三</option>
+                            <option value="2">李四</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">发布日期</label>
+                    <div class="col-xs-10">
+                        <input name="date" class="form-control jxdate"
+                               data-validate="{required: [true,'请输入发布日期']}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">车牌号码</label>
+                    <div class="col-xs-10">
+                        <input name="carn" class="form-control" data-validate="{carNumber: true}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">描述</label>
+                    <div class="col-xs-10">
+                        <textarea name="备注" class="form-control" rows="3" style="resize: none"
+                                  data-validate="{required: true}"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+
+</div>
+<div id="ft" class="text-right">
+    <button class="btn btn-primary" type="submit">
+        <i class="fa fa-save"></i> 保存
+    </button>
+    <button class="btn btn-default" type="button">
+        <i class="fa fa-sign-in"></i> 返回
+    </button>
+</div>
+
+</body>
+</html>

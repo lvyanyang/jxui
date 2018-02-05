@@ -2,7 +2,7 @@
 
 对话框控件集成封装了[`layer`](https://github.com/sentsin/layer/)插件。
 
-!> [对话框控件演示](../demo/docs/jx-dialog.html)
+!> [演示](demo/jx-dialog.html)
 
 ## JavaScript方式调用
 

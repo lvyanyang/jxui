@@ -10,7 +10,7 @@
     <meta name="description" content="西交投前端框架">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../dist/doc.css">
+    <link rel="stylesheet" href="../doc.css">
 </head>
 <body>
 <div id="app">正在加载...</div>
@@ -24,18 +24,19 @@
         subMaxLevel: 2,
         search: {
             maxAge: 86400000,
-            paths: [],
-            depth: 1
+            paths:'auto',
+            depth: 6
         },
         markdown: {
             smartypants: true,
             breaks:true
         },
         noCompileLinks: [
-            '../demo/.*'
+            '../demo/.*',
+            'demo/.*'
         ]
     };
 </script>
-<script src="../dist/doc.js"></script>
+<script src="../doc.js"></script>
 </body>
 </html>

@@ -1,0 +1,163 @@
+/*登录模块*/
+
+/* region body */
+
+body {
+    background: url(img/login-bg.png?__inline) no-repeat fixed center;
+}
+
+.toast-error {
+    opacity: 1 !important;
+}
+
+/** endregion **/
+
+/* region jx-font */
+
+@font-face {
+    font-family: 'jx-font';
+    src: url(font/jx-font.woff2?6wwbds) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'jx-font', serif !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 2em;
+    color: #144586;
+}
+
+.icon-user:before {
+    content: "\e005";
+}
+
+.icon-lock:before {
+    content: "\e08e";
+}
+
+/** endregion **/
+
+/* region form */
+
+form {
+    margin-top: 2%;
+    text-align: center;
+}
+
+.title {
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+label {
+    font-weight: normal;
+}
+
+label span {
+    color: white;
+}
+
+input[type=button] {
+    font-weight: bold;
+}
+
+/* 复选框 */
+
+form .checkbox-container {
+    color: white;
+    float: right;
+}
+
+form input[type="checkbox"] {
+    display: none;
+}
+
+form input[type="checkbox"] + span:before {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C8C8C8;
+    border-radius: 3px;
+    content: "";
+    display: inline-block;
+    height: 18px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -3px;
+    vertical-align: middle;
+    width: 18px;
+}
+
+form input[type="checkbox"]:checked + span:before {
+    background: url(img/login-checkmark.png?__inline) no-repeat scroll center center #007AFF;
+    border-color: #007AFF;
+}
+
+@media (min--moz-device-pixel-ratio: 1.3), not all, not all, not all, (min-resolution: 1.3dppx) {
+    form input[type="checkbox"]:checked + span:before {
+        background-image: url(img/login-checkmark@2x.png?__inline);
+        background-size: 14px 14px;
+    }
+}
+
+#account, #password {
+    font-weight: bold;
+}
+
+/** endregion **/
+
+/* region captcha */
+
+.captcha-container {
+    display: none;
+}
+
+.captcha-img {
+    border-radius: 2px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 3;
+    right: 15px;
+    top: 0;
+}
+
+/** endregion **/
+
+/* region footer */
+
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    z-index: 2;
+    clear: both;
+    line-height: 36px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    /*background-color: #eff4fa;*/
+    /*border-top: 1px solid #d6dfea;*/
+}
+
+.footer a {
+    color: #fff;
+}
+
+.footer a:hover {
+    color: #cd0200 !important;
+    text-decoration-line: none;
+}
+
+/** endregion **/

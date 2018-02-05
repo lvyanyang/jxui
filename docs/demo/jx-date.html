@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>日期控件</title>
+    <meta charset="utf-8">
+    <link href="../../jx.css" rel="stylesheet">
+    <script src="../../jx.js"></script>
+</head>
+<body>
+<div id="jx_page_loading"></div>
+<div class="jxform-wrap" style="width: 50%;margin: 0 auto;">
+    <div class="jxform-container">
+        <form class="jxform">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>日期控件演示</strong>
+                </div>
+            </div>
+            <table class="table jxtable-form">
+                <tr>
+                    <th class="w-200px">自动初始化(文本框模式)</th>
+                    <td>
+                        <input name="adate" class="form-control jxdate"
+                               data-options="{format:'yyyy~mm~dd'}"
+                               data-validate="{required: [true,'请选择日期']}">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="w-110px">自动初始化(组件模式)</th>
+                    <td>
+                        <div id="bjdate" class="input-group date jxdate">
+                            <input name="bdate" class="form-control" placeholder="请选择日期">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>自动初始化(内嵌模式)</th>
+                    <td>
+                        <div class="jxdate" data-date="2018-1-1"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>手动初始化(文本框模式)</th>
+                    <td>
+                        <input id="mdate" name=mdate" class="form-control">
+                    </td>
+                </tr>
+            </table>
+            <div class="jxform-footer">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 确定
+                </button>
+                <button id="btnShow" class="btn btn-default" type="button">
+                    显示日期选择器
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    jx.ready(function () {
+        $('#mdate').jxdate();
+
+        $('#bjdate').jxdate().on('changeDate', function(e) { //changeDate事件
+            jx.alert(jx.formatString('选中的日期：{0}',jx.formatDate(e.date)));
+        });
+
+        $('#btnShow').on('click', function () {
+            $('#bjdate').datepicker('show');//显示日期选择器
+        });
+
+    });
+</script>
+</body>
+</html>

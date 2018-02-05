@@ -1,0 +1,383 @@
+[
+  {
+    "id": "dept_100027",
+    "parentid": "0",
+    "text": "西交投",
+    "iconCls": "icon-users",
+    "children": [
+      {
+        "id": "dept_100055",
+        "parentid": "100027",
+        "text": "董事会",
+        "iconCls": "icon-users",
+        "children": [
+          {
+            "id": "user_100112",
+            "parentid": "dept_100055",
+            "text": "徐博1-2",
+            "iconCls": "icon-user",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100068",
+            "parentid": "dept_100055",
+            "text": "石磊",
+            "spell":"shilei",
+            "iconCls": "icon-user",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100109",
+            "parentid": "dept_100055",
+            "text": "刘枫",
+            "iconCls": "icon-user",
+            "attributes": {
+              "type": "user"
+            }
+          }
+        ],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100026",
+        "parentid": "100027",
+        "text": "总经办",
+        "state":"closed",
+        "iconCls": "icon-users",
+        "children": [
+          {
+            "id": "user_100146",
+            "parentid": "dept_100026",
+            "text": "韩尚雯",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100147",
+            "parentid": "dept_100026",
+            "text": "徐卫锋",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100110",
+            "parentid": "dept_100026",
+            "text": "徐博1-1",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          }
+        ],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100022",
+        "parentid": "100027",
+        "text": "全国市场经营部",
+        "iconCls": "icon-users",
+        "state":"closed",
+        "children": [
+          {
+            "id": "dept_100038",
+            "parentid": "100022",
+            "text": "市场部",
+            "iconCls": "icon-users",
+            "children": [
+              {
+                "id": "user_100106",
+                "parentid": "dept_100038",
+                "text": "秦秀花",
+                "iconCls": "icon-user_business_boss",
+                "attributes": {
+                  "type": "user"
+                }
+              }
+            ],
+            "attributes": {
+              "type": "dept"
+            }
+          },
+          {
+            "id": "dept_100039",
+            "parentid": "100022",
+            "text": "经营部",
+            "iconCls": "icon-users",
+            "children": [
+              {
+                "id": "user_100153",
+                "parentid": "dept_100039",
+                "text": "雒海龙",
+                "iconCls": "icon-user_business_boss",
+                "attributes": {
+                  "type": "user"
+                }
+              },
+              {
+                "id": "user_100155",
+                "parentid": "dept_100039",
+                "text": "王宁",
+                "iconCls": "icon-user_business_boss",
+                "attributes": {
+                  "type": "user"
+                }
+              }
+            ],
+            "attributes": {
+              "type": "dept"
+            }
+          },
+          {
+            "id": "dept_100056",
+            "parentid": "100022",
+            "text": "营策部",
+            "iconCls": "icon-users",
+            "children": [
+              {
+                "id": "user_100076",
+                "parentid": "dept_100056",
+                "text": "符文博",
+                "iconCls": "icon-user_business_boss",
+                "attributes": {
+                  "type": "user"
+                }
+              }
+            ],
+            "attributes": {
+              "type": "dept"
+            }
+          }
+        ],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100048",
+        "parentid": "100027",
+        "text": "工程项目管理中心",
+        "state":"closed",
+        "iconCls": "icon-users",
+        "children": [
+          {
+            "id": "user_100126",
+            "parentid": "dept_100048",
+            "text": "朱紫妍",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100128",
+            "parentid": "dept_100048",
+            "text": "汪洋仑",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100162",
+            "parentid": "dept_100048",
+            "text": "杨雯",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100085",
+            "parentid": "dept_100048",
+            "text": "王文勃",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          }
+        ],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100029",
+        "parentid": "100027",
+        "text": "财务核算结算中心",
+        "iconCls": "icon-users",
+        "state":"closed",
+        "children": [
+          {
+            "id": "user_100148",
+            "parentid": "dept_100029",
+            "text": "郭琴",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100152",
+            "parentid": "dept_100029",
+            "text": "韩艳蕊",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100069",
+            "parentid": "dept_100029",
+            "text": "李海江",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100072",
+            "parentid": "dept_100029",
+            "text": "梁婷婷",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          }
+        ],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100032",
+        "parentid": "100027",
+        "text": "行政人力资源部",
+        "iconCls": "icon-users",
+        "state":"closed",
+        "children": [
+          {
+            "id": "user_100113",
+            "parentid": "dept_100032",
+            "text": "贾鑫",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100064",
+            "parentid": "dept_100032",
+            "text": "刘俊婷",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100066",
+            "parentid": "dept_100032",
+            "text": "周茹",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          },
+          {
+            "id": "user_100097",
+            "parentid": "dept_100032",
+            "text": "冯立",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          }
+        ],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100028",
+        "parentid": "100027",
+        "text": "法务部",
+        "iconCls": "icon-users",
+        "children": [],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100001",
+        "parentid": "100027",
+        "text": "审计巡查部",
+        "iconCls": "icon-users",
+        "children": [
+          {
+            "id": "user_100081",
+            "parentid": "dept_100001",
+            "text": "杨建仓",
+            "iconCls": "icon-user_business_boss",
+            "attributes": {
+              "type": "user"
+            }
+          }
+        ],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "dept_100057",
+        "parentid": "100027",
+        "text": "中尚园林",
+        "iconCls": "icon-users",
+        "children": [],
+        "attributes": {
+          "type": "dept"
+        }
+      },
+      {
+        "id": "user_100118",
+        "parentid": "dept_100027",
+        "text": "方米团",
+        "iconCls": "icon-user_business_boss",
+        "attributes": {
+          "type": "user"
+        }
+      },
+      {
+        "id": "user_100120",
+        "parentid": "dept_100027",
+        "text": "面试者",
+        "iconCls": "icon-user_business_boss",
+        "attributes": {
+          "type": "user"
+        }
+      },
+      {
+        "id": "user_100144",
+        "parentid": "dept_100027",
+        "text": "工程",
+        "iconCls": "icon-user_business_boss",
+        "attributes": {
+          "type": "user"
+        }
+      }
+    ],
+    "attributes": {
+      "type": "dept"
+    }
+  }
+]
