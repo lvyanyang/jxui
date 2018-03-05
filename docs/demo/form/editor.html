@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>编辑文章</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap">
+    <div class="jxform-container">
+        <form class='jxform' method="post">
+            <div class='jxform-header'>
+                <div class='jxform-title'>
+                    <strong>创建文章</strong>
+                </div>
+            </div>
+            <table class='table jxtable-form'>
+                <tr>
+                    <th class='w-110px'>发布名称</th>
+                    <td>
+                        <input name='name' class='form-control'
+                               maxlength="5"
+                               data-validate="{required: [true,'请输入发布名称'],maxlength: [5,'发布名称长度不能超过{0}个字符']}"
+                               autofocus autocomplete='off'/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>分类</th>
+                    <td>
+                        <select name="select1" data-placeholder="选择一个宠物..."
+                                data-validate="{required: [true,'请选择分类']}"
+                                class="jxchosen form-control">
+                            <option value=""></option>
+                            <option value="cat" data-keys="xiaomao xm 猫科动物">小猫</option>
+                            <option value="fish" data-keys="jinyu jy">金鱼</option>
+                            <option value="dragon" data-keys="long">龙</option>
+                            <option value="mammoth" data-keys="mengma mm">猛犸</option>
+                            <option value="gollum" data-keys="gulu gl 神话">咕噜</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>多选分类</th>
+                    <td>
+                        <select name="select2" data-placeholder="选择一些爱吃的水果..."
+                                data-validate="{required: [true,'请选择多选分类']}"
+                                class="jxchosen form-control"
+                                multiple>
+                            <option value="strawberries">草莓</option>
+                            <option value="apple" data-keys="pg">苹果</option>
+                            <option value="orange" data-keys="cz">橙子</option>
+                            <option value="cherry" data-keys="yt">樱桃</option>
+                            <option value="banana">香蕉</option>
+                            <option value="figs">无花果</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th style="vertical-align: top;">html编辑器1</th>
+                    <td>
+                        <textarea id="htmlContent" name="htmlContent" class="form-control jxhtmleditor"
+                                  style="height:100px;"
+                                  data-validate="required: [true,'请输入Html内容']">
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>html编辑器2</th>
+                    <td>
+                        <textarea id="htmlContent2" name="htmlContent2" class="form-control jxhtmleditor"
+                                  style="height:80px;"
+                                  data-validate="required: [true,'请输入Html内容']">
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="vertical-align: top;">Markdown编辑器</th>
+                    <td>
+                        <div class="jxmdeditor">
+                        <textarea name="articleContent"
+                                  data-validate="required: [true,'请输入内容']"></textarea>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>发布日期</th>
+                    <td>
+                        <div class="jxdate input-group date">
+                            <input class="form-control" name="ReservationDateTimeEndDate"
+                                   data-validate="{required: [true,'请选择日期']}"
+                                   type="text" placeholder="请选择日期">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>附件</th>
+                    <td><span class="color-red">因为安全原因，Demo暂时不支持上传附件功能！</span></td>
+                </tr>
+            </table>
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 保存
+                </button>
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-sign-in"></i> 返回
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+        $('#htmlContent2').options({
+            items : [
+                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+        });
+
+        $('form').on('beforesubmit', function () {
+            return false;
+        });
+
+</script>
+</body>
+</html>

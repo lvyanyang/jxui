@@ -64,9 +64,9 @@ fis.match('_*.html', {
 // });
 
 //region 字体文件
-fis.match('/lib/{simple-line-icons,line-awesome,font-awesome}/(*.woff2)', {
+fis.match('/lib/{simple-line-icons,line-awesome,font-awesome}/(*.{woff,woff2})', {
     release: '/font/$1'
-}).match('/page/login/font/(*.woff2)', {
+}).match('/page/login/font/(*.{woff,woff2})', {
     release: '/font/$1'
 });
 //endregion
@@ -84,7 +84,7 @@ fis.match('/page/**.{png,jpg,gif}', {
 //region package
 fis.match('::package', {
     packager: fis.plugin('map', {
-        useTrack: false,
+        useTrack: true,
         '/app.css': '/page/app/app.css',
         '/app.js': '/page/app/app.js',
         '/login.css': '/page/login/login.css',
@@ -110,6 +110,7 @@ fis.match('::package', {
             '/lib/bootstrap-popover-x/bootstrap-popover-x.css',
             '/lib/wizard/wizard.css',
             '/lib/select2/select2.css',
+            '/lib/easyui/easyfix.css',
             '/jx/jx.css'
         ],
         //endregion
@@ -133,10 +134,15 @@ fis.match('::package', {
             '/lib/bootstrap-maxlength/bootstrap-maxlength.js',
             '/lib/bootstrap-touchspin/bootstrap-touchspin.js',
             '/lib/bootstrap-popover-x/bootstrap-popover-x.js',
+            '/lib/bootstrap-contextmenu/bootstrap-contextmenu.js',
             '/lib/wizard/wizard.js',
             '/lib/select2/select2.js',
             '/jx/jx.js',
-            '/plugin/**.js'
+            '/plugin/base/**.js',
+            '/plugin/core/**.js',
+            '/plugin/data/**.js',
+            '/plugin/form/**.js',
+            '/plugin/other/**.js'
         ],
         //endregion
         '/doc.css': [

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件上传示例</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap" style="width: 50%;margin: 0 auto">
+    <div class="jxform-container">
+        <form class="jxform" method="post">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>文件上传示例</strong>
+                </div>
+            </div>
+            <table class="table jxtable-form">
+                <tr>
+                    <th class="w-110px">姓名</th>
+                    <td>
+                        <input id="uname" name="uname" class="form-control" autofocus autocomplete="off" maxlength="5"
+                               data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>上传文件</th>
+                    <td>
+                        <div class="fileinputx fileinputx-new input-group" data-provides="fileinputx">
+                            <div class="form-control" data-trigger="fileinputx">
+                                <i class="fa fa-file-o fileinputx-exists"></i>
+                                <span class="fileinputx-filename"></span>
+                            </div>
+                            <span class="input-group-addon btn btn-default btn-file">
+                                <span class="fileinputx-new">选择</span>
+                                <span class="fileinputx-exists">更改</span>
+                                <input type="file" name="user_file" data-validate="{required: true}">
+                            </span>
+                            <a href="#" class="input-group-addon btn btn-default fileinputx-exists"
+                               data-dismiss="fileinputx">移除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>附件</th>
+                    <td>
+                        <div class="fileinputx fileinputx-new" data-provides="fileinputx">
+                            <span class="btn btn-default btn-file">
+                                <span class="fileinputx-new">选择文件</span>
+                                <span class="fileinputx-exists">更改文件</span>
+                                <input type="file" name="user_file1" data-validate="{required: [true,'请选择文件']}">
+                            </span>
+                            <span class="fileinputx-filename"></span>
+                            <a href="#" class="close fileinputx-exists" data-dismiss="fileinputx" style="float: none">&times;</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>发布日期</th>
+                    <td>
+                        <input name="date" class="form-control jxdate"
+                               data-validate="{required: [true,'请输入发布日期']}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>图片上传</th>
+                    <td>
+                        <div class="fileinputx fileinputx-new" data-provides="fileinputx">
+                            <div class="fileinputx-preview thumbnail" data-trigger="fileinputx" style="width: 200px; height: 150px;"></div>
+                            <div>
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileinputx-new">选择图片</span>
+                                    <span class="fileinputx-exists">更改图片</span>
+                                    <input type="file" name="user_img1" data-validate="{required: [true,'请选择图片']}"></span>
+                                <a href="#" class="btn btn-default fileinputx-exists" data-dismiss="fileinputx">移除</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>图片上传</th>
+                    <td>
+                        <div class="fileinputx fileinputx-new" data-provides="fileinputx">
+                            <div class="fileinputx-new thumbnail" style="width: 200px; height: 150px;">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTkwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk1IiB5PSI3MCIgc3R5bGU9ImZpbGw6I2FhYTtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtZmFtaWx5OkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjE5MHgxNDA8L3RleHQ+PC9zdmc+">
+                            </div>
+                            <div class="fileinputx-preview fileinputx-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileinputx-new">选择图片</span>
+                                    <span class="fileinputx-exists">更改图片</span>
+                                    <input type="file" name="user_img2"></span>
+                                <a href="#" class="btn btn-default fileinputx-exists" data-dismiss="fileinputx">移除</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 提交
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

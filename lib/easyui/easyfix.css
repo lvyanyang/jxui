@@ -1,0 +1,355 @@
+/*region panel*/
+
+.panelx .panel-title {
+    font-size: 14px;
+}
+
+.panelx-body {
+    font-size: 14px;
+}
+
+.panel-header, .panelx-body {
+    border-color: #ddd;
+}
+
+.panel-header {
+    background: #f8fafe none;
+    padding: 8px;
+}
+
+.panel-footer {
+    background-color: #f8fafe;
+}
+
+.jxpanel-footer {
+    padding: 10px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    background: #f8fafe;
+}
+
+.layout-split-proxy-h, .layout-split-proxy-v {
+    background-color: #e5e5e5;
+}
+/*.layout-panel-west .panel-title {*/
+    /*font-size: 14px;*/
+/*}*/
+
+.layout-panel-west .panel-header,
+.layout-panel-west .panelx-body,
+.layout-expand-west .panel-header,
+.layout-expand-west .panelx-body {
+    border-left-width: 0;
+    border-top-width: 0;
+}
+
+.layout-panel-west .panelx-body,
+.layout-expand-west .panelx-body {
+    border-bottom-width: 0;
+}
+
+.layout-expand-west .panelx-body {
+    border-left-width: 0;
+    background: transparent;
+    filter: none;
+    overflow: hidden;
+}
+
+.panel-tool a {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    margin-top: -1px !important;
+    padding-left: 2px !important;
+    background: none;
+}
+
+.panel-tool a:hover {
+    background: none;
+}
+
+.layout-button-left:before {
+    content: "\f100";
+}
+
+.layout-button-right:before {
+    content: "\f101";
+}
+
+.layout-button-up:before {
+    content: "\f102";
+}
+
+.layout-button-down:before {
+    content: "\f103";
+}
+
+.layout-split-west {
+    border-right: 5px solid #f8fafe;
+}
+
+.layout-split-east {
+    border-left: 5px solid #f8fafe;
+}
+
+.layout-expand, .layout-expand {
+    background-color: #f8fafe;
+}
+
+/*endregion*/
+
+/* region paginationx */
+
+.paginationx td {
+    padding: 0 !important;
+}
+
+/*endregion*/
+
+/* region tree */
+
+.tree span {
+    font-size: 14px;
+}
+
+.tree .tree-node {
+    padding: 4px;
+    text-decoration: none;
+    box-sizing: content-box;
+    margin: 1px;
+}
+
+.tree li div {
+    border: 1px dashed transparent;
+    margin: 2px 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /*user-select: none;*/
+}
+
+.tree .tree-node-hover {
+    border: 1px dashed #99bbe8;
+    cursor: pointer;
+    margin: 1px;
+}
+
+.tree .tree-node-selected {
+    border: 1px dashed #99bbe8;
+    cursor: pointer;
+    margin: 1px;
+}
+
+.tree .tree-node-hover {
+    background: #eaf2ffa1;
+}
+
+.tree .tree-node-selected {
+    background: #eaf2ff;
+}
+
+.tree.panelx-body {
+    padding: 0;
+}
+
+.tree .tree-node-yellow {
+    background: #ffe48d;
+    color: #416aa3;
+    font-weight: bold
+}
+
+.tree .nodata {
+    margin: 5px;
+    padding: 10px;
+    display: none;
+}
+
+.tree-node-top {
+    border-top: 1px dashed red !important;
+}
+
+.tree-node-bottom {
+    border-bottom: 1px dashed red !important;
+}
+
+.tree-node-append .tree-title {
+    border: 1px dashed red !important;
+}
+
+/*.tree-icon-font {*/
+/*padding-top: 1px;*/
+/*padding-left: 1px;*/
+/*margin-right: 1px;*/
+/*background-image: none;*/
+/*font-size: 16px !important;*/
+/*}*/
+
+/*.tree-expanded, .tree-collapsed, .tree-folder, .tree-file, .tree-checkbox, .tree-indent{*/
+/*width: 18px;*/
+/*}*/
+
+/*.tree-folder, .tree-folder-open, .tree-file {*/
+/*display: inline-block;*/
+/*font: normal normal normal 14px/1 FontAwesome;*/
+/*font-size: inherit;*/
+/*text-rendering: auto;*/
+/*-webkit-font-smoothing: antialiased;*/
+/*-moz-osx-font-smoothing: grayscale;*/
+/*}*/
+
+/*.tree-folder:before {*/
+/*content: "\f114";*/
+/*}*/
+
+/*.tree-folder-open:before {*/
+/*content: "\f115";*/
+/*}*/
+
+/*.tree-file:before {*/
+/*content: "\f016";*/
+/*}*/
+
+/*.tree-collapsed,.tree-expanded {*/
+/*margin-right: 0;*/
+/*display: inline-block;*/
+/*text-rendering:auto;*/
+/*-moz-osx-font-smoothing: grayscale;*/
+/*background: none;*/
+/*text-align: center;*/
+/*}*/
+
+/*.tree-expanded {*/
+/*font: normal normal normal 14px/1 FontAwesome;*/
+/*font-size: inherit;*/
+/*-webkit-font-smoothing: antialiased;*/
+/*}*/
+
+/*.tree-collapsed {*/
+/*font: normal normal normal 14px/1 FontAwesome;*/
+/*font-size: inherit;*/
+/*-webkit-font-smoothing: antialiased;*/
+/*}*/
+
+/*.tree-expanded:before {*/
+/*content: "\f0d7";*/
+/*font-size: medium;*/
+/*}*/
+
+/*.tree-collapsed:before {*/
+/*content: "\f0da";*/
+/*font-size: medium;*/
+/*}*/
+
+/** endregion **/
+
+/*region datagrid*/
+.datagrid-header .datagrid-cell,
+.datagrid-header .datagrid-cell-group {
+    color: #666;
+    font-weight: 500;
+    filter: alpha(opacity=80);
+    opacity: 0.80;
+}
+
+.datagrid-header td,
+.datagrid-body td,
+.datagrid-footer td {
+    border-style: solid;
+}
+
+.datagrid-td-rownumber {
+    background: #fff none;
+}
+
+.datagrid-header, .datagrid-td-rownumber {
+    background-color: #f8f8f8;
+}
+
+.datagrid-header,
+.datagrid-toolbar,
+.datagrid-pager,
+.datagrid-footer-inner {
+    border-color: #ddd;
+}
+
+.datagrid-header td,
+.datagrid-body td,
+.datagrid-footer td {
+    border-color: #d7d7d7;
+}
+
+.datagrid-header-row,
+.datagrid-row {
+    height: 35px;
+}
+
+.datagrid-header .datagrid-cell,
+.datagrid-header .datagrid-cell-group {
+    color: #000;
+}
+
+.datagrid-header .datagrid-cell span,
+.datagrid-cell,
+.datagrid-cell-group,
+.datagrid-header-rownumber,
+.datagrid-cell-rownumber,
+.tree-title {
+    font-size: 14px;
+}
+
+.datagrid-cell .fa-toggle-on,
+.datagrid-cell .fa-toggle-off {
+    font-size: 16pt;
+    vertical-align: middle;
+}
+.datagrid-cell .fa-toggle-on {
+    color: #449d44;
+}
+.datagrid-cell .fa-toggle-off {
+    color: #aaa;
+}
+
+.datagrid-row-over,
+.datagrid-header td.datagrid-header-over {
+    background: #f5f5f5;
+    cursor: default;
+}
+
+.datagrid-row-selected {
+    background: #eaf2ff;
+    color: inherit;
+}
+
+.datagrid-header-check input[type="checkbox"],
+.datagrid-cell-check input[type="checkbox"] {
+    margin: 0;
+}
+
+.datagrid-nodata {
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    height: 180px;
+    width: 380px;
+    margin: -90px 0 0 -190px;
+    background: url(../jfgrid/jfgrid-nodata.jpg?__inline) no-repeat;
+}
+
+.datagrid-error {
+    display: none;
+    margin: 10px;
+}
+
+.datagrid-toolbar {
+    padding: 1px 0;
+}
+
+.datagrid-toolbar,
+.datagrid-pager {
+    background: #fff;
+}
+/*endregion*/

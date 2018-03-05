@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>下拉框组件示例</title>
+    <meta charset="utf-8">
+    <link rel="import" href="../_include/_jx.html?__inline">
+    <style>
+        .select2-result-repository {
+            padding-top: 4px;
+            padding-bottom: 3px
+        }
+
+        .select2-result-repository__avatar {
+            float: left;
+            width: 60px;
+            margin-right: 10px
+        }
+
+        .select2-result-repository__avatar img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px
+        }
+
+        .select2-result-repository__meta {
+            margin-left: 70px
+        }
+
+        .select2-result-repository__title {
+            color: black;
+            font-weight: 700;
+            word-wrap: break-word;
+            line-height: 1.1;
+            margin-bottom: 4px
+        }
+
+        .select2-result-repository__forks, .select2-result-repository__stargazers {
+            margin-right: 1em
+        }
+
+        .select2-result-repository__forks, .select2-result-repository__stargazers, .select2-result-repository__watchers {
+            display: inline-block;
+            color: #aaa;
+            font-size: 11px
+        }
+
+        .select2-result-repository__description {
+            font-size: 13px;
+            color: #777;
+            margin-top: 4px
+        }
+
+        .select2-results__option--highlighted .select2-result-repository__title {
+            color: white
+        }
+
+        .select2-results__option--highlighted .select2-result-repository__forks, .select2-results__option--highlighted .select2-result-repository__stargazers, .select2-results__option--highlighted .select2-result-repository__description, .select2-results__option--highlighted .select2-result-repository__watchers {
+            color: #c6dcef
+        }
+
+    </style>
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxpanel" title="图表控件演示">
+
+    <form class="jxform form-horizontal" data-layout="bootstrap" data-protip="false">
+
+        <div class="jxbootstrap-form" style="width: 80%;">
+            <div class="form-group">
+                <label class="col-md-2 control-label">单选</label>
+                <div class="col-md-10">
+                    <select class="form-control jxselect"
+                            id="select2_sin"
+                            name="select2_sin"
+                            data-validate="{required: [true,'请输入select']}"
+                            data-placeholder="请输入select2">
+                        <option></option>
+                        <option value="110100" data-keys="bjs">北京市</option>
+                        <option value="610100" data-keys="xas">西安市</option>
+                        <option value="610200" data-keys="tcs">铜川市</option>
+                        <option value="610300" data-keys="bjs">宝鸡市</option>
+                        <option value="610400" data-keys="xys">咸阳市</option>
+                        <option value="610500" data-keys="wns">渭南市</option>
+                        <option value="610500" data-keys="xawns">西安渭南市</option>
+                        <option value="610600" data-keys="yas">延安市</option>
+                        <option value="610700" data-keys="hzs">汉中市</option>
+                        <option value="610800" data-keys="yls">榆林市</option>
+                        <option value="610800" data-keys="xayls">西安榆林市</option>
+                        <option value="610900" data-keys="aks">安康市</option>
+                        <option value="611000" data-keys="sls">商洛市</option>
+                        <optgroup label="Alaskan/Hawaiian Time Zone">
+                            <option value="AK">Alaska</option>
+                            <option value="HI">Hawaii</option>
+                        </optgroup>
+                        <optgroup label="Pacific Time Zone">
+                            <option value="CA">California</option>
+                            <option value="NV">Nevada</option>
+                            <option value="OR">Oregon</option>
+                            <option value="WA">Washington</option>
+                        </optgroup>
+                        <optgroup label="Mountain Time Zone">
+                            <option value="AZ">Arizona</option>
+                            <option value="CO">Colorado</option>
+                            <option value="ID">Idaho</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="UT">Utah</option>
+                            <option value="WY">Wyoming</option>
+                        </optgroup>
+                        <optgroup label="Central Time Zone">
+                            <option value="AL">Alabama</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TX">Texas</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="WI">Wisconsin</option>
+                        </optgroup>
+                        <optgroup label="Eastern Time Zone">
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="IN">Indiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="OH">Ohio</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WV">West Virginia</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">多选</label>
+                <div class="col-md-10">
+                    <select class="form-control jxselect"
+                            id="select2_mul"
+                            name="select2_mul" multiple
+                            data-validate="{required: [true,'请输入select']}"
+                            data-placeholder="请输入select">
+                        <option></option>
+                        <option value="110100" data-keys="bjs">北京市</option>
+                        <option value="610100" data-keys="xas">西安市</option>
+                        <option value="610200" data-keys="tcs">铜川市</option>
+                        <option value="610300" data-keys="bjs">宝鸡市</option>
+                        <option value="610400" data-keys="xys">咸阳市</option>
+                        <option value="610500" data-keys="wns">渭南市</option>
+                        <option value="611500" data-keys="xawns">西安渭南市</option>
+                        <option value="610600" data-keys="yas">延安市</option>
+                        <option value="610700" data-keys="hzs">汉中市</option>
+                        <option value="610800" data-keys="yls">榆林市</option>
+                        <option value="611800" data-keys="xayls">西安榆林市</option>
+                        <option value="610900" data-keys="aks">安康市</option>
+                        <option value="611000" data-keys="sls">商洛市</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">动态加载</label>
+                <div class="col-md-10">
+                    <select class="form-control jxselect"
+                            id="select2_dyload"
+                            name="select2_dyload"
+                            data-validate="{required: [true,'请输入select']}"
+                            data-placeholder="请输入select2">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">远程加载</label>
+                <div class="col-md-10">
+                    <select class="form-control jxselect"
+                            id="select2_ajax"
+                            name="select2_ajax"
+                            data-validate="{required: [true,'请输入select']}"
+                            data-placeholder="请输入select2">
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="jxpanel-footer">
+            <button id="btnRefresh" class="btn btn-primary" type="submit">
+                <i class="fa fa-reload"></i> 提交
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+
+    $('#select2_sin').options({
+        minimumInputLength: 2,//超过这个数量的字符才开始搜索
+        maximumInputLength: 4,//限制搜索词的最大长度
+        minimumResultsForSearch: 10,//下拉项超过指定数量时显示搜索框，Infinity：永久隐藏搜索框
+        width: '500px',//宽度数值或者50%
+        selectOnClose: true, //true:下拉框关闭时自动选择当前高亮的行
+        closeOnSelect: true, //ture：选择后自动关闭下拉框
+        placeholder: '请选择信息',//没有选择时的占位符
+        allowClear: true,//允许清空选择
+        tags: true,//根据搜索框创建option
+        data: [], //动态加载的数据
+        escapeMarkup: function (markup) {
+            return markup;
+        },//字符转义处理
+        templateResult: function (state) { //返回结果回调
+            //console.log(state);
+            if (!state.id) {
+                return state.text;
+            }
+
+            return state.text + '(option)';
+        },
+        templateSelection: function (state) { //选中项回调
+            // console.log(state);
+            if (!state.id) {
+                return state.text;
+            }
+            // var baseUrl = "/user/pages/images/flags";
+            // var $state = $(
+            //     '<span><img src="' + baseUrl + '/' + state.element.value.toLowerCase() + '.png" class="img-flag" /> ' + state.text + '</span>'
+            // );
+            // return $state;
+            return state.text + '(选择)';
+        }
+    });
+
+    //对于多选择框，没有单独的搜索控制。因此，为了禁用对多选择框的搜索，当下拉菜单打开或关闭时，您需要将文本框设置为true
+    $('#select2_mul').on('select2:opening select2:closing', function (event) {
+        var $searchfield = $(this).parent().find('.select2-search__field');
+        $searchfield.prop('disabled', true);
+    });
+
+    $('#select2_dyload').options({
+        data: [ //数据
+            {
+                id: 0,
+                text: 'enhancement'
+            },
+            {
+                id: 1,
+                text: 'bug',
+                selected: true
+            },
+            {
+                id: 2,
+                text: 'duplicate'
+            },
+            {
+                id: 3,
+                text: 'invalid',
+                disabled: true
+            },
+            {
+                id: 4,
+                text: 'wontfix'
+            }
+        ]
+    });
+
+    $('#select2_ajax').options({
+        ajax: {
+            url: "https://api.github.com/search/repositories",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                    page: params.page
+                };
+            },
+            processResults: function (data, params) {
+                // parse the results into the format expected by Select2
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data, except to indicate that infinite
+                // scrolling can be used
+                params.page = params.page || 1;
+
+                return {
+                    results: data.items,
+                    pagination: {
+                        more: (params.page * 30) < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        placeholder: 'Search for a repository',
+        escapeMarkup: function (markup) {
+            return markup;
+        }, // let our custom formatter work
+        minimumInputLength: 1,
+        templateResult: formatRepo,
+        templateSelection: formatRepoSelection
+    });
+
+    function formatRepo(repo) {
+        if (repo.loading) {
+            return repo.text;
+        }
+
+        var markup = "<div class='select2-result-repository clearfix'>" +
+            "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
+            "<div class='select2-result-repository__meta'>" +
+            "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+
+        if (repo.description) {
+            markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
+        }
+
+        markup += "<div class='select2-result-repository__statistics'>" +
+            "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>" +
+            "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+            "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+            "</div>" +
+            "</div></div>";
+
+        return markup;
+    }
+
+    function formatRepoSelection(repo) {
+        return repo.full_name || repo.text;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表单示例</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap" style="width: 50%;">
+    <div class="jxform-container">
+        <form class="jxform" method="post">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>table布局</strong>
+                </div>
+            </div>
+            <table class="table jxtable-form">
+                <tr>
+                    <th class="w-110px">姓名</th>
+                    <td>
+                        <input id="uname" name="uname" class="form-control" autofocus autocomplete="off" maxlength="5"
+                               data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>身份证</th>
+                    <td>
+                        <input name="idnum" class="form-control" maxlength="18" autofocus autocomplete="off"
+                               data-validate="{required: true,idNumber:true}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>类别</th>
+                    <td>
+                        <select name="build" class="form-control jxchosen"
+                                data-placeholder="选择一个类别...">
+                            <option value=""></option>
+                            <option value="1">张三</option>
+                            <option value="2">李四</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>发布日期</th>
+                    <td>
+                        <input name="date" class="form-control jxdate"
+                               data-validate="{required: [true,'请输入发布日期']}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>车牌号码</th>
+                    <td>
+                        <input name="carn" class="form-control"
+                               data-validate="{carNumber: true}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>描述</th>
+                    <td>
+                        <textarea name="备注" class="form-control" rows="3" style="resize: none"
+                                  data-validate="{required: true}"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>附件</th>
+                    <td>
+                        <span class="color-red">因为安全原因，Demo暂时不支持上传附件功能！</span>
+                    </td>
+                </tr>
+            </table>
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 提交
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="jxform-container">
+        <form class="jxform" method="post" data-layout="bootstrap" data-protip="false" data-msgtip="false">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>bootstrap布局</strong>
+                </div>
+            </div>
+
+            <div class="jxbootstrap-form">
+                <div class="form-group">
+                    <label class="control-label">姓名</label>
+                    <!--<div class="required required-wrapper"></div>-->
+                    <input name="name" class="form-control" autofocus autocomplete="off" maxlength="5"
+                           data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                    <!--<span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>-->
+                </div>
+                <div class="form-group">
+                    <label class="control-label">身份证</label>
+                    <input name="idnum" class="form-control" maxlength="18" autofocus autocomplete="off"
+                           data-validate="{required: true,idNumber:true}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">类别</label>
+                    <select name="build" class="form-control jxchosen"
+                            data-placeholder="选择一个类别...">
+                        <option value=""></option>
+                        <option value="1">张三</option>
+                        <option value="2">李四</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">发布日期</label>
+                    <input name="date" class="form-control jxdate"
+                           data-validate="{required: [true,'请输入发布日期']}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">车牌号码</label>
+                    <input name="carn" class="form-control" data-validate="{carNumber: true}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">描述</label>
+                    <textarea name="备注" class="form-control" rows="3" style="resize: none"
+                              data-validate="{required: true}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">附件</label>
+                    <span class="color-red">因为安全原因，Demo暂时不支持上传附件功能！</span>
+                </div>
+            </div>
+
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 提交
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+    <div class="jxform-container">
+        <form class="jxform form-horizontal" method="post" data-layout="bootstrap" data-protip="false"
+              data-msgtip="false">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>bootstrap水平布局</strong>
+                </div>
+            </div>
+
+            <div class="jxbootstrap-form">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">姓名</label>
+                    <div class="col-md-10">
+                        <input name="name" class="form-control" autofocus autocomplete="off" maxlength="5"
+                               data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">身份证</label>
+                    <div class="col-md-10">
+                        <input name="idnum" class="form-control" maxlength="18" autofocus autocomplete="off"
+                               data-validate="{required: true,idNumber:true}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">类别</label>
+                    <div class="col-md-10">
+                        <select name="build" class="form-control jxchosen"
+                                data-placeholder="选择一个类别...">
+                            <option value=""></option>
+                            <option value="1">张三</option>
+                            <option value="2">李四</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">发布日期</label>
+                    <div class="col-md-10">
+                        <input name="date" class="form-control jxdate"
+                               data-validate="{required: [true,'请输入发布日期']}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">车牌号码</label>
+                    <div class="col-md-10">
+                        <input name="carn" class="form-control" data-validate="{carNumber: true}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">描述</label>
+                    <div class="col-md-10">
+                        <textarea name="备注" class="form-control" rows="3" style="resize: none"
+                                  data-validate="{required: true}"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 提交
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+    <div class="jxform-container">
+        <form class="jxform form-horizontal" method="post" data-layout="bootstrap" data-protip="false">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>bootstrap水平布局</strong>
+                </div>
+            </div>
+
+            <div class="jxbootstrap-form">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">姓名</label>
+                    <div class="col-md-4">
+                        <input name="name" class="form-control" autofocus autocomplete="off" maxlength="5"
+                               data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                    </div>
+
+                    <label class="col-md-2 control-label">身份证</label>
+                    <div class="col-md-4">
+                        <input name="idnum" class="form-control" maxlength="18" autofocus autocomplete="off"
+                               data-validate="{required: true,idNumber:true}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">类别</label>
+                    <div class="col-md-4">
+                        <select name="build" class="form-control jxchosen"
+                                data-placeholder="选择一个类别...">
+                            <option value=""></option>
+                            <option value="1">张三</option>
+                            <option value="2">李四</option>
+                        </select>
+                    </div>
+
+                    <label class="col-md-2 control-label">发布日期</label>
+                    <div class="col-md-4">
+                        <input name="date" class="form-control jxdate"
+                               data-validate="{required: [true,'请输入发布日期']}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">单选项</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-inline">
+                                <label>
+                                    <input type="radio" name="radio2" class="jxcheck" data-star="false"
+                                           data-validate="{required: true}"> Radio Button 1 </label>
+                                <label>
+                                    <input type="radio" name="radio2" class="jxcheck" data-color="blue"
+                                           data-star="false" data-validate="{required: true}"> Radio Button 2 </label>
+                                <label>
+                                    <input type="radio" name="radio2" class="jxcheck" data-validate="{required: true}">
+                                    Radio Button 3 </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">多选项</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-inline">
+                                <label>
+                                    <input type="checkbox" class="jxcheck"> Checkbox 1 </label>
+                                <label>
+                                    <input type="checkbox" checked class="jxcheck"> Checkbox 2 </label>
+                                <label>
+                                    <input type="checkbox" class="jxcheck"> Checkbox 3 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">车牌号码</label>
+                    <div class="col-md-10">
+                        <input name="carn" class="form-control" data-validate="{carNumber: true}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">描述</label>
+                    <div class="col-md-10">
+                        <textarea name="备注" class="form-control" rows="3" style="resize: none"
+                                  data-validate="{required: true}"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jxform-footer pl-130">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 提交
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script>
+
+    $('#uname').options({
+        placement: 'top',
+        preText: 'pre',
+        postText: 'post'
+    });
+
+    $("form").on("beforesubmit", function () {
+        console.log(jx.serialize($(this)));
+        return false;
+    }).on("aftersubmit", function (e, result) {
+        if (result.success) {
+            window.location.href = "grid.html";
+        }
+        else {
+            jx.alert(result.message);
+        }
+    });
+
+</script>
+</body>
+</html>

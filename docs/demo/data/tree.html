@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tree控件示例</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body class="jxlayout">
+<link rel="import" href="../_include/_loading.html?__inline">
+<div data-options="region:'west',width:200,split:true,border:false,title:'默认示例',hideCollapsedContent:true">
+    <div class="m-5">
+        <input class="form-control input-sm tttree_filter" placeholder="请输入查询关键字">
+    </div>
+    <ul class="jxtree" data-url="../api/tree1.json" data-checkbox="true" data-filter-box="$('.tttree_filter')"></ul>
+</div>
+<div data-options="region:'east',split:true,border:false" title="异步加载" style="width:200px;">
+
+</div>
+<div title="中间Tree" data-options="region:'center',border:false">
+    <ul class="jxtree" data-url="../api/menu.json" data-dnd="true"
+         style="width: 200px;margin: 5px;"></ul>
+</div>
+<script>
+
+</script>
+</body>
+</html>

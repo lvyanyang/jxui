@@ -1,0 +1,485 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<title>数据表格示例</title>-->
+    <!--<link href="../../jx.css" rel="stylesheet">-->
+    <!--<script src="../../jx.js"></script>-->
+
+<!--</head>-->
+<!--<body>-->
+<!--<div class="jxform-wrap" style="width: 80%;margin: 0 auto;">-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>不分页表格示例</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="grid1" class="jfgrid" style="height: 200px;"-->
+             <!--data-url="http://113.140.71.252:7026/jxapi/default/getcompanys"-->
+             <!--data-is-page="false"-->
+             <!--data-param="{sleep:50}"-->
+             <!--data-is-show-num="false"-->
+             <!--data-main-id="Id"-->
+             <!--data-reload-selected="true"-->
+             <!--data-footerrow="true"-->
+             <!--data-is-statistics="true"-->
+             <!--data-head-data="[-->
+                <!--{label:'序号',name:'Index',width:100,align:'center',statistics:true},-->
+                <!--{label:'企业名称',name:'Name',width:280, sort:true},-->
+                <!--{label:'联系人',name:'LinkMan',width:150, sort:true},-->
+                <!--{label:'手机号码',name:'MobilePhone',width:100},-->
+                <!--{label:'状态', name:'IsEnabled', width:60,align:'center', formatter:jx.gf.bool},-->
+                <!--{label:'创建时间', name:'CreateDateTime', width:150},-->
+                <!--{label:'地址', name:'Address', width:260}-->
+             <!--]"></div>-->
+        <!--<div class="jxform-footer tabs-line-footer">-->
+            <!--<a id="grid1_reload" class="btn btn-default"><i class="icon-reload"></i> 刷新</a> &nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>分页表格示例(自适应高度、固定列)</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="grid2" class="jfgrid"-->
+             <!--data-url="http://113.140.71.252:7026/jxapi/default/getcompanys"-->
+             <!--data-is-page="true"-->
+             <!--data-is-last-border="false"-->
+             <!--data-is-auto-height="true"-->
+             <!--data-main-id="Id"-->
+             <!--data-reload-selected="true"-->
+             <!--data-is-show-num="false"-->
+             <!--data-head-data="[-->
+                <!--{label:'序号',name:'Index',width:40,align:'center',frozen:true},-->
+                <!--{label:'企业名称',name:'Name',width:280, sort:true,frozen:true},-->
+                <!--{label:'联系人',name:'LinkMan',width:150, sort:true},-->
+                <!--{label:'手机号码',name:'MobilePhone',width:100},-->
+                <!--{label:'状态', name:'IsEnabled', width:60,align:'center', formatter:jx.gf.bool},-->
+                <!--{label:'创建时间', name:'CreateDateTime', width:150, sort:true},-->
+                <!--{label:'地址', name:'Address', width:460}-->
+             <!--]"></div>-->
+        <!--<div class="jxform-footer tabs-line-footer">-->
+            <!--<a id="grid2_reload" class="btn btn-default"><i class="icon-reload"></i> 刷新</a> &nbsp;-->
+            <!--<a id="grid2_getSelectedIds" class="btn btn-default">选中的主键</a> &nbsp;-->
+            <!--<a id="grid2_getSelectedRow" class="btn btn-default">选中的行</a> &nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>多选表格示例</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="grid3" class="jfgrid" style="height: 300px;"-->
+             <!--data-url="http://113.140.71.252:7026/jxapi/default/GetStudents"-->
+             <!--data-is-page="true"-->
+             <!--data-main-id="Id"-->
+             <!--data-is-show-num="false"-->
+             <!--data-is-multiselect="true"-->
+             <!--data-head-data="[-->
+                <!--{label:'学员姓名',name:'Name',width:80, align:'center',sort:true},-->
+                <!--{label:'身份证号',name:'IDCardNo',width:180, align:'left',sort:true},-->
+                <!--{label:'手机号码',name:'MobilePhone',width:120, align:'center'},-->
+                <!--{label:'企业', name:'CompanyName', width:250},-->
+                <!--{label:'状态',name:'StatusName',width:80,align:'center',formatter:statusFormatter},-->
+                <!--{label:'从业类别', name:'WorkCategoryName', width:180, align:'center'},-->
+                <!--{label:'培训计划', name:'TrainGroupName', width:180, align:'center'},-->
+                <!--{label:'报名时间',name:'CreateDateTime',width:150, align:'center'},-->
+                <!--{label:'总学时', name:'TotalPeriod', width:100, align:'left'},-->
+                <!--{label:'从业资格证号',name:'Certificate',width:180},-->
+                <!--{label:'准驾车型',name:'DrivingModel',width:80,align:'center'},-->
+                <!--{label:'周期', name:'TrainCycle', width:100, align:'center'},-->
+                <!--{label:'获得资格证日期', name:'StartDate', width:130,formatter:jx.gf.date},-->
+                <!--{label:'资格证失效日期', name:'EndDate', width:130,formatter:jx.gf.date},-->
+                <!--{label:'住址', name:'Address', width:280}]"></div>-->
+        <!--<div class="jxform-footer tabs-line-footer">-->
+            <!--<a id="grid3_getSelectedIds" class="btn btn-default">选中的主键</a> &nbsp;-->
+            <!--<a id="grid3_getSelectedRow" class="btn btn-default">选中的行</a> &nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>报表表格示例</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="grid4" class="jfgrid jxreportgrid" style="height: 500px;"-->
+             <!--data-url="api/report.json"-->
+             <!--data-is-page="false"-->
+             <!--data-is-last-border="false"-->
+             <!--data-head-data="[{name: 'invNo', label: '商品编号', width: 100, align: 'left'},-->
+                <!--{name: 'invName', label: '商品名称', width: 150, align: 'left'},-->
+                <!--{name: 'date', label: '单据日期', width: 120, align: 'center'},-->
+                <!--{name: 'billNo', label: '单据单号', width: 140, align: 'center'},-->
+                <!--{name: 'billType', label: '业务类别', width: 80, align: 'center'},-->
+                <!--{name: 'buName', label: '往来单位', width: 150},-->
+                <!--{name: 'location', label: '仓库', width: 80},-->
+                <!--{name: '入库', label: '入库', width: 80, align: 'center', children: [-->
+                        <!--{name: 'inqty', label: '入库数量', width: 80, align: 'right', formatter: jx.gf.decimal},-->
+                        <!--{name: 'inunitCost', label: '单位成本', width: 80, align: 'right', formatter: jx.gf.decimal},-->
+                        <!--{name: 'incost', label: '成本', width: 80, align: 'right', formatter: jx.gf.decimal}-->
+                    <!--]-->
+                <!--},-->
+                <!--{name: '出库', label: '出库', width: 80, align: 'center', children: [-->
+                        <!--{name: 'outqty', label: '出库数量', width: 80, align: 'right', formatter: jx.gf.decimal},-->
+                        <!--{name: 'outunitCost', label: '单位成本', width: 80, align: 'right', formatter: jx.gf.decimal},-->
+                        <!--{name: 'outcost', label: '成本', width: 80, align: 'right', formatter: jx.gf.decimal}-->
+                    <!--]-->
+                <!--},-->
+                <!--{name: '结存', label: '结存', width: 80, align: 'center', children: [-->
+                        <!--{name: 'totalqty', label: '结存数量', width: 80, align: 'right', formatter: jx.gf.decimal},-->
+                        <!--{name: 'totalunitCost', label: '单位成本', width: 80, align: 'right', formatter: jx.gf.decimal},-->
+                        <!--{name: 'totalcost', label: '成本', width: 80, align: 'right', formatter: jx.gf.decimal}-->
+                    <!--]-->
+                <!--}]"></div>-->
+    <!--</div>-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>树形表格示例</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="grid5" class="jfgrid" style="height: 300px;"-->
+             <!--data-url="api/dept.json"-->
+             <!--data-is-page="false"-->
+             <!--data-is-tree="true"-->
+             <!--data-main-id="F_PostId"-->
+             <!--data-parent-id="F_ParentId"-->
+             <!--data-reload-selected="true"-->
+             <!--data-head-data="[-->
+                <!--{label: '岗位名称', name: 'F_Name', width: 300},-->
+                <!--{label: '岗位编号',name: 'F_EnCode',width: 100},-->
+                <!--{label: '所属部门', name: 'F_DepartmentId', width: 100,formatter:function(v){ return '技术部'; }},-->
+                <!--{label: '创建人',name: 'F_CreateUserName',width: 100},-->
+                <!--{label: '创建时间', name: 'F_CreateDate', width: 150},-->
+                <!--{label: '备注', name: 'F_Description', width: 200}]">-->
+        <!--</div>-->
+
+        <!--<div class="jxform-footer tabs-line-footer">-->
+            <!--<a id="grid5_reload" class="btn btn-default"><i class="icon-reload"></i> 刷新</a> &nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>可编辑表格示例</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="grid6" class="jfgrid jxeditgrid"></div>-->
+        <!--<div class="jxform-footer tabs-line-footer">-->
+            <!--<a id="grid6_getData" class="btn btn-default">获取表格数据</a> &nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>主子表格示例</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="grid7" class="jfgrid"-->
+             <!--data-url="http://113.140.71.252:7026/jxapi/default/getcompanys"-->
+             <!--data-is-page="true"-->
+             <!--data-is-last-border="false"-->
+             <!--data-is-auto-height="true"-->
+             <!--data-main-id="Id"-->
+             <!--data-reload-selected="true"-->
+             <!--data-is-show-num="false"-->
+             <!--data-is-sub-grid="true"-->
+             <!--data-is-multiselect="true"-->
+             <!--data-head-data="[-->
+                <!--{label:'序号',name:'Index',width:40,align:'center'},-->
+                <!--{label:'企业名称',name:'Name',width:280, sort:true},-->
+                <!--{label:'联系人',name:'LinkMan',width:150, sort:true},-->
+                <!--{label:'手机号码',name:'MobilePhone',width:100},-->
+                <!--{label:'状态', name:'IsEnabled', width:60,align:'center', formatter:jx.gf.bool},-->
+                <!--{label:'创建时间', name:'CreateDateTime', width:150, sort:true},-->
+                <!--{label:'地址', name:'Address', width:220}-->
+             <!--]"></div>-->
+        <!--<div class="jxform-footer tabs-line-footer">-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="jxform-container">-->
+        <!--<div class='jxform-header'>-->
+            <!--<div class='jxform-title'>-->
+                <!--<strong>EasyUI树形表格示例</strong>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="treegrid-container" style="height: 400px;">-->
+            <!--<div id="grid8" class="jxtreegrid"></div>-->
+        <!--</div>-->
+        <!--<div class="jxform-footer tabs-line-footer">-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div style="height: 300px;"></div>-->
+<!--</div>-->
+<!--<script>-->
+    <!--$('#grid1_reload').click(function () {-->
+        <!--$('#grid1').jfgrid('reload');-->
+    <!--});-->
+
+    <!--$('#grid2_reload').click(function () {-->
+        <!--$('#grid2').jfgrid('reload');-->
+    <!--});-->
+
+    <!--$('#grid5_reload').click(function () {-->
+        <!--$('#grid5').jfgrid('reload');-->
+    <!--});-->
+
+    <!--$('#grid2_getSelectedIds').click(function () {-->
+        <!--console.log($('#grid2').jfgrid('getSelectedIds'));-->
+    <!--});-->
+
+    <!--$('#grid2_getSelectedRow').click(function () {-->
+        <!--console.log($('#grid2').jfgrid('getSelectedRow'));-->
+    <!--});-->
+
+    <!--$('#grid3_getSelectedIds').click(function () {-->
+        <!--console.log($('#grid3').jfgrid('getSelectedIds'));-->
+    <!--});-->
+
+    <!--$('#grid3_getSelectedRow').click(function () {-->
+        <!--console.log($('#grid3').jfgrid('getSelectedRows'));-->
+    <!--});-->
+
+    <!--$('#grid6_getData').click(function () {-->
+        <!--console.log($('#grid6').jfgrid('getRows'));-->
+    <!--});-->
+
+    <!--$('#grid2').options({-->
+        <!--onSelectRow: function (row) {-->
+            <!--console.log('选中行');-->
+            <!--console.log(row);-->
+        <!--},-->
+        <!--onRenderComplete: function (rows) {-->
+            <!--console.log('加载完成' + rows.length + '条');-->
+        <!--}-->
+    <!--});-->
+
+    <!--$("#grid6").options({-->
+        <!--headData: [-->
+            <!--{-->
+                <!--label: "商品信息", name: "a1", width: 90, align: "center", children: [-->
+                    <!--{label: "商品名称", name: "F_ProductName", width: 120, align: "left", editType: "input"},-->
+                    <!--{label: "商品编号", name: "F_ProductCode", width: 100, align: "center", editType: "label"},-->
+                    <!--{label: "单位", name: "F_UnitId", width: 100, align: "center", editType: "input"}-->
+                <!--]-->
+            <!--},-->
+            <!--{-->
+                <!--label: "价格信息", name: "a2", width: 80, align: "center", children: [-->
+                    <!--{-->
+                        <!--label: "数量",-->
+                        <!--name: "F_Qty",-->
+                        <!--width: 80,-->
+                        <!--align: "center",-->
+                        <!--editType: "input",-->
+                        <!--statistics: true,-->
+                        <!--editOp: {callback: gridCalc}-->
+                    <!--},-->
+                    <!--{-->
+                        <!--label: "单价",-->
+                        <!--name: "F_Price",-->
+                        <!--width: 80,-->
+                        <!--align: "center",-->
+                        <!--editType: "input",-->
+                        <!--editOp: {callback: gridCalc}-->
+                    <!--},-->
+                    <!--{label: "金额", name: "F_Amount", width: 80, align: "center", editType: "label", statistics: true},-->
+                    <!--{-->
+                        <!--label: "税率(%)",-->
+                        <!--name: "F_TaxRate",-->
+                        <!--width: 80,-->
+                        <!--align: "center",-->
+                        <!--editType: "input",-->
+                        <!--editOp: {callback: gridCalc}-->
+                    <!--},-->
+                    <!--{label: "含税单价", name: "F_Taxprice", width: 80, align: "center", editType: "label"},-->
+                    <!--{label: "税额", name: "F_Tax", width: 80, align: "center", editType: "label", statistics: true},-->
+                    <!--{-->
+                        <!--label: "含税金额",-->
+                        <!--name: "F_TaxAmount",-->
+                        <!--width: 80,-->
+                        <!--align: "center",-->
+                        <!--editType: "label",-->
+                        <!--statistics: true-->
+                    <!--}-->
+                <!--]-->
+            <!--},-->
+            <!--{label: "状态", name: "b1", width: 60, align: "center", editType: "checkbox"},-->
+            <!--{label: "状态", name: "b2", width: 60, align: "center", editType: "switch"},-->
+            <!--{label: "日期", name: "b3", width: 120, align: "center", editType: "date"},-->
+            <!--{label: "说明信息", name: "F_Description", width: 120, align: "center", editType: "input"}-->
+        <!--],-->
+        <!--isEidt: true,-->
+        <!--isPage: false,-->
+        <!--footerrow: true,-->
+        <!--isStatistics: true,-->
+        <!--// isMultiselect:true,-->
+        <!--height: 400-->
+    <!--});-->
+
+    <!--$("#grid7").options({-->
+        <!--subGridRowExpanded: function (subid, row) {-->
+            <!--$("#" + subid).jfgrid({-->
+                <!--url: 'http://113.140.71.252:7026/jxapi/default/getcompanys',-->
+                <!--isPage: false,-->
+                <!--isLastBorder: false,-->
+                <!--isShowNum: false,-->
+                <!--headData: [-->
+                    <!--{label: '序号', name: 'Index', width: 40, align: 'center', frozen: true},-->
+                    <!--{label: '企业名称', name: 'Name', width: 280, sort: true, frozen: true},-->
+                    <!--{label: '联系人', name: 'LinkMan', width: 150, sort: true},-->
+                    <!--{label: '手机号码', name: 'MobilePhone', width: 100},-->
+                    <!--{label: '创建时间', name: 'CreateDateTime', width: 150, sort: true}-->
+                <!--]-->
+            <!--});-->
+        <!--}-->
+    <!--});-->
+
+    <!--$('#grid8').options({-->
+        <!--url: 'api/treegrid.json',-->
+        <!--columns: [[-->
+            <!--{field: 'Name', title: '名称', width: 200},-->
+            <!--{field: 'Code', title: '编码', width: 150},-->
+            <!--{field: 'Url', title: '地址', width: 200},-->
+            <!--{field: 'IsEnabled', title: '有效', align: 'center', fixed: true, width: 50, formatter: jx.gf.bool},-->
+            <!--{field: 'Note', title: '备注', width: 100}-->
+        <!--]],-->
+        <!--fit: true,-->
+        <!--border: false,-->
+        <!--striped: false,-->
+        <!--rownumbers: true,-->
+        <!--loadMsg: false,-->
+        <!--animate: false,-->
+        <!--fitColumns: true,-->
+        <!--collapsible: true,-->
+        <!--method: 'get',-->
+        <!--idField: 'Id',-->
+        <!--treeField: 'Name',-->
+        <!--loadFilter: function (data) {-->
+            <!--$.each(data.rows, function (i, v) {-->
+                <!--if (v._parentId && v._parentId == '0') {-->
+                    <!--v._parentId = null;-->
+                <!--}-->
+                <!--// if (v.IsExpand && v.IsExpand == true) {-->
+                <!--//     v.state = 'open';-->
+                <!--// }-->
+                <!--// else if (_exists(data.rows, v.Id)) {-->
+                <!--//     v.state = 'closed';-->
+                <!--// }-->
+                <!--// if (v.iconCls) {-->
+                <!--//     v.iconCls = 'font-icon-treegrid ' + v.iconCls;-->
+                <!--// }-->
+            <!--});-->
+            <!--console.log(data);-->
+            <!--return data;-->
+        <!--},-->
+        <!--// onSelect: function (node) {-->
+        <!--//     self.lastSelectedId = node.Id;-->
+        <!--// },-->
+        <!--// onContextMenu: function (e, node) {-->
+        <!--//     e.preventDefault();-->
+        <!--//     if (node) {-->
+        <!--//         $(this).treegrid('expand', node.Id);-->
+        <!--//         $(this).treegrid('select', node.Id);-->
+        <!--//         self.$menuEl.menu('show', {-->
+        <!--//             left: e.pageX,-->
+        <!--//             top: e.pageY-->
+        <!--//         });-->
+        <!--//     }-->
+        <!--// },-->
+        <!--// onDblClickRow: function (row) {-->
+        <!--//     var url = $(this).data("detailsUrl");-->
+        <!--//     var data = {id: row.Id};-->
+        <!--//     fx.window({url: url, data: data});-->
+        <!--// },-->
+        <!--// onDragOver: function (targetRow, sourceRow) {-->
+        <!--//     if (sourceRow._parentId == targetRow.Id) {-->
+        <!--//         return false;-->
+        <!--//     }-->
+        <!--//     return true;-->
+        <!--// },-->
+        <!--// onBeforeDrop: function (targetRow, sourceRow) {-->
+        <!--//     dropParentId = sourceRow._parentId;-->
+        <!--// },-->
+        <!--// onDrop: function (targetRow, sourceRow, point) {-->
+        <!--//     var saveParentUrl = $(this).data('parentUrl');-->
+        <!--//     var updateSortPathUrl = $(this).data('sortUrl');-->
+        <!--//     var id = sourceRow.Id;-->
+        <!--//     var newParentId;-->
+        <!--//     if (point == 'append') {-->
+        <!--//         newParentId = targetRow.Id;-->
+        <!--//     }-->
+        <!--//     else {-->
+        <!--//         newParentId = targetRow._parentId;-->
+        <!--//     }-->
+        <!--//     if (!newParentId || newParentId == '') {-->
+        <!--//         newParentId = '0';-->
+        <!--//     }-->
+        <!--//     $.post(saveParentUrl, {id: id, oldParentId: dropParentId, newParentId: newParentId}, function (result) {-->
+        <!--//         if (!result.success) {-->
+        <!--//             fx.alert(result.message);-->
+        <!--//         }-->
+        <!--//     });-->
+        <!--//-->
+        <!--//     var ids = [];-->
+        <!--//     ids.push(newParentId);-->
+        <!--//-->
+        <!--//     var data = {};-->
+        <!--//     $.each(ids, function (i, v) {-->
+        <!--//         var row = self.$treegridEl.treegrid('find', v);-->
+        <!--//         if (row == null) {-->
+        <!--//             var sz = self.$treegridEl.treegrid('getRoots');-->
+        <!--//             $.each(sz, function (index, value) {-->
+        <!--//                 data[value.Id] = fx.fixLenString(index.toString(), 4, '0');-->
+        <!--//             });-->
+        <!--//         } else if (row.children) {-->
+        <!--//             $.each(row.children, function (index, value) {-->
+        <!--//                 data[value.Id] = self.getNodeSortPath(value.Id);-->
+        <!--//             });-->
+        <!--//         }-->
+        <!--//     });-->
+        <!--//     $.post(updateSortPathUrl, data, function (result) {-->
+        <!--//         if (!result.success) {-->
+        <!--//             fx.alert(result.message);-->
+        <!--//         }-->
+        <!--//     });-->
+        <!--// },-->
+        <!--// onLoadSuccess: function () {-->
+        <!--//     var $tree = $(this);-->
+        <!--//     var node = $tree.treegrid('find', self.lastSelectedId);-->
+        <!--//     if (node) {-->
+        <!--//         $tree.treegrid('expandTo', node.Id);-->
+        <!--//         $tree.treegrid('select', node.Id);-->
+        <!--//     }-->
+        <!--//-->
+        <!--//     $(this).treegrid('enableDnd', null);-->
+        <!--// }-->
+    <!--});-->
+
+    <!--function gridCalc(f, e) {-->
+        <!--e.F_Amount = parseInt(parseFloat(e.F_Price || "0") * parseFloat(e.F_Qty || "0"));-->
+        <!--e.F_TaxAmount = parseInt((parseFloat(e.F_Price || "0") * (1 + parseFloat(e.F_TaxRate || "0") / 100)) * parseFloat(e.F_Qty || "0"));-->
+        <!--e.F_Tax = e.F_TaxAmount - e.F_Amount;-->
+        <!--e.F_Taxprice = parseInt(parseFloat(e.F_Price || "0") * (1 + parseFloat(e.F_TaxRate || "0") / 100))-->
+    <!--}-->
+
+    <!--function statusFormatter(v) {-->
+        <!--return '<span class="label label-success">' + v + '</span>';-->
+    <!--}-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

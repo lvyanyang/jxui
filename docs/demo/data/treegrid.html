@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数据表格示例</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<table id="grid1" title="EasyUI树形表格示例" class="jxtreegrid">
+    <thead>
+    <tr>
+        <th data-options="field: 'Name', title: '名称', width: 200"></th>
+        <th data-options="field: 'Code', title: '编码', width: 150"></th>
+        <th data-options="field: 'Url', title: '地址', width: 200"></th>
+        <th data-options="field: 'IsEnabled', title: '有效', align: 'center', fixed: true, width: 50, formatter: jx.gf.bool"></th>
+        <th data-options="field: 'Note', title: '备注', width: 100"></th>
+    </tr>
+    </thead>
+</table>
+
+<div id="gridtoolbar">
+    <form class="jxlayout-form form-inline jxform">
+        <div class="form-group">
+            <label class="control-label">关键字:</label>
+            <input class="form-control w-200px" name="name" data-validate="{required: [true,'请输入查询关键字']}"
+                   placeholder="请输入关键字查询">
+        </div>
+        <button class="btn btn-primary ml-5px" type="submit">
+            <i class="fa fa-search"></i> 查询
+        </button>
+        <a id="grid1_reload" class="btn btn-default"><i class="icon-reload"></i> 刷新</a>
+    </form>
+    <div style="height:30px;line-height: 30px;font-size: 16px;border-top: 1px solid #ccc;text-align: center;">
+    总数：<b class="color-red mr-5">22</b>
+    平均数：<b class="color-green mr-5">82</b>
+    业户数：<b class="color-blue mr-5">182</b>
+    </div>
+</div>
+
+<script>
+    $('#grid1').options({
+        url: 'http://113.140.71.252:7026/jxapi/default/gettreegrid',
+        toolbar: '#gridtoolbar',
+        form: '.jxform',
+        idField: 'Id',
+        treeField: 'Name',
+        dnd: true
+    });
+
+    $('#grid1_reload').click(function () {
+        $('#grid1').jxtreegrid().reload();
+    });
+
+</script>
+</body>
+</html>

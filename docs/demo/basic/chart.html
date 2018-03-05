@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+    <title>EChart图表控件</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxpanel" title="图表控件演示">
+
+    <div class="row" style="margin-left: 0;margin-right: 0;">
+        <div class="col-md-6">
+            <div id="mainChart" class="jxchart" style="padding: 10px;height: 400px;"></div>
+        </div>
+        <div class="col-md-6" style="border-left:1px solid #ddd;height: 100%;">
+            <div id="mainChart2" class="jxchart" style="padding: 10px;height: 400px;"></div>
+        </div>
+    </div>
+
+    <div class="jxpanel-footer">
+        <button id="btnRefresh" class="btn btn-primary" type="button">
+            <i class="fa fa-reload"></i> 刷新
+        </button>
+    </div>
+</div>
+
+<script>
+    jx.ready(function () {
+        var $chart = $('#mainChart');
+        var $chart2 = $('#mainChart2');
+
+        var instance = $chart.jxchart({
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            // legend: {
+            //     data: ['销量']
+            // },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                itemStyle: {
+                    color: 'green'
+                },
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        });
+        var instance1 = $chart2.jxchart({
+            title: {
+                text: '折线图堆叠'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            // legend: {
+            //     data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+            // },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                show: false
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '邮件营销',
+                    type: 'line',
+                    stack: '总量',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: '联盟广告',
+                    type: 'line',
+                    stack: '总量',
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: '视频广告',
+                    type: 'line',
+                    stack: '总量',
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: '直接访问',
+                    type: 'line',
+                    stack: '总量',
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: '搜索引擎',
+                    type: 'line',
+                    stack: '总量',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                }
+            ]
+        });
+
+        $('#btnRefresh').click(function () {
+            $chart.jxchart().setOptions({
+                series: [{
+                    name: '销量',
+                    type: 'bar',
+                    itemStyle: {
+                        color: 'green'
+                    },
+                    data: [15, 30, 46, 20, 20, 40]
+                }]
+            });
+        });
+
+        instance.on('click', function (p) {
+            jx.msg(p.name);
+        });
+    });
+</script>
+</body>
+</html>

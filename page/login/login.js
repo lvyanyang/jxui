@@ -2,7 +2,6 @@
  * 登录模块
  */
 var Login = function () {
-
     //变量赋值
     var $account = $('#account');
     var $password = $('#password');
@@ -209,12 +208,13 @@ var Login = function () {
                     $btnLogin.val('登陆成功,正在跳转...');
                     window.location.href = result.url || '/';
                 } else {
-                    showMsg(result.message);
+                    showMsg(result.msg);
                     enableInput();
-                    if (result.captcha == '1') {
+                    //if (result.captcha == '1') {
                         $captchaContainer.show(200);
                         refreshCaptcha();
-                    }
+                        $captcha.focus();
+                    //}
                 }
             }).fail(function (request) {
                 if (request.responseJSON) {
@@ -235,13 +235,9 @@ var Login = function () {
     var init = function () {
         initCaptcha();
         initEvent();
-    };
-
-    //初始化调用
-    init();
+    }();
 };
 
-//初始化登录界面
 jx.ready(function () {
-    Login();
+    window.login = Login();
 });

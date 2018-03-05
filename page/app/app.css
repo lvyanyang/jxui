@@ -2,7 +2,7 @@
 
 /* region layout-north */
 
-#layout-north {
+.north-panel {
     height: 64px;
     position: relative;
     z-index: 2;
@@ -16,7 +16,11 @@
     background: linear-gradient(to left, #194C7E, #2164A6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#layout-north:after {
+.north-panel.mini{
+    height: 48px;
+}
+
+.north-panel:after {
     background: transparent url(img/app-header-bg.png?__inline) repeat center center;
     top: 0;
     right: 0;
@@ -28,17 +32,21 @@
     content: '';
 }
 
-#layout-north .logo {
+.north-panel .logo {
     margin-top: 5px;
     margin-left: 5px;
     float: left;
 }
 
-#layout-north .logo img {
+.north-panel .logo img {
     height: 54px;
 }
 
-#layout-north .title {
+.north-panel.mini .logo img {
+    height: 38px;
+}
+
+.north-panel .title {
     display: inline-block;
     position: relative;
     font-size: 32px;
@@ -50,7 +58,11 @@
     color: #fff;
 }
 
-#layout-north .subtitle {
+.north-panel.mini .title {
+    margin-top: 5px;
+}
+
+.north-panel .subtitle {
     position: absolute;
     top: -8px;
     right: -50px;
@@ -60,26 +72,30 @@
     color: yellow;
 }
 
-#layout-north .nav {
+.north-panel .nav {
     float: right;
     margin-top: 2px;
     margin-right: 0;
     font-size: 14px;
 }
 
-#layout-north ul {
+.north-panel.mini .nav {
+    font-size: 12px;
+}
+
+.north-panel ul {
     position: relative;
     margin: 0;
     z-index: 6;
 }
 
-#layout-north li {
+.north-panel li {
     float: left;
     display: inline;
-    margin: 3px 12px 0 0;
+    margin: 1px 12px 0 0;
 }
 
-#layout-north li a {
+.north-panel li a {
     cursor: pointer;
     display: inline;
     float: left;
@@ -92,241 +108,75 @@
     overflow: hidden;
 }
 
-#layout-north li a:hover {
+.north-panel.mini li a {
+    padding: 2px 7px;
+}
+
+.north-panel li a:hover {
     background: rgba(0, 0, 0, 0.25);
     color: #d2e0f2;
 }
 
-#layout-north li i {
+.north-panel li i {
     font-size: 24px;
     margin-top: 10px;
 }
 
-@media (max-width: 680px) {
-    #layout-north .nav li:not(:last-child) {
-        display: none !important;
-    }
-}
-
-/** endregion **/
-
-/* region layout-north-mini */
-
-#layout-north-mini {
-    height: 48px;
-    position: relative;
-    z-index: 2;
-    margin-top: 0;
-    overflow: hidden;
-    user-select: none;
-    border-top-width: 0;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
-    background: #194C7E; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #194C7E, #2164A6); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #194C7E, #2164A6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-#layout-north-mini:after {
-    background: transparent url(img/app-header-bg.png?__inline) repeat center center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: .4;
-    display: block;
-    position: absolute;
-    content: '';
-}
-
-#layout-north-mini .logo {
-    margin-top: 5px;
-    margin-left: 5px;
-    float: left;
-}
-
-#layout-north-mini .logo img {
-    height: 38px;
-}
-
-#layout-north-mini .title {
-    display: inline-block;
-    position: relative;
-    font-size: 32px;
-    font-weight: bold;
-    line-height: 1.2em;
-    letter-spacing: -2px;
-    margin-top: 5px;
-    margin-left: 5px;
-    color: #fff;
-}
-
-#layout-north-mini .subtitle {
-    position: absolute;
-    top: -8px;
-    right: -50px;
-    letter-spacing: 1px;
-    font-size: 14px;
-    font-weight: 500;
-    color: yellow;
-}
-
-#layout-north-mini .nav {
-    float: right;
-    margin-top: 2px;
-    margin-right: 0;
-    font-size: 12px;
-}
-
-#layout-north-mini ul {
-    position: relative;
-    margin: 0;
-    z-index: 6;
-}
-
-#layout-north-mini li {
-    float: left;
-    display: inline;
-    margin: 2px 12px 0 0;
-}
-
-#layout-north-mini li a {
-    cursor: pointer;
-    display: inline;
-    float: left;
-    text-align: center;
-    padding: 2px 7px;
-    text-decoration: none;
-    color: #fff;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-#layout-north-mini li a:hover {
-    background: rgba(0, 0, 0, 0.25);
-    color: #d2e0f2;
-}
-
-#layout-north-mini li i {
+.north-panel.mini li i {
     font-size: 18px;
     margin-top: 5px;
 }
 
 @media (max-width: 680px) {
-    #layout-north-mini .nav li:not(:last-child) {
+    .north-panel .nav li:not(:last-child) {
         display: none !important;
     }
 }
 
 /** endregion **/
 
-/* region layout-west */
-
-#layout-west {
+.west-panel {
     user-select: none;
     width: 200px;
     /*background-color: #fafafa;*/
 }
-
-.layout-panel-west .panel-title {
-    font-size: 14px;
-}
-
-.layout-panel-west .panel-header,
-.layout-panel-west .panelx-body,
-.layout-expand-west .panel-header,
-.layout-expand-west .panelx-body {
-    border-left-width: 0;
-    border-top-width: 0;
-}
-
-.layout-panel-west .panelx-body,
-.layout-expand-west .panelx-body{
-    border-bottom-width: 0;
-}
-
-.layout-expand-west .panelx-body
-{
-    border-left-width: 0;
-    background: transparent;
-    filter: none;
-    overflow: hidden;
-}
-
-#layout-west::-webkit-scrollbar {
-    width: 10px
-}
-
-#layout-west::-webkit-scrollbar-track {
-    background: #fff;
-    border: 0
-}
-
-#layout-west::-webkit-scrollbar-thumb {
-    border-width: 3px
-}
-
-#layout-west::-webkit-scrollbar-thumb:hover {
-    border-width: 2px
-}
-
-/** endregion **/
-
-/* region layout-center */
-
-#layout-center {
+.center-panel {
     /*background: #eee;*/
     overflow-y: hidden;
 }
 
-.layout-panel-center .panel-title {
-    font-size: 14px;
-}
-
-.layout-panel-center .panel-header,
-.layout-panel-center .panelx-body {
-    border-top-width: 0;
-    border-right-width: 0;
-    border-bottom-width:0;
-}
-
-/** endregion **/
-
-/* region layout-south */
-
-#layout-south {
-    background: #e0ecff;
-    /*background: #D2E0F2;*/
+.south-panel {
+    background: #f8fafe;
     height: 30px;
     line-height: 28px;
     border-left-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
     overflow: hidden;
+    /*background: #e0ecff;*/
+    /*background: #D2E0F2;*/
     /*position: fixed;*/
     /*bottom: 0;*/
     /*width: 100%;*/
 }
 
-#layout-south .left {
+.south-panel .left {
     font-size: 12px;
     float: left;
     padding-left: 5px;
 }
 
-#layout-south .right {
+.south-panel .right {
     font-size: 12px;
     float: right;
     padding-right: 5px;
 }
 
-#layout-south-name {
+#user_name {
     color: darkgreen;
     font-weight: 700;
 }
 
-#layout-south-time {
+#current_time {
     margin-left: 10px;
 }
-
-/** endregion **/

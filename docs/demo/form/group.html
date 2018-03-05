@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Group控件示例</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap" style="width: 70%;">
+
+    <table class="table table-bordered jxtable-details" style="margin: 0;">
+        <tr>
+            <td class="title" colspan="8"><strong>请休假申请单</strong></td>
+        </tr>
+        <tr>
+            <th class="w-100px">姓 名</th>
+            <td>梁婷婷</td>
+            <th>部 门</th>
+            <td>财务核算结算中心</td>
+            <th>岗 位</th>
+            <td>出纳</td>
+            <th>填写时间</th>
+            <td>2017-02-07 10:14:16</td>
+        </tr>
+        <tr>
+            <th>请假类别</th>
+            <td colspan="7">病假</td>
+        </tr>
+        <tr>
+            <th>请假时间</th>
+            <td colspan="7">
+                自 2017年02月07日 13时30分
+                至 2017年02月07日 17时30分
+                共 4.00 小时
+            </td>
+        </tr>
+        <tr>
+            <th>请假事由</th>
+            <td colspan="7">
+                领取会计初级证
+            </td>
+        </tr>
+        <tr>
+            <th>部门负责人</th>
+            <td>
+                <span class="label label-danger">李海江</span>
+            </td>
+            <th>工作代理人</th>
+            <td>
+                <span class="label label-success">李海江</span>
+            </td>
+            <th>总经理</th>
+            <td colspan="3">
+                <span class="label label-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>销假时间</th>
+            <td colspan="7">
+                自 2017年02月07日 13时30分
+                至 2017年02月07日 17时30分
+                共 4.00 小时
+            </td>
+        </tr>
+        <tr>
+            <th>销假人</th>
+            <td>
+                <span class="label label-success">梁婷婷</span>
+            </td>
+            <th>部门负责人</th>
+            <td>
+                <span class="label label-danger">李海江</span>
+            </td>
+            <th>行政人力资源部</th>
+            <td colspan="3">
+                <span class="label label-danger">贾鑫</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <p class="form-control-static">
+                    说明：<br>
+                    1、请假5天(含)以内的由部门负责人审批，5天以上审批至总经理。<br>
+                    2、请休假的最小核算单位为2小时。
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    <div class="text-center mt-5">
+        <a class="btn btn-primary" href="print.html" target="_blank">
+            <i class="fa fa-print"></i> 打印
+        </a>
+    </div>
+    <hr>
+    <div class="jxform-container">
+        <div class='jxform-header'>
+            <div class='jxform-title'>
+                <strong>Section控件示例</strong>
+            </div>
+        </div>
+
+        <div class="jxgroup" data-target="$('#basic')" data-text="基本信息"></div>
+        <table id="basic" class="table jxtable-form">
+            <tr>
+                <th class="w-110px">姓名</th>
+                <td>
+                    <input name="name" class="form-control" autofocus autocomplete="off" maxlength="5"
+                           data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                </td>
+            </tr>
+            <tr>
+                <th>身份证</th>
+                <td>
+                    <input name="idnum" class="form-control" maxlength="18" autofocus autocomplete="off"
+                           data-validate="{required: true,idNumber:true}">
+                </td>
+            </tr>
+            <tr>
+                <th>类别</th>
+                <td>
+                    <select name="build" class="form-control jxchosen"
+                            data-placeholder="选择一个类别...">
+                        <option value=""></option>
+                        <option value="1">张三</option>
+                        <option value="2">李四</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>发布日期</th>
+                <td>
+                    <input name="dates" class="form-control jxdate"
+                           data-validate="{required: [true,'请输入发布日期']}">
+                </td>
+            </tr>
+            <tr>
+                <th>车牌号码</th>
+                <td>
+                    <input name="carn" class="form-control"
+                           data-validate="{carNumber: true}">
+                </td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                        <textarea name="备注" class="form-control" rows="3" style="resize: none"
+                                  data-validate="{required: true}"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>附件</th>
+                <td>
+                    <span class="color-red">因为安全原因，Demo暂时不支持上传附件功能！</span>
+                </td>
+            </tr>
+        </table>
+
+        <div id="extend_section" class="jxgroup" data-status="false"
+             data-target="$('#extend')" data-text="扩展信息"></div>
+        <table id="extend" class="table jxtable-form">
+            <tr>
+                <th class="w-110px">状态</th>
+                <td>
+                    <span class="m-switch  m-switch--icon-check m-switch--outline m-switch--danger">
+                       <label>
+                            <input type="checkbox" checked="checked" name="ms6">
+                            <span></span>
+                        </label>
+                   </span>
+                </td>
+            </tr>
+            <tr>
+                <th>发布日期</th>
+                <td>
+                    <input name="datex" class="form-control jxdate"
+                           data-validate="{required: [true,'请输入发布日期']}">
+                </td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                        <textarea name="备注" class="form-control" rows="3" style="resize: none"
+                                  data-validate="{required: true}"></textarea>
+                </td>
+            </tr>
+        </table>
+
+        <div class="jxform-footer">
+            <a class="btn btn-default">显示/隐藏 扩展信息</a>
+        </div>
+    </div>
+
+</div>
+<script>
+    $('.jxform-footer a').click(function () {
+        $('#extend_section').triggerHandler('click');
+    });
+    $('#extend_section').on('hide', function () {
+        console.log('隐藏');
+    }).on('show', function () {
+        console.log('显示');
+    });
+</script>
+</body>
+</html>

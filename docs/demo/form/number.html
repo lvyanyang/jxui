@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数字控件示例</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap" style="width: 50%;margin: 0 auto">
+    <div class="jxform-container">
+        <form class="jxform" method="post">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>数字控件示例</strong>
+                </div>
+            </div>
+            <table class="table jxtable-form">
+                <tr>
+                    <th class="w-200px">姓名</th>
+                    <td>
+                        <input id="uname" name="uname" class="form-control" autofocus autocomplete="off" maxlength="5"
+                               data-validate="{required: [true,'请输入姓名'],maxlength: [5,'姓名长度不能超过{0}个字符']}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Example with postfix (large):</th>
+                    <td>
+                        <input id="demo1" class="jxnumber" type="number" value="55" name="demo1" data-validate="{required: true}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>With prefix</th>
+                    <td>
+                        <input id="demo2" type="text" class="jxnumber" value="0" name="demo2" class="col-md-8 form-control" style="border-left-width: 0;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Vertical button alignment:</th>
+                    <td>
+                        <input id="demo_vertical" class="jxnumber" type="text" value="" name="demo_vertical" style="border-radius: 4px 0 0 4px">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Vertical buttons with custom icons:</th>
+                    <td>
+                        <input id="demo_vertical2" class="jxnumber" type="text" value="" name="demo_vertical2"  style="border-radius: 4px 0 0 4px" data-validate="{required: true}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Init with empty value:</th>
+                    <td>
+                        <input id="demo3" type="text" class="jxnumber" value="" name="demo3">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        The <code>initval</code> setting is only applied when no explicit value is set on the input with the <code>value</code> attribute.
+                    </td>
+                </tr>
+                <tr>
+                    <th>Value attribute is not set (applying settings.initval):</th>
+                    <td><input id="demo3_21" type="text" class="jxnumber" value="" name="demo3_21" data-validate="{required: true}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Value is set explicitly to 33 (skipping settings.initval):</th>
+                    <td> <input id="demo3_22" type="text" class="jxnumber" value="33" name="demo3_22">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Size of the whole controller can be set with applying input-sm or input-lg class on the input, or by applying the plugin on an input inside an input-group with the proper size class(input-group-sm or input-group-lg).
+                    </td>
+                </tr>
+                <tr>
+                    <th>Button postfix (small):</th>
+                    <td><input id="demo4" type="text" value="" name="demo4" class="input-sm jxnumber">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Button postfix (large):</th>
+                    <td> <div class="input-group input-group-lg">
+                        <input id="demo4_2" type="text" value="" name="demo4_2" class="form-control input-lg jxnumber">
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Button group:</th>
+                    <td>
+                        <div class="input-group">
+                            <input id="demo5" type="text" class="form-control jxnumber" name="demo5" value="50"  data-validate="{required: true}">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default">Action</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Change button class:</th>
+                    <td>
+                        <input id="demo6" type="text" value="50" name="demo6" class="jxnumber">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Event demo</th>
+                    <td>
+                        <input id="demo7" name="demo7" class="jxnumber" data-min="10" data-max="200" data-decimals="2" data-step="2" value="50" >
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <pre id="demo7textarea" style="height:200px;overflow:auto;"></pre>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="jxform-footer">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 提交
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("input[name='demo1']").options({
+        min: 0,
+        max: 100,
+        step: 0.1,
+        decimals: 2,
+        boostat: 5,
+        maxboostedstep: 10,
+        postfix: '%'
+    });
+
+    $("input[name='demo2']").options({
+        min: -1000000000,
+        max: 1000000000,
+        stepinterval: 50,
+        maxboostedstep: 10000000,
+        prefix: '$'
+    });
+
+    $("input[name='demo_vertical']").options({
+        verticalbuttons: true
+    });
+
+    $("input[name='demo_vertical2']").options({
+        verticalbuttons: true,
+        verticalupclass: 'fa fa-chevron-up',
+        verticaldownclass: 'fa fa-chevron-down'
+    });
+
+    $("input[name='demo3']").options();
+
+    $("input[name='demo3_21']").options({
+        initval: 40
+    });
+
+    $("input[name='demo3_22']").options({
+        initval: 40
+    });
+
+    $("input[name='demo4']").options({
+        postfix: "a button",
+        postfix_extraclass: "btn btn-default"
+    });
+
+    $("input[name='demo4_2']").options({
+        postfix: "a button",
+        postfix_extraclass: "btn btn-default"
+    });
+    $("input[name='demo5']").options({
+        prefix: "pre",
+        postfix: "post"
+    });
+    $("input[name='demo6']").options({
+        buttondown_class: "btn btn-link",
+        buttonup_class: "btn btn-link"
+    });
+
+    var i = $("input[name='demo7']"),
+        demoarea = $("#demo7textarea"),
+        text = "";
+
+    function writeLine(line) {
+        text += line + "\n";
+        demoarea.text(text);
+        demoarea.scrollTop(
+            demoarea[0].scrollHeight - demoarea.height()
+        );
+    }
+
+    // i.TouchSpin({});
+    i.on("touchspin.on.startspin", function() {
+        writeLine("touchspin.on.startspin");
+    });
+    i.on("touchspin.on.startupspin", function() {
+        writeLine("touchspin.on.startupspin");
+    });
+    i.on("touchspin.on.startdownspin", function() {
+        writeLine("touchspin.on.startdownspin");
+    });
+    i.on("touchspin.on.stopspin", function() {
+        writeLine("touchspin.on.stopspin");
+    });
+    i.on("touchspin.on.stopupspin", function() {
+        writeLine("touchspin.on.stopupspin");
+    });
+    i.on("touchspin.on.stopdownspin", function() {
+        writeLine("touchspin.on.stopdownspin");
+    });
+    i.on("touchspin.on.min", function() {
+        writeLine("touchspin.on.min");
+    });
+    i.on("touchspin.on.max", function() {
+        writeLine("touchspin.on.max");
+    });
+    i.on("change", function() {
+        writeLine("change");
+    });
+</script>
+</body>
+</html>

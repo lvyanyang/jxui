@@ -2,10 +2,9 @@
  * 主界面模块
  */
 var App = function () {
-
     var $body = $(document.body);
-    var $center = $('#layout-center');
-    var $west = $('#layout-west');
+    var $center = $('.center-panel');
+    var $west = $('.west-panel');
     var $tree = $west.find('.jxtree');
     var $navHome = $('#nav_home');
     var $navLogout = $('#nav_logout');
@@ -48,7 +47,7 @@ var App = function () {
         if ($menuFilter.length > 0) {
             treeOps.filterBox = $menuFilter;
         }
-        $tree.jxoptions(treeOps);
+        $tree.options(treeOps);
     };
 
     /**
@@ -64,7 +63,10 @@ var App = function () {
      * 初始化主布局
      */
     var initLayout = function () {
-        jx.monitorLayoutPanel($body, 'west', 'webapp');
+        jx.complete(function () {
+            $body.jxlayout().monitor('west', 'webapp');
+        });
+        //jx.monitorLayoutPanel($body, 'west', 'webapp');
     };
 
     /**
@@ -89,14 +91,14 @@ var App = function () {
                     if (result.success) {
                         window.location.href = result.url;
                     } else {
-
+                        layer.alert(result.msg);
                     }
                 }).fail(function (request) {
                     if (request.responseJSON) {
-                        layer.alert(request.responseJSON.message || '登录失败');
+                        layer.alert(request.responseJSON.message || '退出失败');
                     }
                     else {
-                        layer.alert(request.statusText || '登录失败');
+                        layer.alert(request.statusText || '退出失败');
                     }
                 });
             });
@@ -145,7 +147,7 @@ var App = function () {
         var _title = title || centerPanel.title;
         centerPanel.panel({
             title: null,
-            content: '<iframe frameborder="0" style="width:100%;height:100%;" src="' + _url + '" ></iframe>'
+            content: jx.createIframe(_url)
         });
 
         centerPanel.mask('正在加载 <span style="color: red;font-weight: bold;">' + _title + '</span> 请稍等...', 500);
@@ -161,10 +163,7 @@ var App = function () {
         initTree();
         initLayout();
         initNav();
-    };
-
-    //初始化调用
-    init();
+    }();
 
     return {
         /**
@@ -178,7 +177,6 @@ var App = function () {
     }
 };
 
-//初始化主界面
 jx.ready(function () {
     window.app = App();
 });

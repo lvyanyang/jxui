@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表格组件</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<table title="系统表格" class="jxgrid" data-options="url: 'http://113.140.71.252:7026/jxapi/default/GetStudentsx',
+        idField:'Id',striped:true,form: '.jxform',toolbar: '#gridtoolbar'">
+    <thead>
+    <tr>
+        <th data-options="field:'ck',checkbox:true"></th>
+        <th data-options="title: '学员姓名', field: 'Name', width: 80, align: 'center', sortable: true"></th>
+        <th data-options="title: '身份证号', field: 'IDCardNo', width: 380, align: 'left', sortable: true"></th>
+        <th data-options="title: '手机号码', field: 'MobilePhone', width: 120, align: 'center'"></th>
+        <th data-options="title: '企业', field: 'CompanyName', width: 250"></th>
+        <th data-options="title: '从业类别', field: 'WorkCategoryName', width: 180, align: 'center'"></th>
+        <th data-options="title: '培训计划', field: 'TrainGroupName', width: 180, align: 'center'"></th>
+        <th data-options="title: '报名时间', field: 'CreateDateTime', width: 150, align: 'center'"></th>
+        <th data-options="title: '总学时', field: 'TotalPeriod', width: 100, align: 'left'"></th>
+        <th data-options="title: '状态', field: 'StatusName', width: 80, align: 'center'"></th>
+        <th data-options="title: '从业资格证号', field: 'Certificate', width: 180"></th>
+        <th data-options="title: '准驾车型', field: 'DrivingModel', width: 80, align: 'center'"></th>
+        <th data-options="title: '周期', field: 'TrainCycle', width: 100, align: 'center'"></th>
+        <th data-options="title: '获得资格证日期', field: 'StartDate', width: 130, formatter: jx.gf.date"></th>
+        <th data-options="title: '资格证失效日期', field: 'EndDate', width: 130, formatter: jx.gf.date"></th>
+        <th data-options="title: '住址', field: 'Address', width: 280"></th>
+    </tr>
+    </thead>
+</table>
+
+<div id="gridtoolbar">
+    <form class="jxlayout-form form-inline jxform">
+        <div class="form-group">
+            <label class="control-label">关键字:</label>
+            <input class="form-control w-200px" name="name" data-validate="{required: true}" placeholder="请输入关键字查询">
+        </div>
+
+        <button class="btn btn-primary ml-5px" type="submit">
+            <i class="fa fa-search"></i> 查询
+        </button>
+        <button class="btn btn-default ml-5px" type="button"
+                data-toggle="popover-x" data-target="#adv_search_popover" data-placement="auto-bottom">
+            <i class="fa fa-th"></i> 高级查询
+        </button>
+        <a class="btn btn-default" href="../page/edit.html">
+            <i class="fa fa-plus"></i> 新增
+        </a>
+
+        <a id="u_edit" class="jxdialog btn btn-default"
+           data-options="{title: '创建文章',url: '../page/winedit.html',
+                                           width:'65%',height:'60%',resize:true}">
+            <i class="fa fa-pencil-square-o"></i> 编辑
+        </a>
+    </form>
+    <div style="height:30px;line-height: 30px;font-size: 16px;border-top: 1px solid #ccc;text-align: center;">
+        总数：<b class="color-red mr-5">22</b>
+        平均数：<b class="color-green mr-5">82</b>
+        业户数：<b class="color-blue mr-5">182</b>
+    </div>
+</div>
+
+<div id="adv_search_popover" class="popover popover-default popover-lg">
+    <div class="arrow"></div>
+    <div class="popover-title">
+        <span class="close" data-dismiss="popover-x">&times;</span>高级查询
+    </div>
+    <div class="popover-content">
+        <form id="adv_search_popover_form" class="form-horizontal" action="" method="post">
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">单据编号</label>
+                <div class="col-sm-8 pl-5">
+                    <input type="text" class="form-control" id="currentPwd" name="currentPwd" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">客户名称</label>
+                <div class="col-sm-8 pl-5">
+                    <input type="text" class="form-control" id="newPwd" name="newPwd" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">销售人员</label>
+                <div class="col-sm-8 pl-5">
+                    <input type="text" class="form-control" id="confirmPwd" name="confirmPwd" autocomplete="off">
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="popover-footer">
+        <button class="btn btn-sm btn-primary" id="btnPopoverSave">
+            <i class="fa fa-search"></i> 查询
+        </button>
+        <a class="btn btn-sm btn-default" id="btnPopoverCancel"
+           onclick="document.getElementById('adv_search_popover_form').reset()">
+            <i class="fa fa-undo"></i> 重置
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

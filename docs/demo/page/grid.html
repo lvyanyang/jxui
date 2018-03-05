@@ -2,11 +2,10 @@
 <html>
 <head>
     <title>表格组件</title>
-    <meta charset="utf-8">
-    <link href="../../../jx.css" rel="stylesheet">
-    <script src="../../../jx.js"></script>
+    <link rel="import" href="../_include/_jx.html?__inline">
 </head>
 <body>
+<link rel="import" href="../_include/_loading.html?__inline">
 <div class="jxlayout">
     <div class="jxlayout-wrap" style="padding-top:84px;">
         <div class="jxlayout-tool">
@@ -48,7 +47,8 @@
                             <i class="fa fa-pencil-square-o"></i> 复杂表单
                         </a>
 
-                        <a class="jxlink btn btn-default" data-title="资料录入" data-url="page/edit.html"><i class="fa fa-pencil-square-o"></i> 录入</a>
+                        <a class="jxlink btn btn-default" data-title="资料录入" data-url="page/edit.html">
+                            <i class="fa fa-pencil-square-o"></i> 录入</a>
                         <a id="jx_delete" class="btn btn-default"><i class="fa fa-trash-o"></i> 删除</a>
                         <div class="btn-group">
                             <button id="jx_more" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -144,13 +144,13 @@
     </div>
 </div>
 <script>
-    jx.ready(function () {
-        $('#girdtable').jxoptions({
+
+        $('#girdtable').options({
             onSelectRow:function (ss) {
                 console.log(ss);
             }
         });
-    });
+
 
     function modifyDateFormatter(d) {
         return '<i class="fa fa-toggle-on"></i>';

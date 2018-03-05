@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>日期控件</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap" style="width: 50%;">
+    <div class="jxform-container">
+        <form class="jxform">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>时间控件演示</strong>
+                </div>
+            </div>
+            <table class="table jxtable-form">
+                <tr>
+                    <th class="w-200px">自动初始化(组件模式)</th>
+                    <td>
+                        <div class="input-group jxclock" data-options="{ donetext: '选好了' }">
+                            <input class="form-control" name="atime1"
+                                   data-validate="{required: [true,'请输入时间1']}">
+                            <span class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="w-110px">自动初始化(文本模式)</th>
+                    <td>
+                        <input class="form-control jxclock" name="atime2"
+                               data-validate="{required: [true,'请输入时间2']}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>使用 <code>data-*</code> 属性</th>
+                    <td>
+                        <div class="input-group jxclock" data-placement="right"
+                             data-align="top" data-autoclose="true" data-twelvehour="true">
+                            <input class="form-control" name="atime3"
+                                   data-validate="{required: [true,'请输入时间1']}">
+                            <span class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>回调函数(打开控制台查看)</th>
+                    <td>
+                        <div class="input-group jxclock">
+                            <input class="form-control" name="atime4">
+                            <span class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="jxform-footer">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 确定
+                </button>
+                <button id="btnShow" class="btn btn-default" type="button">
+                    显示时间选择器
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+        $('form').on('beforesubmit', function () {
+            jx.alert('表单要准备提交了');
+            return false;
+        });
+
+        $('[name=atime4]').parent().options({
+            donetext: 'OK',
+            init: function () {
+                console.log("colorpicker initiated");
+            },
+            beforeShow: function () {
+                console.log("before show");
+            },
+            afterShow: function () {
+                console.log("after show");
+            },
+            beforeHide: function () {
+                console.log("before hide");
+            },
+            afterHide: function () {
+                console.log("after hide");
+            },
+            beforeHourSelect: function () {
+                console.log("before hour selected");
+            },
+            afterHourSelect: function () {
+                console.log("after hour selected");
+            },
+            beforeDone: function () {
+                console.log("before done");
+            },
+            afterDone: function () {
+                console.log("after done");
+            }
+        });
+
+        $('#btnShow').on('click', function (e) {
+            jx.stope(e);
+            var $ele = $('[name=atime1]').parent();
+            var instance = $ele.jxclock();
+            instance.show();
+            instance.toggleView('minutes');
+        });
+
+</script>
+</body>
+</html>

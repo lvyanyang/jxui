@@ -112,7 +112,7 @@ form input[type="checkbox"]:checked + span:before {
 }
 
 #account, #password {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 /** endregion **/
@@ -130,6 +130,7 @@ form input[type="checkbox"]:checked + span:before {
     z-index: 3;
     right: 15px;
     top: 0;
+    font-weight: 500;
 }
 
 /** endregion **/

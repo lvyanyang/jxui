@@ -1,0 +1,68 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<title>表格控件</title>-->
+    <!--<meta charset="utf-8">-->
+    <!--<link href="../../jx.css" rel="stylesheet">-->
+    <!--<script src="../../jx.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="jxlayout">-->
+    <!--<div class="jxlayout-wrap">-->
+        <!--<div class="jxlayout-tool">-->
+            <!--<form class="jxlayout-form form-inline jxform">-->
+                <!--<div class="form-group">-->
+                    <!--<label>查询关键字：</label>-->
+                    <!--<input class="form-control" name="name" data-validate="{required: true}" placeholder="请输入关键字查询">-->
+                <!--</div>-->
+                <!--<button class="btn btn-primary ml-5px" type="submit">-->
+                    <!--<i class="fa fa-search"></i> 查询-->
+                <!--</button>-->
+                <!--<div class="pull-right">-->
+                    <!--<div class="btn-group">-->
+                        <!--<a class="btn btn-default">-->
+                            <!--<i class="fa fa-plus"></i> 新增-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+        <!--<div class="jxlayout-body jfgrid"-->
+             <!--data-url="http://113.140.71.252:7026/jxapi/default/GetStudents"-->
+             <!--data-rows="50"-->
+             <!--data-form="$('.jxlayout-form')"-->
+             <!--data-head-data="[-->
+                <!--{label:'学员姓名',name:'Name',width:80, align:'center',sort:true},-->
+                <!--{label:'身份证号',name:'IDCardNo',width:180, align:'left',sort:true},-->
+                <!--{label:'手机号码',name:'MobilePhone',width:120, align:'center'},-->
+                <!--{label:'企业', name:'CompanyName', width:250},-->
+                <!--{label:'从业类别', name:'WorkCategoryName', width:180, align:'center'},-->
+                <!--{label:'培训计划', name:'TrainGroupName', width:180, align:'center'},-->
+                <!--{label:'报名时间',name:'CreateDateTime',width:150, align:'center'},-->
+                <!--{label:'总学时', name:'TotalPeriod', width:100, align:'left'},-->
+                <!--{label:'状态',name:'StatusName',width:80,align:'center'},-->
+                <!--{label:'从业资格证号',name:'Certificate',width:180},-->
+                <!--{label:'准驾车型',name:'DrivingModel',width:80,align:'center'},-->
+                <!--{label:'周期', name:'TrainCycle', width:100, align:'center'},-->
+                <!--{label:'获得资格证日期', name:'StartDate', width:130,formatter:jx.gf.date},-->
+                <!--{label:'资格证失效日期', name:'EndDate', width:130,formatter:jx.gf.date},-->
+                <!--{label:'住址', name:'Address', width:280}]">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<script>-->
+
+        <!--$('#girdtable').options({-->
+            <!--onSelectRow:function (ss) {-->
+                <!--console.log(ss);-->
+            <!--}-->
+        <!--});-->
+
+
+    <!--function modifyDateFormatter(d) {-->
+        <!--return '<i class="fa fa-toggle-on"></i>';-->
+        <!--//return b.formatDate(d, 'yyyy-MM-dd hh:mm')-->
+    <!--}-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

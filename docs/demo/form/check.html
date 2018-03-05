@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>单选/复选组件示例</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap" style="width: 70%;">
+    <div class="jxform-container">
+        <form class="jxform form-horizontal" data-layout="bootstrap" data-protip="false">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>单选/复选组件示例</strong>
+                </div>
+            </div>
+
+            <div class="jxbootstrap-form">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">单选项</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-inline">
+                                <label>
+                                    <input type="radio" name="radio1" class="jxcheck" data-star="false"
+                                           data-validate="{required: true}"> 单选 1
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio1" class="jxcheck" data-validate="{required: true}"
+                                           data-star="false"> 单选 2
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio1" class="jxcheck" data-validate="{required: true}">
+                                    单选 3
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Radio List</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-list">
+                                <label>
+                                    <input type="radio" name="radio11" class="jxcheck" > Radio Button 1 </label>
+                                <label>
+                                    <input type="radio" name="radio11" checked class="jxcheck" > Radio Button 2 </label>
+                                <label>
+                                    <input type="radio" name="radio11" class="jxcheck"> Radio Button 3 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"> Checkbox List </label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-list">
+                                <label>
+                                    <input type="checkbox" class="jxcheck"> Checkbox 1 </label>
+                                <label>
+                                    <input type="checkbox" checked class="jxcheck"> Checkbox 2 </label>
+                                <label>
+                                    <input type="checkbox" class="jxcheck"> Checkbox 3 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">多选项</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-inline">
+                                <label>
+                                    <input type="checkbox" name="checkbox1" class="jxcheck"> 复选 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="checkbox2" class="jxcheck" checked> 复选 2
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="checkbox3" class="jxcheck"> 复选 3
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Indeterminate</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-inline">
+                                <label>
+                                    <input type="checkbox" class="jxcheck" indeterminate="true"> 复选 1
+                                </label>
+                                <label>
+                                    <input type="radio" class="jxcheck" determinate="false"> 复选 2
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">颜色</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="icheck-inline">
+                                <label><input type="checkbox" class="jxcheck" data-color="red" checked>红色 </label>
+                                <label><input type="checkbox" class="jxcheck" data-color="green" checked>绿色</label>
+                                <label><input type="checkbox" class="jxcheck" data-color="blue" checked>蓝色</label>
+                                <label><input type="checkbox" class="jxcheck" data-color="aero" checked>毛玻璃</label>
+                                <label><input type="checkbox" class="jxcheck" data-color="grey" checked>灰色</label>
+                                <label><input type="checkbox" class="jxcheck" data-color="orange" checked>橘色</label>
+                                <label><input type="checkbox" class="jxcheck" data-color="yellow" checked>黄色</label>
+                                <label><input type="checkbox" class="jxcheck" data-color="pink" checked>粉红色</label>
+                                <label><input type="checkbox" class="jxcheck" data-color="purple" checked>紫色</label>
+                                <label><input id="black" type="checkbox" class="jxcheck" data-color=""
+                                              checked>黑色</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="jxform-footer">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-save"></i> 提交
+                </button>
+
+                <a id="btn-black" class="btn btn-default">黑色框切换</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    //全局定义
+    $.fn.jxcheck.defaults.color = 'red';
+
+    $('#black').on('ifChecked', function (e) {
+        console.log(event.type + ' callback');
+    }).on('ifToggled', function (e) {
+        console.log(event);
+    });
+
+    $('#btn-black').click(function () {
+        $('#black').jxcheck('toggle',function () {
+            console.log('toggle回调函数触发');
+        });
+    });
+
+</script>
+</body>
+</html>

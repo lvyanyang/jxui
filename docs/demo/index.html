@@ -7,13 +7,14 @@
     <meta name="force-rendering" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="../../jx.css" rel="stylesheet">
     <link href="../../app.css" rel="stylesheet">
+    <script src="../../jx.js"></script>
+    <script src="../../app.js"></script>
 </head>
-<body class="easyui-layout">
-<div id="jx_page_loading"></div>
-<div id="layout-north-mini" data-options="region:'north'">
+<body class="jxlayout">
+<link rel="import" href="_include/_loading.html?__inline">
+<div class="north-panel mini" data-options="region:'north'">
     <div class="logo">
         <img src="../img/logo.svg">
     </div>
@@ -26,8 +27,8 @@
     <div class="nav">
         <ul>
             <li>
-                <a id="nav_home" title="系统主页">
-                    <i class="icon-home"></i><br>系统主页
+                <a id="nav_home" title="我的主页">
+                    <i class="icon-home"></i><br>我的主页
                 </a>
             </li>
             <li>
@@ -58,25 +59,22 @@
         </ul>
     </div>
 </div>
-<div id="layout-west" data-options="region:'west',split:true" title="导航菜单">
+<div class="west-panel" data-options="region:'west',split:true" title="导航菜单">
     <!--<div class="m-5">-->
         <!--<input class="form-control input-sm jxtree-filter" placeholder="请输入关键字模糊查询">-->
     <!--</div>-->
     <ul class="jxtree" data-url="api/menu.json"></ul>
 </div>
-<div id="layout-center" data-options="region:'center'" data-url="home.html">
-</div>
-<div id="layout-south" data-options="region:'south'">
+<div class="center-panel" data-options="region:'center'" data-url="home.html"></div>
+<div class="south-panel" data-options="region:'south'">
     <div class="left">
         欢迎您：
-        <span id="layout-south-name">管理员</span>
-        <span id="layout-south-time"></span>
+        <span id="user_name">管理员</span>
+        <span id="current_time"></span>
     </div>
     <div class="right">
         西交投公司 版权所有&copy;2007-2018
     </div>
 </div>
-<script src="../../jx.js"></script>
-<script src="../../app.js"></script>
 </body>
 </html>

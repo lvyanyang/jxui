@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>对话框控件演示</title>
+    <link rel="import" href="../_include/_jx.html?__inline">
+</head>
+<body>
+<link rel="import" href="../_include/_loading.html?__inline">
+<div class="jxform-wrap" style="width: 50%;">
+    <div class="jxform-container">
+        <form class="jxform">
+            <div class="jxform-header">
+                <div class="jxform-title">
+                    <strong>对话框控件演示</strong>
+                </div>
+            </div>
+            <table class="table jxtable-form">
+                <tr>
+                    <th class="w-200px">alert</th>
+                    <td>
+                        <button id="alert" class="btn btn-default" type="button">alert</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>confirm</th>
+                    <td>
+                        <button id="confirm" class="btn btn-default" type="button">confirm</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>msg</th>
+                    <td>
+                        <button id="msg" class="btn btn-default" type="button">msg</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>prompt</th>
+                    <td>
+                        <button id="prompt" class="btn btn-default" type="button">prompt</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>dialog</th>
+                    <td>
+                        <button id="dialog" class="btn btn-default" type="button">dialog</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>组件对话框</th>
+                    <td>
+                        <a class="btn btn-default jxdialog "
+                           data-options="{title:'业务新增',url:'index.html',
+                            width:'100%',height:'100%',resize:true,btn: ['确定', '关闭']}">
+                            jxdialog
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>组件事件</th>
+                    <td>
+                        <a id="event_dialog" class="btn btn-default jxdialog"
+                           data-options="{title:'业务新增',url:'index.html',
+                            width:'80%',height:'80%',resize:true,btn: '关闭'}">
+                            jxdialog 事件
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+</div>
+<script>
+    jx.ready(function () {
+        $('#alert').click(function () {
+            jx.alert({
+                title: '西交投提醒您',
+                time: 3000,//3000毫秒后自动关闭
+                content:'自定义选项的警告框',//消息内容
+                end:function() { //对话框销毁后触发的回调
+                    alert('对话框销毁了');
+                },
+                yes: function(index) { //点击确定按钮后的回调函数
+                    alert('回调函数执行');
+                    jx.closeDialog(index); //如果设定了yes回调，需进行手工关闭
+                }
+            });
+        });
+
+        $('#confirm').click(function () {
+            jx.confirm({
+                title: "西交投提醒您",
+                content:'高级选项_你确定要这样做吗?',//消息内容
+                icon: 7,
+                btn: ['确定', '取消'],
+                yes : function (index) {
+                    alert('你太残忍了');
+                    jx.closeDialog(index); //如果设定了yes回调，需进行手工关闭
+                },
+                btn2 : function (index) {
+                    alert('你还算有人性');
+                }
+            });
+        });
+
+        $('#msg').click(function () {
+            jx.msg({
+                time: 3000,//3000毫秒后自动关闭
+                content:'自定义选项的提示',//消息内容
+                end:function() { //对话框销毁后触发的回调
+                    alert('信息框销毁了');
+                }
+            })
+        });
+
+        $('#prompt').click(function () {
+            jx.prompt({
+                title:'西交投提醒您',
+                formType: 0,
+                value: '初始值'
+            }, function(value, index, elem){
+                alert(value); //得到value
+                jx.closeDialog(index);
+            });
+        });
+
+        $('#dialog').click(function () {
+            jx.dialog({
+                title:'对话框页面',
+                url: 'index.html',
+                width: '80%',
+                height: '80%',
+                btn:'确定',
+                btnFont:'fa fa-check',
+                callback:function(dwin, layero, index) {
+                    // dwin iframe 页面对应的window对象
+                    // layero iframe 页面对应jQuery对象
+                    // index 对话框索引号
+                    alert('确定');
+                    jx.closeDialog(index);
+                }
+            });
+        });
+
+        $('#event_dialog').on('beforeshow',function () {
+            console.log('beforeshow');
+            // return false;//阻止对话框显示.
+        }).on('aftershow',function () {
+            console.log('aftershow');
+        }).on('beforeclose',function () {
+            console.log('beforeclose');
+        }).on('afterclose',function () {
+            console.log('afterclose');
+        });
+
+    });
+</script>
+</body>
+</html>

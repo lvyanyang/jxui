@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>单据编辑</title>
-    <meta charset="utf-8">
-    <link href="../../dist/jx.css" rel="stylesheet">
+    <link rel="import" href="../_include/_jx.html?__inline">
 </head>
-<body class="easyui-layout jx-easyui-layout" style="display: none;">
+<body class="easyui-layout" style="display: none;">
+<link rel="import" href="../_include/_loading.html?__inline">
 <div data-options="region:'west',width:200,split:true,border:false,
     title:'组织结构',hideCollapsedContent:true">
     <div class="m-5">
@@ -64,10 +64,5 @@
 
 </div>
 <script src="../../dist/jx.js"></script>
-<script>
-    jx.ready(function () {
-        $(document.body).fadeIn(100).monitorLayout('west', 'tree-demo');
-    });
-</script>
 </body>
 </html>

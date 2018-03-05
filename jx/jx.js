@@ -3,14 +3,16 @@
  */
 
 //region 框架核心库
-
 window.jx = function () {
 
     //region 私有变量
 
     var deferred = $.Deferred();
     var promise = false, isReady = false;
-    var eventBeforeInit = 'jx_eventBeforeInit', eventInit = 'jx_eventInit', eventAfterInit = 'jx_eventAfterInit',
+    var eventBeforeInit = 'jx_eventBeforeInit',
+        eventPreInit = 'jx_eventPreInit',
+        eventInit = 'jx_eventInit',
+        eventAfterInit = 'jx_eventAfterInit',
         loaded = [], depends = [], modules = {}, callbacks = {};
 
     //endregion
@@ -131,16 +133,33 @@ window.jx = function () {
         return nodes;
     };
 
+    var processDebugFile = function (url) {
+        if (!url) {
+            return url;
+        }
+        if (jx.debug) {
+            return url;
+        }
+        var fileIndex = url.lastIndexOf('/') + 1;
+        var extIndex = url.lastIndexOf('.');
+        var fileDir = url.substring(0, fileIndex);
+        var fileName = url.substring(fileIndex, extIndex);
+        var fileExt = url.substring(extIndex);
+        return fileDir + fileName + '.min' + fileExt;
+    };
+
     /**
      * 加载js
      */
     var loadJS = function (url) {
         if (loaded[url]) return loaded[url].promise();
 
-        var _url = url;
+        var _url = processDebugFile(url);
+
         if (jx.debug) {
             _url = jx.setUrlParam(url, '_', Date.now());
         }
+
         var deferred = $.Deferred();
         var script = document.createElement('script');
         script.src = _url;
@@ -164,7 +183,7 @@ window.jx = function () {
     var loadCSS = function (url) {
         if (loaded[url]) return loaded[url].promise();
 
-        var _url = url;
+        var _url = processDebugFile(url);
         if (jx.debug) {
             _url = jx.setUrlParam(url, '_', Date.now());
         }
@@ -260,6 +279,29 @@ window.jx = function () {
         }
     };
 
+    /**
+     * 关闭Chrome浏览器
+     */
+    var closeChrome = function () {
+        var browserName = navigator.appName;
+        if (browserName === 'Netscape') {
+            window.open('', '_self', '');
+
+            if (window.opener !== undefined) {
+                //for chrome
+                window.opener.returnValue = '1';
+            }
+            else {
+                window.returnValue = '1';
+            }
+
+            window.close();
+        }
+        else {
+            window.close();
+        }
+    };
+
     //endregion
 
     return {
@@ -295,19 +337,10 @@ window.jx = function () {
         },
 
         /**
-         * 获取类库基路径
+         * 获取类库基础路径
          */
         getBasePath: function () {
             return getBasePath();
-        },
-
-        /**
-         * 设置插件选项
-         * @param $element 元素
-         * @param ops 选项
-         */
-        options: function ($element, ops) {
-            $element.jxoptions(ops);
         },
 
         /**
@@ -323,8 +356,10 @@ window.jx = function () {
                 obj[item.name] = item.value;
             }
             $form.find('input[type=checkbox]').each(function () {
-                var name = $(this).attr('name');
-                obj[name] = $(this).attr('value');
+                if ($(this).prop('checked') === false) {
+                    var name = $(this).attr('name');
+                    obj[name] = $(this).data('uncheckedValue');
+                }
             });
             return obj;
         },
@@ -358,13 +393,13 @@ window.jx = function () {
          * 获取ajax请求错误信息
          * @param httpRequest
          */
-        getAjaxError:function (httpRequest) {
+        getAjaxError: function (httpRequest) {
             var msg = '';
             if (!httpRequest['responseJSON']) {
                 msg = jx.getBody(httpRequest.responseText) || httpRequest.responseText;
             }
             else {
-                msg = httpRequest['responseJSON'].message;
+                msg = httpRequest['responseJSON'].msg;
             }
             return msg;
         },
@@ -529,6 +564,15 @@ window.jx = function () {
          */
         isArray: function (obj) {
             return Array.isArray(obj);
+        },
+
+        /**
+         * 是否未定义
+         * @param obj
+         * @returns {boolean}
+         */
+        isUndefined: function (obj) {
+            return typeof obj === 'undefined';
         },
 
         /**
@@ -833,8 +877,8 @@ window.jx = function () {
         /**
          * 返回延时执行回调函数代理函数
          */
-        delay : function () {
-            var core = function() {
+        delay: function () {
+            var core = function () {
                 var sTimeoutId = null;
                 var self = this;
 
@@ -843,7 +887,7 @@ window.jx = function () {
                  * @param cback 回调函数
                  * @param time 延时（毫秒），默认500毫秒
                  */
-                this.run = function (cback,time) {
+                this.run = function (cback, time) {
                     if (!time) {
                         time = 500;
                     }
@@ -861,6 +905,18 @@ window.jx = function () {
         },
 
         /**
+         * 打印当前文档
+         */
+        print: function () {
+            setTimeout(function () {
+                window.print();
+                setTimeout(function () {
+                    closeChrome();
+                }, 1);
+            }, 1);
+        },
+
+        /**
          * 封装ajax请求
          * @param ops
          */
@@ -870,7 +926,16 @@ window.jx = function () {
                 maskTarget: null,
                 maskMsg: null,
                 maskDelay: 100,
-                type: 'post'
+                type: 'post',
+                dataType: 'json',
+                error:function (request) {
+                    if (request.responseJSON) {
+                        layer.alert(request.responseJSON.message || '提交失败');
+                    }
+                    else {
+                        layer.alert(request.statusText || '退出失败');
+                    }
+                }
             };
             var _success = ops.success;
             var options = $.extend({}, defaults, ops);
@@ -968,17 +1033,55 @@ window.jx = function () {
             return options;
         },
 
+        /**
+         * 定义插件
+         * @param config
+         */
         plugin: function (config) {
-            var name = config.name;
-            if (!config['instance']) {
-                alert('请指定创建插件实例函数');
+            var defs = {
+                name: null,//插件名称
+                create: null,//创建管理类
+                selector: null,//插件选择器
+                depend: null,//插件依赖
+                auto: true,//自动实例化
+                defaults: {},//插件默认值
+                options: null,//解析插件选项
+                onLoad: null, //加载插件事件
+                onInstance: null //实例化插件事件
+            };
+            if (!config.name) {
+                console.error('请指定插件名称');
+                console.error(config);
                 return;
             }
+            if (!config.create) {
+                console.error('请指定插件管理类');
+                console.error(config);
+                return;
+            }
+            $.extend(defs, config);
 
-            /**
-             * 插件定义
-             * @param options 配置选项
-             */
+            if (!defs.selector) {
+                defs.selector = '.' + defs.name;
+            }
+            if (jx.isUndefined(defs.auto)) {
+                defs.auto = true;
+            }
+            if (!defs.defaults) {
+                defs.defaults = {};
+            }
+            if (!defs.options) {
+                defs.options = function (element) {
+                    return jx.parseOptions($(element));
+                };
+            }
+            if (!defs.onInstance && defs.auto === true) {
+                defs.onInstance = function (e) {
+                    $.fn[name].call($(e.target).find(defs.selector));
+                };
+            }
+
+            var name = defs.name;
             $.fn[name] = function (options) {
 
                 //如果options的类型是字符串，说明是方法调用
@@ -997,55 +1100,35 @@ window.jx = function () {
                     }
                 }
 
-                return this.each(function () {
+                this.each(function () {
                     var $element = $(this);
+                    var ops = $.extend(true, {}, $.fn[name].defaults, $.fn[name].options(this), options);
                     var instance = $element.data(name);
                     if (!instance) {
-                        var ops = $.extend(true, {}, $.fn[name].defaults, $.fn[name].parseOptions($element), options);
-                        instance = config['instance']($element, ops);
+                        instance = defs.create(this, ops || {});
+                        if (!instance) {
+                            instance = {};
+                        }
                         $element.data(name, instance);
                     }
+                    else if (options && $.isFunction(instance.setOptions)) {
+                        instance.setOptions(options);
+                    }
                 });
+                return this.eq(0).data(name)
             };
+            $.fn[name].defaults = defs.defaults;
+            $.fn[name].options = defs.options;
 
-            /**
-             * 解析配置选项
-             * @param {jQuery} $element 目标对象
-             * @returns {object} 返回插件配置选项
-             */
-            $.fn[name].parseOptions = function ($element) {
-                return jx.parseOptions($element);
-            };
-            if (config.options) {
-                $.fn[name].parseOptions = config.options;
-            }
-
-            /**
-             * 插件默认值配置选项
-             */
-            $.fn[name].defaults = {};
-            if (config.defaults) {
-                $.fn[name].defaults = config.defaults;
-            }
-
-            if (config.onBeforeInit) {
-                jx.onBeforeInit(config.onBeforeInit);
-            }
-
-            if (config.onInit) {
-                jx.onInit(config.onInit);
-            }
-
-            if (config.onAfterInit) {
-                jx.onAfterInit(config.onAfterInit);
-            }
-        },
-
-        /**
-         * body fadeIn
-         */
-        bodyFadeIn: function (speed) {
-            $(document.body).fadeIn(speed || 100);
+            jx.onBeforeInit(function () {
+                if (defs.onLoad) {
+                    defs.onLoad();
+                }
+                if (document.querySelector(defs.selector)) {
+                    jx.depend(defs.depend);//插件依赖
+                    jx.onInit(defs.onInstance);
+                }
+            });
         },
 
         extend: function (object) {
@@ -1127,39 +1210,65 @@ window.jx = function () {
         },
 
         onBeforeInit: function (callback) {
-            $(document).on(eventBeforeInit, callback);
+            if (callback) {
+                $(document).on(eventBeforeInit, callback);
+            }
+        },
+        onPreInit: function (callback) {
+            if (callback) {
+                $(document).on(eventPreInit, callback);
+            }
         },
         onInit: function (callback) {
-            $(document).on(eventInit, callback);
+            if (callback) {
+                $(document).on(eventInit, callback);
+            }
         },
         onAfterInit: function (callback) {
-            $(document).on(eventAfterInit, callback);
+            if (callback) {
+                $(document).on(eventAfterInit, callback);
+            }
         },
 
         ready: function (deps, callback) {
-            if (isReady === true) return;
-            isReady = true;
-
-            var $doc = $(document);
-            $(function () {
+            if (jx.isFunc(deps)) {
+                callback = deps;
+            }
+            else {
                 jx.depend(deps);
-                $doc.triggerHandler(eventBeforeInit);
-                jx.require(depends, function () {
-                    if (jx.isFunc(deps)) {
-                        callback = deps;
-                    }
-                    if (callback) {
-                        callback();
-                    }
-                    $.when($doc.triggerHandler(eventInit)).done(function () {
-                        $doc.triggerHandler(eventAfterInit);
+            }
+            jx.onPreInit(callback);
+        },
+
+        complete: function (deps, callback) {
+            if (jx.isFunc(deps)) {
+                callback = deps;
+            }
+            else {
+                jx.depend(deps);
+            }
+            jx.onAfterInit(callback);
+        },
+
+        _boot: function () {
+            $(function () {
+                var $document = $(document);
+                $.when($document.triggerHandler(eventBeforeInit)).done(function () {
+                    jx.require(depends, function () {
+                        $.when($document.triggerHandler(eventPreInit)).done(function () {
+                            $.when($document.triggerHandler(eventInit)).done(function () {
+                                $('.page-loading').fadeOut("fast", function () {
+                                    $(this).remove();
+                                });
+                                $document.triggerHandler(eventAfterInit);
+                            });
+                        });
                     });
                 });
             });
         }
     };
 }();
-
 //endregion
 
 //region jQuery扩展
@@ -1272,7 +1381,7 @@ $.fn.extend({
         $(this).on('select2:select', callback);
     },
 
-    jxoptions: function (ops) {
+    options: function (ops) {
         if (!ops) return;
         var $this = $(this);
         $this.data('jxoptions', ops);
@@ -1348,45 +1457,12 @@ jx.regModules({
     chosen: [
         jx.libDir + 'chosen/chosen.css',
         jx.libDir + 'chosen/chosen.js'
-    ]
+    ],
+    echarts: jx.libDir + 'echarts/echarts.js'
 });
 
 //endregion
 
 //region 框架核心初始化
-
-// jx.onInit(function (e) {
-//     var $target = $(e.target);
-
-// //region fileupload
-// if ($().fileinput) {
-//     $target.find('.uifileupload').each(function () {
-//         var ops = {
-//             language: 'zh',
-//             showCaption: true,
-//             showRemove: false,
-//             showUpload: false,
-//             showPreview: false,
-//             showClose: false,
-//             uploadAsync: false
-//         };
-//         $(this).fileinput(ops);
-//     });
-// }
-// //endregion
-
-// });
-
-jx.onAfterInit(function () {
-    $("#jx_page_loading").fadeOut("normal", function () {
-        $(this).remove();
-    });
-});
-
-$(window).on('load', function () {
-    jx.ready();
-});
-
-//声明命名空间
-jx.ns('jx.ui');
+jx._boot();
 //endregion
