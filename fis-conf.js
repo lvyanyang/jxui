@@ -1,6 +1,7 @@
 //region 发布设置
 
 // rm -rf ./dist/* && fis3 release
+// rm -rf ./dist/* && fis3 release && fis3 release min
 
 fis.hook('relative');
 fis.match("**", {
@@ -8,7 +9,7 @@ fis.match("**", {
     deploy: [
         fis.plugin('skip-packed', {}),
         fis.plugin('local-deliver', {
-            to: '/homes/App/jxui'
+            to: './dist'
         })
     ]
 });
@@ -58,16 +59,21 @@ fis.media('min').match('(/**).(js)', {
 fis.match('_*.html', {
     release: false
 });
+// fis.match('/page/**', {
+//     release: false
+// });
 
 // fis.match('/api/**', {
 //     release: false
 // });
 
 //region 字体文件
-fis.match('/lib/{simple-line-icons,line-awesome,font-awesome}/(*.{woff,woff2})', {
+fis.match('/lib/{simple-line-icons,line-awesome,font-awesome}/(*.{woff,woff2,otf,eot,svg,ttf})', {
     release: '/font/$1'
 }).match('/page/login/font/(*.{woff,woff2})', {
     release: '/font/$1'
+}).match('/jx/portlet.css',{
+    release: '/portlet.css'
 });
 //endregion
 
@@ -95,7 +101,7 @@ fis.match('::package', {
             '/lib/easyui/easyui.css',
             '/lib/easyui/treegrid.css',
             '/lib/font-awesome/font-awesome.css',
-            '/lib/line-awesome/line-awesome.css',
+            // '/lib/line-awesome/line-awesome.css',
             '/lib/simple-line-icons/simple-line-icons.css',
             '/lib/animate/animate.css',//动画库
             '/lib/loadmask/loadmask.css',
@@ -118,8 +124,10 @@ fis.match('::package', {
         '/jx.js': [
             '/lib/pace/pace.js',
             '/lib/jquery/jquery.js',
+            '/lib/jquery-slimscroll/jquery-slimscroll.js',
             '/lib/loadmask/loadmask.js',
             '/lib/toastr/toastr.js',
+            '/lib/jquery/jquery.fileDownload.js',
             '/lib/jquery/jquery.form.js',
             '/lib/jquery/jquery.storage.js',
             '/lib/jquery/jquery.validate.js',
@@ -140,6 +148,7 @@ fis.match('::package', {
             '/jx/jx.js',
             '/plugin/base/**.js',
             '/plugin/core/**.js',
+            '/plugin/pre/**.js',
             '/plugin/data/**.js',
             '/plugin/form/**.js',
             '/plugin/other/**.js'

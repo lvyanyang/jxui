@@ -60,7 +60,7 @@ jx.ui.Combo = function (element, options) {
     };
 
     var _initHidden = function () {
-        text_name = options.textField;
+        text_name = options.hiddenField;
         if (!text_name && $element[0].name) {
             text_name = $element[0].name + '_id';
         }
@@ -178,7 +178,7 @@ jx.ui.Combo = function (element, options) {
         });
 
         $(document).on('click', function (e) {
-            jx.stope();
+
             var $target = $(e.target);
             // console.log($target);
             if ($target.hasClass('l-btn-icon')  || $target.hasClass('l-btn-text')  || $target.hasClass('l-btn-left')) {
@@ -186,6 +186,7 @@ jx.ui.Combo = function (element, options) {
             }
             if ($target.closest('#' + elementId, $container).length === 0) {
                 hidePanel();
+                //jx.stope();
             }
         });
     }();

@@ -770,6 +770,11 @@ a:hover {
 
 /* region jxlayout */
 
+.jxlayout .layout-panel-center .datagrid-wrap.panel-body-noborder {
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+}
+
 .jxlayout .layout-panel-center .panel-header,
 .jxlayout .layout-panel-center .panelx-body {
     border-left-width: 1px !important;
@@ -811,7 +816,7 @@ a:hover {
     padding: 10px;
 }
 
-.jxlayout-form label {
+.jxtable-form label {
     font-weight: 400;
 }
 
@@ -847,7 +852,7 @@ a:hover {
 /*z-index: 100*/
 /*}*/
 
-.form-group label {
+label {
     font-weight: 400;
 }
 
@@ -1652,29 +1657,29 @@ m-switch
 }
 
 .m-switch.m-switch--icon input:empty ~ span:after {
-    font-family: "LineAwesome";
+    font-family: "FontAwesome";
     text-decoration: inherit;
     text-rendering: optimizeLegibility;
     text-transform: none;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "\f342";
+    content: "\f00d";
 }
 
 .m-switch.m-switch--icon input:checked ~ span:after {
-    content: '\f17b';
+    content: '\f00c';
 }
 
 .m-switch.m-switch--icon-check input:checked ~ span:after {
-    font-family: "LineAwesome";
+    font-family: "FontAwesome";
     text-decoration: inherit;
     text-rendering: optimizeLegibility;
     text-transform: none;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "\f17b";
+    content: "\f00c";
 }
 
 .m-switch input:empty ~ span {
@@ -2400,14 +2405,14 @@ Customized Bootstrap Tabs
 Custom tabs
 ***/
 /* In BS3.0.0 jxtabs class was removed. We had to added it back */
-.jxtabs:before, .jxtabs:after {
-    content: " ";
-    display: table;
-}
+/*.jxtabs:before, .jxtabs:after {*/
+    /*content: " ";*/
+    /*display: table;*/
+/*}*/
 
-.jxtabs:after {
-    clear: both;
-}
+/*.jxtabs:after {*/
+    /*clear: both;*/
+/*}*/
 
 .jxtabs-custom {
     margin-bottom: 15px;
@@ -2850,4 +2855,9 @@ Custom tabs
 .winpanel td {
     word-wrap: break-word;
     word-break: break-all;
+}
+
+.winpanel pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }

@@ -37,7 +37,7 @@ jx.ui.ComboTree = function (element, options) {
 
     //初始化插件
     var init = function () {
-        $tree = $('<div class="jxtree" style="overflow: auto;width: 100%;height: 100%;"></div>');
+        $tree = $('<ul class="jxtree" style="overflow: auto;width: 100%;height: 100%;"></ul>');
         options.content = $tree;
         combo = jx.ui.Combo($element, options);
         options.treeOptions.onLoadSuccess = function (node, data) {

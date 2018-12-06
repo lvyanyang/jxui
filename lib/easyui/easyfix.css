@@ -304,6 +304,7 @@
 .datagrid-cell .fa-toggle-off {
     font-size: 16pt;
     vertical-align: middle;
+    cursor: pointer;
 }
 .datagrid-cell .fa-toggle-on {
     color: #449d44;

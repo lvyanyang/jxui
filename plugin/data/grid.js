@@ -12,10 +12,13 @@ jx.ui.Grid = function (element, options) {
         var _onBeforeLoad = options.onBeforeLoad;
         options.onBeforeLoad = function (param) {
             if (_onBeforeLoad) {
-                var result = _onBeforeLoad.call(this, node, param);
-                if (result===false) {
+                var result = _onBeforeLoad.call(this, param);
+                if (result === false) {
                     return false;
                 }
+            }
+            if (param.sort) {
+                param.sort = jx.humpToLine(param.sort);
             }
             if (options.url) {
                 // console.log($element.datagrid("getPanel"));
@@ -24,21 +27,27 @@ jx.ui.Grid = function (element, options) {
         };
 
         var _onLoadSuccess = options.onLoadSuccess;
-        options.onLoadSuccess = function (data) {
+        options.onLoadSuccess = function (result) {
             var $panel = $element.datagrid("getPanel");
             $panel.find('.datagrid-view').unmask();
 
             jx._grid._getErrorPanel($element, options).hide();
             var $noPanel = jx._grid._getNoPanel($element, options);
-            //无数据提示
-            if (data && ((Array.isArray(data) && data.length === 0) || (data.rows.length === 0))) {
-                $noPanel.show();
+            //错误提示
+            if(result.success){
+                //无数据提示
+                if (result && ((Array.isArray(result.rows) && result.rows.length === 0))) {
+                    $noPanel.show();
+                }
+                else {
+                    $noPanel.hide();
+                }
+                if (_onLoadSuccess) {
+                    _onLoadSuccess.call(this, result);
+                }
             }
             else {
-                $noPanel.hide();
-            }
-            if (_onLoadSuccess) {
-                _onLoadSuccess.call(this, data);
+                jx._grid._getErrorPanel($element, options).html(result.msg).show();
             }
         };
 
@@ -54,10 +63,82 @@ jx.ui.Grid = function (element, options) {
         //endregion
 
         $element.datagrid(options);
-        jx._grid._initForm($element, options, $.fn.datagrid.methods.load);
+        jx._grid._initForm($element, options, function ($e, par) {
+            $.fn.datagrid.methods.clearSelections($e);
+            $.fn.datagrid.methods.clearChecked($e);
+            $.fn.datagrid.methods.load($e, par);
+        });
     }();
 
     return {
+        reloadGridData: function (param) {
+            this.clearSelections();
+            this.clearChecked();
+            this.reload(param);
+        },
+        loadGridData: function (param) {
+            this.clearSelections();
+            this.clearChecked();
+            this.load(param);
+        },
+        getRowId: function (row) {
+            var ops = this.options();
+            var idField = ops['idField'];
+            if (row && idField && row[idField]) {
+                return row[idField];
+            }
+            return null;
+        },
+        getDataBodyPanel:function () {
+            return $element.data('datagrid').dc.body2;
+        },
+        getSelectedRowId: function () {
+            var row = this.getSelected();
+            return this.getRowId(row);
+        },
+        getCheckedRowIds: function () {
+            var ids = [];
+            var rows = this.getChecked();
+            var ops = this.options();
+            var idField = ops['idField'];
+            if (rows.length > 0 && idField) {
+                for (var i = 0; i < rows.length; i++) {
+                    var r = rows[i];
+                    if(r[idField]){
+                        ids.push(r[idField]);
+                    }
+                }
+            }
+            return ids;
+        },
+        hasSelectedRow: function (errorCallback) {
+            var selected = this.getSelected();
+            if (!selected) {
+                if (errorCallback) {
+                    errorCallback();
+                }
+                else {
+                    toastr.error('请先选择数据项后再操作！');
+                }
+                return false;
+            }
+            return true;
+        },
+
+        hasCheckedRow: function (errorCallback) {
+            var checkRows = this.getChecked();
+            if (checkRows.length === 0) {
+                if (errorCallback) {
+                    errorCallback();
+                }
+                else {
+                    toastr.error('请先选择数据项后再操作！');
+                }
+                return false;
+            }
+            return true;
+        },
+
         options: function () {
             return $element.datagrid('options');
         },
@@ -242,7 +323,7 @@ jx.plugin({
     defaults: {
         form: false,//查询表单对象
         nameField: null,
-        method:'get',
+        method: 'get',
         fit: true,
         border: false,
         loadMsg: null,
@@ -251,6 +332,6 @@ jx.plugin({
         ctrlSelect: true,
         autoRowHeight: false,
         pagination: true,
-        pageList: [10, 20, 30, 50, 80, 100, 200]
+        pageList: [10, 20, 30, 50, 80, 100]
     }
 });

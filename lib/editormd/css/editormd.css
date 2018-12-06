@@ -1,13 +1,13 @@
 /*
  * Editor.md
  *
- * @file        editormd.css 
- * @version     v1.5.0 
+ * @file        /editormd.css
+ * @version     v1.5.0
  * @description Open source online markdown editor.
  * @license     MIT License
  * @author      Pandao
  * {@link       https://github.com/pandao/editor.md}
- * @updateTime  2015-06-09
+ * @updateTime  2018-05-10
  */
 
 @charset "UTF-8";
@@ -19,9 +19,9 @@
   text-align: left;
   overflow: hidden;
   position: relative;
-  margin-bottom: 15px;
   border: 1px solid #ddd;
-  font-family: "Meiryo UI", "Microsoft YaHei", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+  font-family: "Meiryo UI", "Microsoft YaHei", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", monospace, Tahoma, STXihei, "鍗庢枃缁嗛粦", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "瀹嬩綋", Heiti, "榛戜綋", sans-serif;
+  z-index: 0;
 }
 .editormd *, .editormd *:before, .editormd *:after {
   -webkit-box-sizing: border-box;
@@ -290,6 +290,9 @@
   color: #999;
 }
 .editormd-dialog-container select {
+  outline: none;
+  display: inline-block !important;
+  width: auto !important;
   color: #999;
   padding: 3px 8px;
   border: 1px solid #ddd;
@@ -555,13 +558,15 @@
   border: 1px solid #ddd;
 }
 .editormd-form input[type="number"] {
-  width: 40px;
+  width: 40px !important;
   display: inline-block;
-  padding: 6px 8px;
+  padding: 6px 8px !important;
+  vertical-align: baseline !important;
 }
 .editormd-form input[type="text"] {
   display: inline-block;
-  width: 264px;
+  width: 264px !important;
+  padding: 8px !important;
 }
 .editormd-form .fa-btns {
   display: inline-block;
@@ -592,6 +597,7 @@
 .editormd-dialog-footer input[type="submit"],
 .editormd-dialog-footer .editormd-btn,
 .editormd-dialog-footer button {
+  outline: none;
   color: #666;
   min-width: 75px;
   cursor: pointer;
@@ -631,15 +637,15 @@
 }
 
 .editormd-file-input {
-  width: 75px;
-  height: 32px;
+  width: 78px;
+  height: 35px;
   margin-left: 8px;
   position: relative;
   display: inline-block;
 }
 .editormd-file-input input[type="file"] {
-  width: 75px;
-  height: 32px;
+  width: 78px;
+  height: 35px;
   opacity: 0;
   cursor: pointer;
   background: #000;
@@ -650,6 +656,10 @@
 }
 .editormd-file-input input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
+}
+.editormd-file-input input[type="submit"] {
+  width: 78px;
+  height: 35px;
 }
 .editormd-file-input:hover input[type="submit"] {
   background: #eee;
@@ -680,14 +690,13 @@
 .editormd .CodeMirror {
   z-index: 10;
   float: left;
-  border-right: 1px solid #ddd;
   font-size: 14px;
-  font-family: "YaHei Consolas Hybrid", Consolas, "微软雅黑", "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", courier, monospace;
+  font-family: "YaHei Consolas Hybrid",Consolas,"微软雅黑","Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Helvetica,Monaco,courier,monospace;
   line-height: 1.6;
   margin-top: 35px;
 }
 .editormd .CodeMirror pre {
-  font-size: 14px;
+  font-size: 16px;
   padding: 0 12px;
 }
 .editormd .CodeMirror-linenumbers {
@@ -3118,8 +3127,8 @@
 .editormd-logo-7x:before,
 .editormd-logo-8x:before {
   content: "\e1987";
-  /* 
-  HTML Entity &#xe1987; 
+  /*
+  HTML Entity &#xe1987;
   example: <span class="editormd-logo">&#xe1987;</span>
   */
 }
@@ -3174,7 +3183,7 @@
   -webkit-text-size-adjust: 100%;
   color: #333;
   overflow: hidden;
-  font-family: "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+  font-family: "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "鍗庢枃缁嗛粦", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "瀹嬩綋", Heiti, "榛戜綋", sans-serif;
   font-size: 16px;
   line-height: 1.6;
   word-wrap: break-word;
@@ -3915,57 +3924,57 @@
 
 /* plain text */
 @media screen {
-  .str {
+  .editormd .str {
     color: #080;
   }
 
   /* string content */
-  .kwd {
+  .editormd .kwd {
     color: #008;
   }
 
   /* a keyword */
-  .com {
+  .editormd .com {
     color: #800;
   }
 
   /* a comment */
-  .typ {
+  .editormd .typ {
     color: #606;
   }
 
   /* a type name */
-  .lit {
+  .editormd .lit {
     color: #066;
   }
 
   /* a literal value */
   /* punctuation, lisp open bracket, lisp close bracket */
-  .pun, .opn, .clo {
+  .editormd .pun, .editormd .opn, .editormd .clo {
     color: #660;
   }
 
-  .tag {
+  .editormd .tag {
     color: #008;
   }
 
   /* a markup tag name */
-  .atn {
+  .editormd .atn {
     color: #606;
   }
 
   /* a markup attribute name */
-  .atv {
+  .editormd .atv {
     color: #080;
   }
 
   /* a markup attribute value */
-  .dec, .var {
+  .editormd .dec, .editormd .var {
     color: #606;
   }
 
   /* a declaration; a variable name */
-  .fun {
+  .editormd .fun {
     color: red;
   }
 
@@ -3973,43 +3982,43 @@
 }
 /* Use higher contrast and text-weight for printable form. */
 @media print, projection {
-  .str {
+  .editormd .str {
     color: #060;
   }
 
-  .kwd {
+  .editormd .kwd {
     color: #006;
     font-weight: bold;
   }
 
-  .com {
+  .editormd .com {
     color: #600;
     font-style: italic;
   }
 
-  .typ {
+  .editormd .typ {
     color: #404;
     font-weight: bold;
   }
 
-  .lit {
+  .editormd .lit {
     color: #044;
   }
 
-  .pun, .opn, .clo {
+  .editormd .pun, .editormd .opn, .editormd .clo {
     color: #440;
   }
 
-  .tag {
+  .editormd .tag {
     color: #006;
     font-weight: bold;
   }
 
-  .atn {
+  .editormd .atn {
     color: #404;
   }
 
-  .atv {
+  .editormd .atv {
     color: #060;
   }
 }
@@ -4262,6 +4271,7 @@ hr.editormd-page-break {
 }
 .editormd-preview-close-btn:hover {
   background-color: #999;
+  color: #fff;
 }
 
 .editormd-preview-active {
@@ -4408,6 +4418,246 @@ hr.editormd-page-break {
     color: red;
   }
 }
+/* Preview OSC theme */
+.editormd-preview-theme-osc {
+  color: #3d464d;
+  background-color: #fff;
+  line-height: 28px;
+}
+.editormd-preview-theme-osc .editormd-preview-container {
+  font-family: 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+  font-size: 16px;
+  word-wrap: break-word;
+  line-height: 28px;
+  color: #3d464d !important;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+.editormd-preview-theme-osc .editormd-preview-container pre code, .editormd-preview-theme-osc .editormd-preview-container pre {
+  overflow-x: auto;
+  border-radius: 3px;
+  padding: 10px;
+  line-height: 1.4;
+  word-wrap: normal;
+  display: block;
+  font-size: 13px;
+  background: #3f3f3f;
+  color: #dcdcdc;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  /* plain text */
+}
+.editormd-preview-theme-osc .editormd-preview-container pre code .pln, .editormd-preview-theme-osc .editormd-preview-container pre .pln {
+  color: #dcdcdc;
+}
+.editormd-preview-theme-osc .editormd-preview-container pre, .editormd-preview-theme-osc .editormd-preview-container code {
+  border-radius: 3px;
+  padding: 2px;
+  font-size: 13px;
+}
+.editormd-preview-theme-osc .editormd-preview-container pre ol.linenums, .editormd-preview-theme-osc .editormd-preview-container code ol.linenums {
+  margin: 0;
+}
+.editormd-preview-theme-osc .editormd-preview-container pre.prettyprint {
+  border: none;
+}
+.editormd-preview-theme-osc .editormd-preview-container p {
+  margin-top: 16px;
+  margin-bottom: 14px;
+  line-height: 28px;
+}
+.editormd-preview-theme-osc .editormd-preview-container ol, .editormd-preview-theme-osc .editormd-preview-container ul {
+  margin: 0 0 0 30px;
+  padding: 8px 15px;
+}
+.editormd-preview-theme-osc .editormd-preview-container ol {
+  list-style-type: decimal;
+}
+.editormd-preview-theme-osc .editormd-preview-container ul {
+  list-style-type: disc !important;
+}
+.editormd-preview-theme-osc .editormd-preview-container img {
+  margin: auto;
+  max-width: 80%;
+  height: auto;
+}
+.editormd-preview-theme-osc .editormd-preview-container table {
+  border-collapse: collapse;
+  border-spacing: 1px;
+  font-size: 14px;
+  color: #444;
+  overflow-x: auto;
+  max-width: 100%;
+  border: 0;
+  line-height: 28px;
+}
+.editormd-preview-theme-osc .editormd-preview-container table thead {
+  text-align: left;
+}
+.editormd-preview-theme-osc .editormd-preview-container table thead, .editormd-preview-theme-osc .editormd-preview-container table th {
+  background: #f8f8f8;
+}
+.editormd-preview-theme-osc .editormd-preview-container table th, .editormd-preview-theme-osc .editormd-preview-container table td {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+}
+.editormd-preview-theme-osc .editormd-preview-container blockquote {
+  position: relative;
+  color: #000;
+  font-size: 15px;
+  background: #f4f4f4;
+  margin: 20px 0;
+  padding: 16px 24px 16px 35px;
+  border: none;
+  font-style: normal;
+}
+.editormd-preview-theme-osc .editormd-preview-container blockquote:before {
+  content: "";
+  background-image: url(../../../../../img/icon/icon-quotation.svg);
+  top: 18px;
+  left: 16px;
+  font-size: 24px;
+  position: absolute;
+  width: 13px;
+  height: 9px;
+  display: inline-block;
+}
+.editormd-preview-theme-osc .editormd-preview-container h1, .editormd-preview-theme-osc .editormd-preview-container h2, .editormd-preview-theme-osc .editormd-preview-container h3, .editormd-preview-theme-osc .editormd-preview-container h4, .editormd-preview-theme-osc .editormd-preview-container h5, .editormd-preview-theme-osc .editormd-preview-container h6 {
+  font-weight: 500;
+  margin: 1.5em 0;
+}
+.editormd-preview-theme-osc .editormd-preview-container h1 {
+  font-size: 24px;
+}
+.editormd-preview-theme-osc .editormd-preview-container h2 {
+  font-size: 22px;
+}
+.editormd-preview-theme-osc .editormd-preview-container h3 {
+  font-size: 20px;
+}
+.editormd-preview-theme-osc .editormd-preview-container h4 {
+  font-size: 18px;
+}
+.editormd-preview-theme-osc .editormd-preview-container h5 {
+  font-size: 16px;
+}
+.editormd-preview-theme-osc .editormd-preview-container h6 {
+  font-size: 16px;
+}
+.editormd-preview-theme-osc .editormd-preview-container a {
+  text-decoration: none;
+  color: #4183c4;
+  border: none;
+  outline: none;
+}
+.editormd-preview-theme-osc .editormd-preview-container a:hover {
+  color: #1e70bf;
+}
+.editormd-preview-theme-osc .editormd-preview-container abbr {
+  color: #fff;
+  padding: 1px 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: #ff9900;
+}
+.editormd-preview-theme-osc .editormd-preview-container code {
+  border: none;
+  background: none;
+  margin: 0;
+  font-family: monospace, monospace;
+}
+.editormd-preview-theme-osc .editormd-preview-container code:before,
+.editormd-preview-theme-osc .editormd-preview-container code:after {
+  letter-spacing: 0;
+  content: none;
+}
+.editormd-preview-theme-osc .editormd-preview-container .fa-emoji {
+  color: #B4BF42;
+}
+.editormd-preview-theme-osc .editormd-preview-container .katex {
+  color: #FEC93F;
+}
+.editormd-preview-theme-osc .markdown-body h1, .editormd-preview-theme-osc .markdown-body h2 {
+  padding: 0;
+  border: none;
+}
+.editormd-preview-theme-osc li.L1, .editormd-preview-theme-osc li.L3, .editormd-preview-theme-osc li.L5, .editormd-preview-theme-osc li.L7, .editormd-preview-theme-osc li.L9 {
+  background: none;
+}
+.editormd-preview-theme-osc .sequence-diagram text {
+  fill: #fff;
+}
+.editormd-preview-theme-osc .sequence-diagram rect, .editormd-preview-theme-osc .sequence-diagram path {
+  color: #fff;
+  fill: #64D1CB;
+  stroke: #64D1CB;
+}
+.editormd-preview-theme-osc .flowchart rect, .editormd-preview-theme-osc .flowchart path {
+  stroke: #A6C6FF;
+}
+.editormd-preview-theme-osc .flowchart rect {
+  fill: #A6C6FF;
+}
+.editormd-preview-theme-osc .flowchart text {
+  fill: #5879B4;
+}
+.editormd-preview-theme-osc ol.linenums {
+  padding: 10px;
+}
+.editormd-preview-theme-osc ol.linenums li {
+  list-style-type: none;
+}
+
+@media screen {
+  .editormd-preview-theme-osc {
+    /* string content */
+    /* a keyword */
+    /* a comment */
+    /* a type name */
+    /* a literal value */
+    /* punctuation, lisp open bracket, lisp close bracket */
+    /* a markup tag name */
+    /* a markup attribute name */
+    /* a markup attribute value */
+    /* a declaration; a variable name */
+    /* a function name */
+  }
+  .editormd-preview-theme-osc .str {
+    color: #cc9393;
+  }
+  .editormd-preview-theme-osc .kwd {
+    color: #e3ceab;
+  }
+  .editormd-preview-theme-osc .com {
+    color: #7f9f7f;
+  }
+  .editormd-preview-theme-osc .typ {
+    color: #efef8f;
+  }
+  .editormd-preview-theme-osc .lit {
+    color: #8cd0d3;
+  }
+  .editormd-preview-theme-osc .pun, .editormd-preview-theme-osc .opn, .editormd-preview-theme-osc .clo {
+    color: #cc9393;
+  }
+  .editormd-preview-theme-osc .tag {
+    color: #e3ceab;
+  }
+  .editormd-preview-theme-osc .atn {
+    color: #efdcbc;
+  }
+  .editormd-preview-theme-osc .atv {
+    color: #cc9393;
+  }
+  .editormd-preview-theme-osc .dec, .editormd-preview-theme-osc .var {
+    color: #efdcbc;
+  }
+  .editormd-preview-theme-osc .fun {
+    color: #e3ceab;
+  }
+}
 .editormd-onlyread .editormd-toolbar {
   display: none;
 }
@@ -4424,6 +4674,7 @@ hr.editormd-page-break {
   left: 0;
   border: none;
   margin: 0 auto;
+  z-index: 1010;
 }
 
 /* Editor.md Dark theme */

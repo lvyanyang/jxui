@@ -1,6 +1,309 @@
-body {
-    font-family: -apple-system-font, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+/*
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+body
+{
+    /* Font */
+    font-family: 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+    font-size: 16px;
+
+    /* Text color */
+    color: #333;
+
+    /* Remove the background color to make it transparent */
+    background-color: #fff;
+
+    margin: 0;
+
+    -webkit-font-smoothing: antialiased;
 }
-.ke-content{
+
+.cke_editable
+{
+    font-size: 16px;
+    line-height: 28px;
+
+    overflow: hidden;
+    overflow-y: scroll;
+
+    /* Fix for missing scrollbars with RTL texts. (#10488) */
+    word-wrap: break-word;
+
+    color: #3d464d;
+}
+
+blockquote
+{
+    font-size: 15px;
+
+    position: relative;
+
+    margin: 20px 0;
+    padding: 16px 24px 16px 35px;
+
+    color: #000;
+    background: #f4f4f4;
+}
+
+blockquote:before {
+    font-size: 24px;
+
+    position: absolute;
+    top: 18px;
+    left: 16px;
+
+    display: inline-block;
+    width: 13px;
+    height: 9px;
+
+    content: "";
+    background-image: url(common/icon-quotation.svg);
+}
+
+/*.cke_contents_ltr blockquote
+{
+	padding-left: 20px;
+	padding-right: 8px;
+	border-left-width: 5px;
+}
+
+.cke_contents_rtl blockquote
+{
+	padding-left: 8px;
+	padding-right: 20px;
+	border-right-width: 5px;
+}*/
+
+a
+{
+    text-decoration: none;
+    color: #4183c4;
+    border: none;
+    outline: none;
+}
+a:hover
+{
+    color: #1e70bf;
+}
+
+ol,ul,dl
+{
+    /* IE7: reset rtl list margin. (#7334) */
+    *margin-right: 0px;
+    /* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+
+    margin: 0;
+    padding: 0 0 0 1em;
+}
+
+ol p, ul p {
+    margin: 0;
+}
+
+ol > li + li, ul > li + li {
+    margin-top: .25em;
+}
+
+h1,h2,h3,h4,h5,h6
+{
+    /*line-height: 1.2;*/
+    font-weight: 500;
+    margin: 1.2em 0 .8em;
+}
+h1 {font-size:24px;}
+h2 {font-size:22px;}
+h3 {font-size:20px;}
+h4 {font-size:18px;}
+h5 {font-size:16px;}
+h6 {font-size:16px;}
+
+hr
+{
+    border: 0px;
+    border-top: 1px solid #ccc;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img.right
+{
+    border: 1px solid #ccc;
+    float: right;
+    margin-left: 15px;
+    padding: 5px;
+}
+
+img.left
+{
+    border: 1px solid #ccc;
+    float: left;
+    margin-right: 15px;
+    padding: 5px;
+}
+
+pre
+{
+    font-size: 13px;
+
+    white-space: pre-wrap; /* CSS 2.1 */
+    word-wrap: break-word; /* IE7 */
+
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+
+pre code, pre {
+    overflow-x: auto;
+    border-radius: 4px;
+    padding: 10px;
+    line-height: 1.4;
+    word-wrap: normal;
+    display: block;
+    font-size: 13px;
+    background: #3f3f3f;
+    color: #dcdcdc;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+pre, code {
+    border-radius: 3px;
+    padding: 2px;
+    font-size: 13px;
+}
+
+.marker
+{
+    background-color: Yellow;
+}
+
+span[lang]
+{
+    font-style: italic;
+}
+
+figure
+{
+    text-align: center;
+    outline: solid 1px #ccc;
+    background: rgba(0,0,0,0.05);
+    padding: 10px;
+    margin: 10px 20px;
+    display: inline-block;
+}
+
+figure > figcaption
+{
+    text-align: center;
+    display: block; /* For IE8 */
+}
+
+a > img {
+    padding: 1px;
+    margin: 1px;
+    border: none;
+    outline: 1px solid #4183c4;
+}
+
+/* Widget Styles */
+.code-featured
+{
+    border: 5px solid red;
+}
+
+.math-featured
+{
+    padding: 20px;
+    box-shadow: 0 0 2px rgba(200, 0, 0, 1);
+    background-color: rgba(255, 0, 0, 0.05);
+    margin: 10px;
+}
+
+.image-clean
+{
+    border: 0;
+    background: none;
+    padding: 0;
+}
+
+.image-clean > figcaption
+{
+    font-size: .9em;
+    text-align: right;
+}
+
+.image-grayscale
+{
+    background-color: white;
+    color: #666;
+}
+
+.image-grayscale img, img.image-grayscale
+{
+    filter: grayscale(100%);
+}
+
+.embed-240p
+{
+    max-width: 426px;
+    max-height: 240px;
+    margin:0 auto;
+}
+
+.embed-360p
+{
+    max-width: 640px;
+    max-height: 360px;
+    margin:0 auto;
+}
+
+.embed-480p
+{
+    max-width: 854px;
+    max-height: 480px;
+    margin:0 auto;
+}
+
+.embed-720p
+{
+    max-width: 1280px;
+    max-height: 720px;
+    margin:0 auto;
+}
+
+.embed-1080p
+{
+    max-width: 1920px;
+    max-height: 1080px;
+    margin:0 auto;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 1px;
+
     font-size: 14px;
+    color: #444;
+    overflow-x: auto;
+    max-width: 100%;
+    border: 0 !important;
+    line-height: 28px;
+}
+
+table thead {
+    text-align: left;
+}
+table thead,
+table th
+{
+    background: #f8f8f8;
+}
+
+table th, table td {
+    padding: 4px 8px;
+    border: 1px solid #ccc !important;
 }

@@ -137,13 +137,31 @@ jx.extend({
         if (!ops.anim) {
             ops.anim = jx.randomNumber(0, 6);
         }
+        var wunit, _w_width;
+        var hunit, _w_height;
+        //把百分比转换为像素值
+        if (ops.width) {
+            wunit = ops.width.toString().indexOf('%') === -1 ? 'px' : '%';
+            _w_width = $(top.window).width();
+            if (wunit === '%') {
+                ops.width = _w_width * parseInt(ops.width) / 100;
+            }
+        }
+
+        if (ops.height) {
+            hunit = ops.height.toString().indexOf('%') === -1 ? 'px' : '%';
+            _w_height = $(top.window).height();
+            if (hunit === '%') {
+                ops.height = _w_height * parseInt(ops.height) / 100;
+            }
+        }
 
         //处理宽高
         if (ops.width) {
-            var wunit = ops.width.toString().indexOf('%') == -1 ? 'px' : '%';
-            var _w_width = $(top.window).width();
+            wunit = ops.width.toString().indexOf('%') === -1 ? 'px' : '%';
+            _w_width = $(top.window).width();
             var _width = 0;
-            if (wunit == '%') {
+            if (wunit === '%') {
                 _width = 100 > parseInt(ops.width) ? parseInt(ops.width) : 100;
             }
             else {
@@ -151,8 +169,8 @@ jx.extend({
             }
             ops.area = _width + wunit;
             if (ops.height) {
-                var hunit = ops.height.toString().indexOf('%') === -1 ? 'px' : '%';
-                var _w_height = $(top.window).height();
+                hunit = ops.height.toString().indexOf('%') === -1 ? 'px' : '%';
+                _w_height = $(top.window).height();
                 var _height = 0;
                 if (hunit === '%') {
                     _height = 100 > parseInt(ops.height) ? parseInt(ops.height) : 100;
@@ -182,7 +200,7 @@ jx.extend({
         }
 
         ops.before = function (layero, index) {
-            layero.mask(ops.maskMsg || ('正在加载' + ops.title + ',请稍等...'), ops.maskDelay || 100);
+            layero.mask(ops.maskMsg || ('正在加载' + ops.title || '' + ',请稍等...'), ops.maskDelay || 100);
 
             if (options.before) {
                 options.before(layero, index);
@@ -196,7 +214,7 @@ jx.extend({
             dwin.$layer = layero;
             dwin.$index = index;
 
-            if (ops.type == 2 && !ops.title.trim()) {
+            if (ops.type == 2 && ops.title && !ops.title.trim()) {
                 ops.title = top.layer.getChildFrame('title', index).text();
                 top.layer.title(ops.title, index);
             }
@@ -226,12 +244,18 @@ jx.extend({
      * @param result
      */
     ajaxFail: function (result) {
+
         var title = result.statusText + '(' + result.status + ')';
         if (!result.responseJSON) {
             try {
-                var r = $.parseJSON(result.responseText);
-                if (r) {
-                    top.layer.alert(r.message, {title: title});
+                if (result.responseText) {
+                    var r = $.parseJSON(result.responseText);
+                    if (r) {
+                        top.layer.alert(r.message, {title: title});
+                    }
+                }
+                else if (result.status === 0) {
+                    jx.alert('无法连接到服务器,请及时通知系统管理员!');
                 }
             } catch (e) {
                 top.layer.open({
@@ -254,8 +278,14 @@ jx.extend({
      * @param {number} index 对话框索引
      */
     closeDialog: function (index) {
-        top.layer.close(index);
+        if (jx.isUndefined(index) && $index) {
+            top.layer.close($index);
+        }
+        else {
+            top.layer.close(index);
+        }
     },
+
     /**
      * 关闭所有对话框
      */

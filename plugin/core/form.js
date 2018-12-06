@@ -26,6 +26,11 @@ jx.ui.Form = function (element, options) {
             }
         });
 
+        var $requestVerificationToken = $('[name=__RequestVerificationToken]');
+        if ($requestVerificationToken.length > 0) {
+            data['__RequestVerificationToken'] = $requestVerificationToken.val();
+        }
+
         $.extend(data, options.submitParams);
 
         //region beforesubmit 事件
@@ -47,8 +52,11 @@ jx.ui.Form = function (element, options) {
             //},
             error: function (result) {
                 options.maskTarget.unmask();
-                jx.ajaxFail(result);
                 $element.triggerHandler('errorsubmit', [result]);
+                if (options.silent === true) {
+                    return;
+                }
+                jx.ajaxFail(result);
             },
             success: function (result) {
                 options.maskTarget.unmask();

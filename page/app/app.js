@@ -144,7 +144,7 @@ var App = function () {
         if (!url || url === '#') return;
         var centerPanel = $body.layout('panel', 'center');
         var _url = url + ((/\?/).test(url) ? '&' : '?') + '_ts=' + (Date.now());
-        var _title = title || centerPanel.title;
+        var _title = title || centerPanel.title || '';
         centerPanel.panel({
             title: null,
             content: jx.createIframe(_url)

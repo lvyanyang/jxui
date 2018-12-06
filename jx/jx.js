@@ -17,6 +17,18 @@ window.jx = function () {
 
     //endregion
 
+    if (typeof String.prototype.startsWith !== 'function') {
+        String.prototype.startsWith = function (prefix) {
+            return this.slice(0, prefix.length) === prefix;
+        };
+    }
+
+    if (typeof String.prototype.endsWith !== 'function') {
+        String.prototype.endsWith = function (suffix) {
+            return this.indexOf(suffix, this.length - suffix.length) !== -1;
+        };
+    }
+
     //region 私有方法
 
     /**
@@ -52,11 +64,24 @@ window.jx = function () {
         return str.split(/[\s+|,]/);
     };
 
+    var getCurrentScriptPath = function () {
+        return document.currentScript ? document.currentScript.src : function () {
+            var js = document.scripts, src;
+            for (var i = 0; i < js.length; i++) {
+                if (js[i].readyState === 'interactive') {
+                    src = js[i].src;
+                    break;
+                }
+            }
+            return src || js[0].src;
+        }();
+    };
+
     /**
      * 获取类库基路径
      */
     var getBasePath = function () {
-        var jsPath = document.currentScript.src;
+        var jsPath = getCurrentScriptPath();//document.currentScript.src;
         // console.log('jsPath');
         // console.log(jsPath);
         return jsPath.substring(0, jsPath.lastIndexOf('/') + 1);
@@ -100,7 +125,7 @@ window.jx = function () {
      * @param {array} rows
      * @return {array}
      */
-    var treeNodeConvert = function (rows) {
+    var treeNodeConvert = function (rows, useFolderIcon) {
         var nodes = [];
         //获取root节点
         for (var i = 0; i < rows.length; i++) {
@@ -120,6 +145,9 @@ window.jx = function () {
                 row = rows[i];
                 if (row['pid'] === node.id) {
                     var child = row;
+                    if (useFolderIcon === true) {
+                        node.iconCls = null;
+                    }
                     if (node.children) {
                         node.children.push(child);
                     } else {
@@ -302,6 +330,7 @@ window.jx = function () {
         }
     };
 
+
     //endregion
 
     return {
@@ -309,12 +338,12 @@ window.jx = function () {
         /**
          * 版本
          */
-        version: '1.0.0',
+        version: '2.0.1',
 
         /**
          * 是否调试
          */
-        debug: document.currentScript.dataset.debug === 'true' || false,
+        debug: true,//document.currentScript.dataset.debug === 'true' || false,
 
         /**
          * 类库url
@@ -341,6 +370,73 @@ window.jx = function () {
          */
         getBasePath: function () {
             return getBasePath();
+        },
+
+        /**
+         * 获取api地址
+         */
+        apiUrl: function (url) {
+            if (!this.apiRootUrl) {
+                this.apiRootUrl = jx.rootPath.substring(0, jx.rootPath.lastIndexOf('/'));
+            }
+            return this.apiRootUrl + url;
+        },
+
+        /**
+         * 导出
+         */
+        export: function (url, params) {
+            if (params) {
+                window.location.href = url + ((/\?/).test(url) ? '&' : '?') + $.param(params);
+            }
+            else {
+                window.location.href = url;
+            }
+        },
+
+        /**
+         * 下划线转换驼峰
+         */
+        lineToHump: function (name) {
+            return name.replace(/\_(\w)/g, function (all, letter) {
+                return letter.toUpperCase();
+            });
+        },
+
+        /**
+         * 驼峰转换下划线
+         */
+        humpToLine: function (name) {
+            return name.replace(/([A-Z])/g, "_$1").toLowerCase();
+        },
+
+        /**
+         * 详情对话框
+         */
+        detailsDialog: function (ops) {
+            var def = {
+                title: '详细信息',
+                shadeClose: true,
+                offset: 'rt',
+                anim: 2,
+                width: '600px',
+                height: '100%'
+            };
+            jx.dialog($.extend({}, def, ops));
+        },
+
+        /**
+         * 向导控件自适应高度
+         */
+        wizardFit: function () {
+            $('.step-pane').height($('#wizard').closest('.panelx-body').height() - $('#wizard').height());
+        },
+
+        /**
+         * 标签页控件自适应高度
+         */
+        tabsFit: function () {
+            $('.tab-pane').height($('.jxtabs-line').closest('.panelx-body').height() - $('.nav-tabs').height());
         },
 
         /**
@@ -387,6 +483,16 @@ window.jx = function () {
             if (result && result.length === 2)
                 return result[1];
             return content;
+        },
+
+        /**
+         * 清除Html标签
+         *
+         * @param  {string} htmlStr 待清除的字符串
+         * @return {string}
+         */
+        clearHtml: function (htmlStr) {
+            return htmlStr.replace(/<\/?.+?>/g, "").replace(/ /g, "");
         },
 
         /**
@@ -455,6 +561,9 @@ window.jx = function () {
          * @example jx.formatDate(new Date('2014/07/10 10:21:12'),'MM-dd')
          */
         formatDate: function (date, format) {
+            if (typeof date === 'string' && date) {
+                date = new Date(date.replace('-', '/'));
+            }
             if (typeof format === 'undefined') {
                 format = 'yyyy-MM-dd';
             }
@@ -494,6 +603,16 @@ window.jx = function () {
          */
         formatTime: function (date) {
             return this.formatDate(date, 'hh:mm:ss');
+        },
+
+        /**
+         * 日期计算，添加天数到指定日期
+         * @param date 日期
+         * @param days 天数
+         */
+        addDate: function (date, days) {
+            var n = date.setDate(date.getDate() + days);
+            return new Date(n);
         },
 
         /**
@@ -860,8 +979,8 @@ window.jx = function () {
          * @param {array} rows 平行数据
          * @return {array} 转换为层级数据
          */
-        treeConvert: function (rows) {
-            return treeNodeConvert(rows);
+        treeConvert: function (rows, useFolderIcon) {
+            return treeNodeConvert(rows, useFolderIcon);
         },
 
         /**
@@ -928,16 +1047,20 @@ window.jx = function () {
                 maskDelay: 100,
                 type: 'post',
                 dataType: 'json',
-                error:function (request) {
+                error: function (request) {
                     if (request.responseJSON) {
                         layer.alert(request.responseJSON.message || '提交失败');
                     }
                     else {
-                        layer.alert(request.statusText || '退出失败');
+                        layer.alert(request.statusText || '提交失败');
                     }
                 }
             };
             var _success = ops.success;
+            var $requestVerificationToken = $('[name=__RequestVerificationToken]');
+            if ($requestVerificationToken.length > 0) {
+                ops.data['__RequestVerificationToken'] = $requestVerificationToken.val();
+            }
             var options = $.extend({}, defaults, ops);
             if (!options.maskTarget) {
                 options.maskTarget = $(document.body);
@@ -949,12 +1072,33 @@ window.jx = function () {
                 }
             };
 
-            options.success = function (data, textStatus, jqXHR) {
+            options.error = function (httpRequest) {
                 if (options.maskMsg) {
                     options.maskTarget.unmask();
                 }
-                if (_success) {
-                    _success(data, textStatus, jqXHR);
+                if (options.silent === true) {
+                    return;
+                }
+                var msg = jx.getAjaxError(httpRequest);
+                if (msg) {
+                    jx.alert(msg);
+                }
+                else if (httpRequest.status === 0) {
+                    jx.alert('无法连接到服务器,请及时通知系统管理员!');
+                }
+            };
+
+            options.success = function (result, textStatus, jqXHR) {
+                if (options.maskMsg) {
+                    options.maskTarget.unmask();
+                }
+
+                if (result.success) {
+                    if (_success) {
+                        _success(result, textStatus, jqXHR);
+                    }
+                } else if (result.msg) {
+                    toastr.error(result.msg);
                 }
             };
 
@@ -962,14 +1106,33 @@ window.jx = function () {
                 jx.confirm(options.confirm, function (ok, index) {
                     if (ok) {
                         options.showMask();
-                        $.ajax(options);
+                        return $.ajax(options);
                     }
                 });
             }
             else {
                 options.showMask();
-                $.ajax(options);
+                return $.ajax(options);
             }
+        },
+
+        delete: function (ops) {
+            var def = {
+                confirm: '注：您确定要删除吗？该操作将无法恢复',
+                maskMsg: '正在删除数据...'
+            };
+            var o = $.extend({}, def, ops);
+            var callback = o.success;
+            o.success = function (result, textStatus, jqXHR) {
+                if (!result.msg) {
+                    result.msg = '删除操作成功';
+                }
+                toastr.success(result.msg);
+                if (callback) {
+                    callback(result, textStatus, jqXHR);
+                }
+            };
+            jx.ajax(o);
         },
 
         /**
@@ -1266,6 +1429,35 @@ window.jx = function () {
                     });
                 });
             });
+        },
+        toastr: {
+            options: function (ops) {
+                if (ops) {
+                    $.extend(toastr.options, ops);
+                }
+            },
+            clear: function ($toastElement, clearOptions) {
+                window.toastr.clear($toastElement, clearOptions);
+            },
+            remove: function ($toastElement) {
+                window.toastr.remove($toastElement);
+            },
+            error: function (message, title, optionsOverride) {
+                window.toastr.remove();
+                window.toastr.error(message, title, optionsOverride);
+            },
+            info: function (message, title, optionsOverride) {
+                window.toastr.remove();
+                window.toastr.info(message, title, optionsOverride);
+            },
+            success: function (message, title, optionsOverride) {
+                window.toastr.remove();
+                window.toastr.success(message, title, optionsOverride);
+            },
+            warning: function (message, title, optionsOverride) {
+                window.toastr.remove();
+                window.toastr.warning(message, title, optionsOverride);
+            }
         }
     };
 }();
@@ -1379,6 +1571,19 @@ $.fn.extend({
 
     onSelect2Select: function (callback) {
         $(this).on('select2:select', callback);
+    },
+
+    onFormSuccess: function (callback) {
+        $(this).on('aftersubmit', function (e, result) {
+            if (result.success) {
+                if (callback) {
+                    callback(e, result);
+                }
+            }
+            else if (result.msg) {
+                jx.alert(result.msg);
+            }
+        });
     },
 
     options: function (ops) {

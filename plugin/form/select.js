@@ -61,7 +61,7 @@ jx.ui.Select = function (element, options) {
         $element.parent().prepend(hidden);
         _setText(text_name);
 
-        $element.on('select2:select', function () {
+        $element.on('change', function () {
             _setText(text_name);
         });
     };
@@ -83,6 +83,12 @@ jx.ui.Select = function (element, options) {
             var $form = $element.closest('.jxform');
             if ($form && $form.length === 0) return;
             $form.validate().element($(this));
+        });
+
+        $element.on('change', function () {
+            if ($(this).data('selectSubmit') === true) {
+                $(this).closest('form').find(':submit').click();
+            }
         });
     }();
 
@@ -114,6 +120,7 @@ jx.plugin({
     create: jx.ui.Select,
     defaults: {
         minimumResultsForSearch: 10,
+        selectSubmit: false,
         allowClear: true,
         placeholder: '',
         width: '100%',

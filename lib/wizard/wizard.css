@@ -42,16 +42,16 @@
 .wizard ul li.active .chevron:before{border-left: 14px solid #fff;}
 .wizard ul li .badge{margin-right: 8px;}
 .wizard ul li:first-child{-webkit-border-radius: 2px 0 0 0;-webkit-background-clip: padding-box;-moz-border-radius: 2px 0 0 0;-moz-background-clip: padding;border-radius: 2px 0 0 0;background-clip: padding-box;padding-left: 20px;}
-.actions{z-index: 1000;position: absolute;right: 0;line-height: 42px;float: right;padding-left: 8px;padding-right: 8px;padding-bottom: 4px;vertical-align: middle;border-left: 1px solid #d4d4d4;}
-.actions a{line-height: 45px;font-size: 12px;margin-right: 8px;}
-.actions .btn-prev i{margin-right: 5px;}
-.actions .btn-next i{margin-left: 5px;}
-.actions.actions-footer{margin-top: -10px;position: relative;float: none;text-align: right;border: 0;background-color: #fff;-webkit-box-shadow: 0 0 4px rgba(0,0,0,.3);-moz-box-shadow: 0 0 4px rgba(0,0,0,.3);box-shadow: 0 0 4px rgba(0,0,0,.3);}
+/*.actions {z-index: 1000;position: absolute;right: 0;line-height: 42px;float: right;padding-left: 8px;padding-right: 8px;padding-bottom: 4px;vertical-align: middle;border-left: 1px solid #d4d4d4;}*/
+/*.actions a{line-height: 45px;font-size: 12px;margin-right: 8px;}*/
+/*.actions .btn-prev i{margin-right: 5px;}*/
+/*.actions .btn-next i{margin-left: 5px;}*/
+/*.actions.actions-footer{margin-top: -10px;position: relative;float: none;text-align: right;border: 0;background-color: #fff;-webkit-box-shadow: 0 0 4px rgba(0,0,0,.3);-moz-box-shadow: 0 0 4px rgba(0,0,0,.3);box-shadow: 0 0 4px rgba(0,0,0,.3);}*/
 .step-content{border-top: 0;background-clip: padding-box;padding: 0px;border: 1px solid #ccc;border-top:none;}
 .step-content .step-pane{display: none;}
-.step-content .active{display: block;}
-.step-content .active .btn-group .active{display: inline-block;}
-.chart{height: 220px;margin: 5px;}
-.chart-sm{height: 100px;}
-.chart-lg{height: 250px;}
-.chart-xl{height: 350px;}
+.step-content .step-pane.active{display: block;}
+.step-content .step-pane.active .btn-group .active{display: inline-block;}
+/*.chart{height: 220px;margin: 5px;}*/
+/*.chart-sm{height: 100px;}*/
+/*.chart-lg{height: 250px;}*/
+/*.chart-xl{height: 350px;}*/

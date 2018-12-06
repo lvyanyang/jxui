@@ -169,6 +169,13 @@ jx.ui.Tree = function (element, options) {
         }
     };
 
+    var getChildNode = function (node) {
+        if (!node) return null;
+        if (node.children && node.children.length > 0) {
+            return node.children[0];
+        }
+    };
+
     //endregion
 
     var init = function () {
@@ -187,7 +194,7 @@ jx.ui.Tree = function (element, options) {
         options.onBeforeLoad = function (node, param) {
             if (_onBeforeLoad) {
                 var result = _onBeforeLoad.call(this, node, param);
-                if (result===false) {
+                if (result === false) {
                     return false;
                 }
             }
@@ -241,7 +248,7 @@ jx.ui.Tree = function (element, options) {
             options.maskTarget.unmask();
             options.initNodataInfo();
             var $nodataAlert = $element.find('.nodata');
-            if (!data || data.length === 0) {
+            if ((!data || data.length === 0) && options.loadEmptyMessage) {
                 $nodataAlert.html(options.loadEmptyMessage);
                 $nodataAlert.show();
             }
@@ -249,6 +256,7 @@ jx.ui.Tree = function (element, options) {
                 $nodataAlert.html('');
                 $nodataAlert.hide();
             }
+
             if (_onLoadSuccess) {
                 _onLoadSuccess.call(this, node, data);
             }
@@ -265,10 +273,29 @@ jx.ui.Tree = function (element, options) {
 
         var _loadFilter = options.loadFilter;
         options.loadFilter = function (rows) {
+            //错误提示
+            if (rows.success && rows.success === false) {
+                $element.append(rows.msg);
+                return false;
+            }
+            if (rows.data && Array.isArray(rows.data)) {
+                rows = rows.data;
+            }
             if (rows && rows.length > 0) {
+                for (var i = 0; i < rows.length; i++) {
+                    var r = rows[i];
+                    if (!r.iconCls && options.defaultIconCls) {
+                        if (!jx.isUndefined(r.leaf) && r.leaf === 0) {
+                            r.iconCls = null;
+                        }
+                        else {
+                            r.iconCls = options.defaultIconCls;
+                        }
+                    }
+                }
                 var row = rows[0];
                 if (row.hasOwnProperty('pid')) {
-                    return jx.treeConvert(rows);
+                    return jx.treeConvert(rows, options.useFolderIcon);
                 }
             }
             if (_loadFilter) {
@@ -287,23 +314,23 @@ jx.ui.Tree = function (element, options) {
             }
         };
 
-        var _onCheck = options.onCheck;
-        options.onCheck = function (node, checked) {
-            if (checked) {
-                $(node.target).find('.tree-title').addClass('tree-node-yellow');
-            } else {
-                $(node.target).find('.tree-title').removeClass('tree-node-yellow');
-            }
-            if (_onCheck) {
-                _onCheck.call(this, node, checked);
-            }
-        };
+        // var _onCheck = options.onCheck;
+        // options.onCheck = function (node, checked) {
+        //     if (checked) {
+        //         $(node.target).find('.tree-title').addClass('tree-node-yellow');
+        //     } else {
+        //         $(node.target).find('.tree-title').removeClass('tree-node-yellow');
+        //     }
+        //     if (_onCheck) {
+        //         _onCheck.call(this, node, checked);
+        //     }
+        // };
 
         var _onDragOver = options.onDragOver;
         options.onDragOver = function (target, source) {
             if (_onDragOver) {
                 var result = _onDragOver.call(this, target, source);
-                if (result===false) {
+                if (result === false) {
                     return false;
                 }
             }
@@ -331,7 +358,7 @@ jx.ui.Tree = function (element, options) {
         };
 
         var _onDrop = options.onDrop;
-        options.onDrop = function (targetRow, sourceRow, point) {
+        options.onDrop = function (target, source, point) {
             var id = source.id;
             var $this = $(this);
             var sourceNode = $this.tree('find', id);
@@ -346,16 +373,62 @@ jx.ui.Tree = function (element, options) {
                 source_pid = 0;
             }
 
-            var pd = {id: id, source_pid: source_pid, target_pid: target_pid};
+            var parentIds = [];
+            parentIds.push(source_pid);
+            parentIds.push(target_pid);
+
+            var indexs = [];
+            var objs = {};
+            $.each(parentIds, function (i, v) {
+                var row = $element.tree('find', v);
+                if (row == null) {
+                    var sz = $element.tree('getRoots');
+                    $.each(sz, function (index, value) {
+                        var id = value.id;
+                        var parentNode = $element.tree('getParent', value.target);
+                        if (!objs[id]) {
+                            //console.log(value);
+                            indexs.push({id: id, parentId: (parentNode && parentNode.id) || 0, index: index});
+                            objs[id] = 1;
+                        }
+                    });
+                } else if (row.children) {
+                    $.each(row.children, function (index, value) {
+                        var id = value.id;
+                        var parentNode = $element.tree('getParent', value.target);
+                        if (!objs[id]) {
+                            // console.log(value);
+                            indexs.push({id: id, parentId: (parentNode && parentNode.id) || 0, index: index});
+                            objs[id] = 1;
+                        }
+                    });
+                }
+            });
+
+            // var pd = {data: JSON.stringify(indexs)};
+            var pd = JSON.stringify(indexs);
+            // var pd = {id: id, source_pid: source_pid, target_pid: target_pid};
             if (jx.debug) {
                 console.log(pd);
             }
             if (options.dndUrl) {
-                $.post(options.dndUrl, pd, function (result) {
-                    if (!result.success) {
-                        toastr.error(result.msg);
+                jx.ajax({
+                    url: options.dndUrl,
+                    contentType: "application/json; charset=utf-8",
+                    data: pd,
+                    dataType: "json",
+                    //maskMsg: '正在修改数据状态,请稍等...',
+                    success: function (result) {
+                        if (!result.success) {
+                            toastr.error(result.msg);
+                        }
                     }
                 });
+                // $.post(options.dndUrl, pd, function (result) {
+                //     if (!result.success) {
+                //         toastr.error(result.msg);
+                //     }
+                // });
             }
 
             if (_onDrop) {
@@ -376,6 +449,40 @@ jx.ui.Tree = function (element, options) {
          */
         getIdByLevel: function (level) {
             return getIdByLevel(level);
+        },
+
+        /**
+         * 高亮显示选中的节点
+         */
+        highlightCheckedNode: function () {
+            $.each($element.tree('getChecked', ['checked', 'indeterminate']), function (i, v) {
+                var node = $(v.target).find('.tree-title');
+                if (!node.hasClass('tree-node-yellow')) {
+                    node.addClass('tree-node-yellow');
+                }
+            });
+        },
+
+        /**
+         * 重新设置高亮显示选中的节点
+         */
+        reHighlightCheckedNode: function () {
+            function _core(v) {
+                var title = $(v.target).find('.tree-title');
+                if (title.hasClass('tree-node-yellow')) {
+                    title.removeClass('tree-node-yellow');
+                }
+                if (v.checkState === 'checked' || v.checkState === 'indeterminate') {
+                    title.addClass('tree-node-yellow');
+                }
+            }
+
+            $.each($element.tree('getRoots'), function (i, v) {
+                _core(v);
+                $.each($element.tree('getChildren', v.target), function (ci, cv) {
+                    _core(cv);
+                });
+            });
         },
 
         /**
@@ -402,6 +509,21 @@ jx.ui.Tree = function (element, options) {
             expandRoot();
         },
 
+        getLevelById: function (level) {
+            var i = 1;
+            var node = this.getRoot();
+            while (i < level) {
+                i++;
+                node = getChildNode(node);
+                if (!node) {
+                    break;
+                }
+            }
+            if (node) {
+                return node.id;
+            }
+            return 0;
+        },
         /**
          * 指定延迟时间进行本地过滤
          */
@@ -725,7 +847,7 @@ jx.plugin({
     name: 'jxtree',
     create: jx.ui.Tree,
     options: function (element) {
-        return jx.parseOptions($(element), ['url', 'method', 'loadEmptyMessage', 'filterEmptyMessage', 'maskMsg', {
+        return jx.parseOptions($(element), ['url', 'dndUrl', 'method', 'loadEmptyMessage', 'filterEmptyMessage', 'defaultIconCls', 'maskMsg', {
             animate: 'boolean',
             checkbox: 'boolean',
             cascadeCheck: 'boolean',
@@ -782,5 +904,9 @@ jx.plugin({
         maskDelay: 1000,
 
         dndUrl: null,
+
+        defaultIconCls: null,//节点默认图标样式
+
+        useFolderIcon: false,//使用文件夹图标
     }
 });

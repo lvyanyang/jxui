@@ -25,6 +25,12 @@
             if (formSelectors.length > 1) {
                 for (var i = 1; i < formSelectors.length; i++) {
                     var $subform = $(formSelectors[i]);
+                    if(!$subform.data('validator')){
+                        $subform.jxform();
+                    }
+                    if ($subform.valid() === false) {
+                        return false;
+                    }
                     $.extend(ps, jx.serialize($subform));
                 }
             }
